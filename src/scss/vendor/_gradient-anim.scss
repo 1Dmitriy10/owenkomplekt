@@ -1,0 +1,26 @@
+@use "../main/mixins-vars"as *;
+
+// ---------------- анимация градиента ------------------------ 
+.gradient-anim {
+    background-size: 100% 100%;
+    background: linear-gradient(90deg, #973d6d 0%, #973d6d 17%, #c65f93 82%, #c65f93 100%);
+}
+
+.gradient-anim:hover {
+    background-size: 400% 400%;
+    animation: gradient 0.6s ease forwards;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    /* 50% {
+      background-position: 100% 50%;
+    } */
+    100% {
+        background-position: 50% 50%;
+    }
+}

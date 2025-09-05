@@ -1,0 +1,23 @@
+@use "../main/mixins-vars"as *;
+
+header {
+    padding: 0 20px;
+}
+
+.header__container {
+    padding: 6px 0;
+}
+
+.header-nav {
+    margin-right: clamp-px(60, 120);
+
+    @include respond-to("tab") {
+        display: none;
+    }
+}
+
+.contact-box-header {
+    @media (width<620px) {
+        display: none;
+    }
+}

@@ -1,0 +1,50 @@
+<header class="header bg-transparent fixed w-full">
+    <div class="container header__container flex items-center">
+
+        <a class="logo" href="#">
+            <img class="logo-img min-w-[45px] w-[45px] md:min-w-[69px] md:w-[45px]" src="@img/logo.png" alt="">
+        </a>
+
+        {{> menu}}
+
+        <div class="contact-box contact-box-header flex flex-col gap-[10px] lg:gap-[15px] lg:flex-row items-center ">
+            <a class="email " href="">
+                1primo1@mail.ru
+            </a>
+
+            <a class="phone" href="">
+                8 926 725 69 26
+            </a>
+        </div>
+
+        <div class="social-box flex gap-[10px] md:gap-[20px] !mr-[20px] md:!mr-[50px]">
+            <a href="#" class="social-link">
+                <i class="fa-brands fa-vk"></i>
+            </a>
+
+            <a href="#" class="social-link">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+
+        </div>
+
+        <button class="btn header-btn">Консультация</button>
+
+        {{> btnBurgerMenu}}
+    </div>
+</header>
+
+{{> sticky-header}}
+
+{{> burgerMenu}}
+
+<div class="git-nav-box">
+    <ul>
+        <li>
+            <a href="https://1dmitriy10.github.io/newAzot/">
+                Главная
+            </a>
+        </li>
+
+    </ul>
+</div>

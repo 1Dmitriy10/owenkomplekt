@@ -1,0 +1,21 @@
+@use "../main/mixins-vars"as *;
+
+// ============== [Пагинация] =================
+
+.pagination {
+    display: flex;
+}
+
+.pagination__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pagination__list-item {}
+
+.pagination__item-link {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}

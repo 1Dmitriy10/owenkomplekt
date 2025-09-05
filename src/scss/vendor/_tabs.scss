@@ -1,0 +1,47 @@
+@use "../main/mixins-vars"as *;
+
+//========================= [Табы] =====================
+
+._tabs-js {
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs__title-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.tabs__title {
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    width: fit-content;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    &:hover {
+        transition: 0.3s;
+        background-color: rgba(72, 134, 226, 0.623);
+    }
+
+    &.active {
+        transition: 0.3s;
+        background-color: rgba(72, 134, 226, 0.623);
+    }
+}
+
+.tabs__item-box {}
+
+.tabs__item {
+    display: none;
+    flex: 1 1 100%;
+
+    &.active {
+        display: flex;
+    }
+}

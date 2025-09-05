@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+    --font-size-fluid: red;
+    --spacing-fluid: clamp(1rem, 5vw, 3rem);
+}

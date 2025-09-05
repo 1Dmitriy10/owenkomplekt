@@ -1,0 +1,69 @@
+@use "../main/mixins-vars"as *;
+
+.ui-kit__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+main.ui-kit {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.logo {
+    margin-right: clamp-px(20, 73);
+}
+
+.contact-box {
+    margin-right: clamp-px(40, 124);
+    margin-left: auto;
+}
+
+.email,
+.phone {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    color: var(--white);
+}
+
+.social-link {
+    font-size: clamp-px(18, 24);
+    color: var(--white);
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp-px(8, 12) clamp-px(12, 18);
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    text-align: center;
+    color: var(--white);
+}
+
+.btn_second {
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.header-btn {
+    font-weight: 600;
+    font-size: clamp-px(12, 14);
+    line-height: 132%;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: clamp-px(6, 8);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 24px 80px 0 rgba(10, 10, 10, 0.96);
+    background: rgba(24, 24, 24, 0.4);
+
+    @include respond-to("tab") {
+        margin-right: 15px;
+    }
+}

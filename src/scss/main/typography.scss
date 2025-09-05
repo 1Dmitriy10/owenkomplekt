@@ -1,0 +1,80 @@
+@use "./mixins-vars"as *;
+
+h1 {}
+
+h2 {}
+
+h3 {}
+
+h4 {}
+
+p {
+    font-family: var(--font-family);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+    color: #fff;
+
+    &:not(:last-child) {
+        margin-bottom: clamp-px(18, 25);
+    }
+
+    &.strong {
+        font-weight: 600;
+        font-size: 18px;
+    }
+}
+
+ul.ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & li {
+        font-weight: 400;
+        font-size: clamp-px(14, 16);
+        line-height: 140%;
+        color: var(--white);
+        position: relative;
+        padding-left: clamp-px(15, 25);
+
+        &::before {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            content: "";
+            display: flex;
+            width: clamp-px(3, 5);
+            height: clamp-px(3, 5);
+            border-radius: 100%;
+            background-color: var(--white);
+        }
+    }
+}
+
+ol {}
+
+::-webkit-input-placeholder {
+    font-family: var(--ff);
+}
+
+:-ms-input-placeholder {
+    font-family: var(--ff);
+}
+
+:-moz-placeholder {
+    font-family: var(--ff);
+}
+
+::-moz-placeholder {
+    font-family: var(--ff);
+}
+
+h2.title {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: clamp-px(24, 36);
+    line-height: 140%;
+    color: var(--black);
+    margin-bottom: clamp-px(30, 60);
+}

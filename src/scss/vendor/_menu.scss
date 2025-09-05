@@ -1,0 +1,184 @@
+@use "../main/mixins-vars"as *;
+
+//====================[Меню]===============================
+
+.nav-list,
+.nav-list-sticky {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp-px(15, 26);
+    justify-content: space-between;
+    position: relative;
+
+    &.hidden {
+        display: none;
+    }
+
+    &>li {
+        & a {
+            color: var(--white);
+            font-weight: 300;
+            font-size: 20px;
+        }
+
+        &.item {
+            position: relative;
+        }
+
+        &>.sub-menu.item {
+            min-width: 300px;
+        }
+
+        &>.sub-menu {
+            display: flex;
+            margin-top: 12px;
+            padding: 50px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            z-index: 3;
+            transition: 0.3s;
+            transition-delay: 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            background-color: rgb(0, 204, 255);
+
+        }
+
+        &:hover {
+            &>.sub-menu {
+                display: flex;
+                transition: 0.3s;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        &>.sub-menu.full {
+            display: flex;
+            margin-top: 12px;
+            padding: 50px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            z-index: 3;
+            transition: 0.3s;
+            transition-delay: 0.3s;
+            // transform: scale(0);
+            opacity: 0;
+            visibility: hidden;
+            background-color: rgb(0, 204, 255);
+
+            &::after {
+                content: "";
+                width: calc(100vw * 2);
+                position: absolute;
+                top: 0;
+                left: -100vw;
+                height: 100%;
+                z-index: -1;
+                background-color: rgb(0, 204, 255);
+            }
+
+        }
+
+        &:hover {
+            &>.sub-menu.full {
+                display: flex;
+                transition: 0.3s;
+                opacity: 1;
+                visibility: visible;
+
+
+                &::after {
+                    content: "";
+                    width: calc(100vw * 2);
+                    position: absolute;
+                    top: 0;
+                    left: -100vw;
+                    height: 100%;
+                    z-index: -1;
+                    background-color: rgb(0, 204, 255);
+                }
+
+            }
+        }
+
+    }
+
+    &>a {
+        transition: 0.3s;
+
+
+        &:hover {
+            transition: 0.3s;
+            color: black;
+
+        }
+    }
+
+}
+
+.nav__item-wrap {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    color: #666666;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.nav__item-opacity-wrap>svg {
+    width: 40px;
+    height: 25px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.nav__item-wrap {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    color: #666666;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.nav__item-opacity {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 21px -20px black;
+    transform: translateX(150%);
+    transition-delay: 0.3s;
+
+    &>li>.sub-menu {
+        display: none;
+    }
+}
+
+.drop-menu {
+    position: relative;
+}
+
+.nav__item-wrap:hover>.nav__item-opacity {
+    transition: 0.3s;
+    transform: translateX(0);
+    z-index: 10;
+}

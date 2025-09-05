@@ -1,0 +1,80 @@
+@use "../main/mixins-vars"as *;
+
+// -----------флекс-----------------
+.card-box-flex {
+    display: flex;
+    flex-wrap: wrap;
+    // --row-gap: attr(data-row-gap px);
+    // --col-gap: attr(data-col-gap px);
+
+    --row-gap: 20px;
+    --col-gap: 20px;
+    gap: var(--row-gap) var(--col-gap);
+
+    &>.card>div {
+        height: 100%;
+    }
+
+    &.cols_1 {
+        display: flex;
+        flex-wrap: wrap;
+
+        & .card {
+            flex: 0 1 100%;
+        }
+    }
+
+    &.cols_2 {
+        display: flex;
+        flex-wrap: wrap;
+
+        & .card {
+            flex: 0 1 calc((100% - var(--col-gap) * 1) / 2);
+
+            @include respond-to("tel") {
+                flex: 0 1 100%;
+            }
+        }
+
+
+    }
+
+    &.cols_3 {
+        display: flex;
+        flex-wrap: wrap;
+
+        & .card {
+            flex: 0 1 calc((100% - var(--col-gap) * 2) / 3);
+
+            @include respond-to("nout") {
+                flex: 0 1 calc((100% - var(--col-gap) * 1) / 2);
+            }
+
+            @include respond-to("tel") {
+                flex: 0 1 100%;
+            }
+        }
+    }
+
+    &.cols_4 {
+        display: flex;
+        flex-wrap: wrap;
+
+        & .card {
+            flex: 0 1 calc((100% - var(--col-gap) * 3) / 4);
+
+            @include respond-to("pc-old") {
+                flex: 0 1 calc((100% - var(--col-gap) * 2) / 3);
+            }
+
+            @include respond-to("nout") {
+                flex: 0 1 calc((100% - var(--col-gap) * 1) / 2);
+            }
+
+            @include respond-to("tel") {
+                flex: 0 1 100%;
+            }
+        }
+    }
+
+}

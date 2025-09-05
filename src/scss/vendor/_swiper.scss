@@ -1,0 +1,20 @@
+@use "../main/mixins-vars"as *;
+
+//==========Свайпер одинаковые слайды по высоте=========
+.swiper-wrapper.height_100 {
+    align-items: stretch;
+}
+
+.swiper-slide.height_100 {
+    height: auto;
+}
+
+
+// ---------- Слайдер который выходит за пределы контейнера-----
+section.overflow {
+    overflow: hidden;
+}
+
+.swiper.width_100 {
+    width: calc(50% + 50vw);
+}

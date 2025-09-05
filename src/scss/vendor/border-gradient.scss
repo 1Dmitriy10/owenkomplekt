@@ -1,0 +1,36 @@
+@use "../main/mixins-vars"as *;
+
+.border-gradient {
+    $border-ridius: 30px;
+    $border-width: 1px;
+    $innerColor: var(--white);
+    // ----------------
+    position: relative;
+    max-width: calc(100% - $border-width);
+    max-height: calc(66px - ($border-width * 2));
+    border-radius: calc($border-ridius - $border-width);
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -$border-width;
+        left: -$border-width;
+        width: calc(100% + ($border-width * 2));
+        height: calc(100% + ($border-width * 2));
+        border-radius: $border-ridius;
+        background: linear-gradient(90deg, #ff5b5b 0%, #ff5b5b 15%, #ffb371 85%, #ffb371 100%);
+        z-index: 1;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: calc($border-ridius - $border-width);
+        background: $innerColor;
+        z-index: 2;
+    }
+}

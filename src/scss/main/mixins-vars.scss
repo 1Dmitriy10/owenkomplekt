@@ -1,0 +1,162 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:math";
+
+//=========сетка брейкпоинтов==============
+$breakpoints: ("tel-old": (max-width: 419.98px),
+    "tel": (max-width: 575.98px),
+    "tab": (max-width: 767.98px),
+    "nout": (max-width: 991.98px),
+    "pc-old": (max-width: 1199.98px),
+    "pc": (max-width: 1399.98px));
+
+$gap: 20px;
+
+// ===================================================Миксины=============================================
+
+//=========Миксин брейкпоинтов===============
+@mixin respond-to($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media #{meta.inspect(map.get($breakpoints, $breakpoint))} {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Брейкпоинт '#{$breakpoint}' не найден в $breakpoints";
+    }
+}
+
+
+//==============clamp===========================
+@function clamp-px($minFont, $maxFont, $minVp: 375, $maxVp: 1440) {
+    @if not math.is-unitless($minFont) or not math.is-unitless($maxFont) {
+        @warn "Font arguments should be unitless";
+    }
+
+    @if not math.is-unitless($minVp) or not math.is-unitless($maxVp) {
+        @warn "Viewport arguments should be unitless";
+    }
+
+    $minFont: calc($minFont / 16);
+    $maxFont: calc($maxFont / 16);
+    $minVp: calc($minVp / 16);
+    $maxVp: calc($maxVp / 16);
+
+    // y = mx + q
+    $m: calc(($maxFont - $minFont) / ($maxVp - $minVp));
+    $q: calc(-1 * $minVp * $m + $minFont);
+    $m: calc($m * 100);
+
+    @return clamp(calc($minFont * 1rem), calc($q * 1rem + calc($m * 1vw)), calc($maxFont * 1rem));
+}
+
+//============шрифты==============
+@mixin font($weight, $size, $color, $height) {
+    font-weight: $weight;
+    font-size: $size;
+    color: $color;
+    line-height: $height;
+}
+
+//=======адаптивное св-во==============
+@mixin adaptiveValue($property, $startSize, $minSize) {
+    $addSize: $startSize - $minSize;
+    // Ширина полотна макета
+    $maxWidth: 1920;
+    #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+}
+
+// =========================================Функции=====================================================
+
+// перевод в rem
+@function r($px) {
+    $result: $px / 16+rem;
+    @return $result;
+}
+
+//пропорциональное изменение высоты изображения
+@function prop($h, $w) {
+    $result: $h / $w * 100%;
+    @return $result;
+}
+
+//адаптивный отступ
+@function in($w, $x) {
+    $result: $x * 100% / $w;
+    @return $result;
+}
+
+// ============ колонки ==============
+@mixin cols($cols, $gap) {
+    @if $cols==1 {
+        flex: 0 1 100%;
+    }
+
+    @else if $cols==2 {
+        flex: 0 1 calc((100% - 1 * $gap) / 2);
+
+        @include respond-to("tab") {
+            flex: 0 1 100%;
+        }
+    }
+
+    @else if $cols==3 {
+        flex: 0 1 calc((100% - 2 * $gap) / 3);
+
+        @include respond-to("tab") {
+            flex: 0 1 calc((100% - 1 * $gap) / 2);
+        }
+
+        @include respond-to("tel") {
+            flex: 0 1 100%;
+        }
+    }
+
+    @else if $cols==4 {
+        flex: 0 1 calc((100% - 3 * $gap) / 4);
+
+        @include respond-to("pc-old") {
+            flex: 0 1 calc((100% - 2 * $gap) / 3);
+        }
+
+        @include respond-to("tab") {
+            flex: 0 1 calc((100% - 1 * $gap) / 2);
+        }
+
+        @include respond-to("tel") {
+            flex: 0 1 100%;
+        }
+    }
+}
+
+// =========================================Стилизация плейсхолдеров=====================================================
+@mixin placeholder($color, $size, $weight, $family) {
+    &::-webkit-input-placeholder {
+        color: $color;
+        font-size: $size;
+        font-weight: $weight;
+        font-family: $family;
+    }
+
+    &:-moz-placeholder {
+        color: $color;
+        font-size: $size;
+        font-weight: $weight;
+        font-family: $family;
+    }
+
+    &::-moz-placeholder {
+        color: $color;
+        font-size: $size;
+        font-weight: $weight;
+        font-family: $family;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color;
+        font-size: $size;
+        font-weight: $weight;
+        font-family: $family;
+    }
+}

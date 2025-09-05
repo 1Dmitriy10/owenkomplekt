@@ -1,0 +1,40 @@
+@use "../main/mixins-vars"as *;
+
+//---------------- scroll-snap -----------------
+.scroll-snap {
+    display: flex;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    // -----цвет скрола
+    scrollbar-color: var(--orange) transparent;
+    scrollbar-width: thin;
+    padding-bottom: 10px;
+}
+
+.scroll-snap__item {
+    flex: 0 0 fit-content;
+    scroll-snap-align: start;
+}
+
+.scroll-snap-mob {
+    @include respond-to("nout") {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 20px !important;
+        scroll-snap-type: x mandatory;
+        overflow-x: auto;
+        // -----цвет скрола
+
+        // background: #8f1b1b;
+        scrollbar-width: thin;
+        padding-bottom: 10px;
+
+        & .scroll-snap__item {
+            flex: 0 0 auto;
+            min-width: 300px;
+            scroll-snap-align: start;
+        }
+    }
+
+}

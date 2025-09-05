@@ -1,0 +1,23 @@
+@use "../main/mixins-vars"as *;
+
+// ================== [Спойлеры] ============
+
+summary {
+    display: flex;
+    align-items: center;
+
+    &::after {
+        content: '+';
+        display: flex;
+        margin-left: 20px;
+        transition: 0.3s;
+        transform: rotate(0deg);
+    }
+
+    &.active {
+        &::after {
+            transition: 0.3s;
+            transform: rotate(45deg);
+        }
+    }
+}

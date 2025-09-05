@@ -1,0 +1,65 @@
+@use "../main/mixins-vars"as *;
+
+.git-nav-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-width: 300px;
+    max-width: 600px;
+    padding: clamp(0.9375rem, 0.7099514563rem + 0.9708737864vw, 1.875rem);
+    border-radius: 0 clamp(0.75rem, 0.6286407767rem + 0.5177993528vw, 1.25rem) clamp(0.75rem, 0.6286407767rem + 0.5177993528vw, 1.25rem) clamp(0.75rem, 0.6286407767rem + 0.5177993528vw, 1.25rem);
+    min-height: 400px;
+    background-color: rgb(243, 248, 252);
+    -webkit-box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.5490196078);
+    box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.5490196078);
+    position: fixed;
+    right: 0;
+    top: 150px;
+    z-index: 150;
+    -webkit-transform: translateX(108%);
+    -ms-transform: translateX(108%);
+    transform: translateX(108%);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.git-nav-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -35px;
+    width: 50px;
+    height: 50px;
+    max-height: 500px;
+    border-radius: clamp(0.3125rem, 0.2366504854rem + 0.3236245955vw, 0.625rem);
+    background-color: rgb(243, 248, 252);
+    border-left: 1px solid rgb(198, 203, 207);
+}
+
+.git-nav-box.show {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.git-nav-box>ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.git-nav-box>ul>li>a {
+    font-weight: 400;
+    font-size: clamp(0.75rem, 0.6893203883rem + 0.2588996764vw, 1rem);
+    line-height: 162%;
+    color: var(--grays-black);
+}

@@ -1,0 +1,63 @@
+@use "../main/mixins-vars"as *;
+
+.custom-checkbox {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+    width: fit-content;
+
+    &>input[type="checkbox"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+    }
+
+    &>span {
+        font-weight: 400;
+        font-size: clamp-px(15, 20);
+        line-height: 150%;
+        color: var(--black);
+        flex: 1 1 100%;
+    }
+
+    &>.check-box {
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        background-color: var(--stroke);
+        width: 36px;
+        min-width: 36px;
+        height: 20px;
+        transition: 0.3s;
+
+        &::before {
+            content: "";
+            display: flex;
+            border-radius: 13px;
+            width: 16px;
+            height: 16px;
+            background: var(--white);
+            margin-left: 1px;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        &.active {
+            transition: 0.3s;
+            background-color: var(--orange);
+
+            &::before {
+                transition: 0.3s;
+                transform: translate(100%)
+            }
+
+        }
+    }
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}

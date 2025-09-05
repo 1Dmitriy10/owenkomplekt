@@ -1,0 +1,56 @@
+@use "./mixins-vars"as *;
+
+:root {
+
+    //===========Шрифты============
+    --ff: "Montserrat", 'sans-serif';
+    //===========Цвета===========
+    --white: #fff;
+    --black: #333;
+    --primary-color: #d6e0e2;
+    --secondary-color: #d5ff5f;
+    --tertiary-color: #4E6075;
+    // ===========gap===========
+    --gap: 20px;
+
+
+
+    body {
+        overflow-x: hidden;
+    }
+
+    //container
+    .container {
+        max-width: 1440px;
+        margin: 0 auto;
+
+        @include respond-to("pc") {
+            max-width: 1210px;
+        }
+
+        @include respond-to("pc-old") {
+            max-width: 1010px;
+        }
+
+        @include respond-to("nout") {
+            max-width: 800px;
+        }
+
+        @include respond-to("tab") {
+            max-width: 650px;
+        }
+
+        @include respond-to("tel") {
+            max-width: 410px;
+        }
+
+        @include respond-to("tel-old") {
+            // max-width: 325px;
+            max-width: 100%;
+        }
+    }
+
+    section {
+        padding: 0 20px;
+    }
+}

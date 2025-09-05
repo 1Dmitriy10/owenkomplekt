@@ -1,0 +1,83 @@
+@use "../main/mixins-vars"as *;
+
+//---------------- грид -----------------
+
+.card-box-grid {
+    // --row-gap: attr(data-row-gap px);
+    // --col-gap: attr(data-col-gap px);
+    --row-gap: 20px;
+    --col-gap: 20px;
+    display: grid;
+    gap: var(--row-gap) var(--col-gap);
+    grid-template-columns: repeat(var(--cols), 1fr);
+
+    &>.card>div {
+        height: 100%;
+    }
+
+    @include respond-to('tel') {
+        grid-template-columns: 1fr;
+        --col-gap: 0;
+    }
+
+    &.cols_1 {
+        --cols: 1;
+    }
+
+    &.cols_2 {
+        --cols: 2;
+
+        @include respond-to('tel') {
+            --cols: 1;
+        }
+    }
+
+    &.cols_3 {
+        --cols: 3;
+
+        @include respond-to('tab') {
+            --cols: 2;
+        }
+
+        @include respond-to('tel') {
+            --cols: 1;
+        }
+    }
+
+    &.cols_4 {
+        --cols: 4;
+
+        @include respond-to('pc-old') {
+            --cols: 3;
+        }
+
+        @include respond-to('tab') {
+            --cols: 2;
+        }
+
+        @include respond-to('tel') {
+            --cols: 1;
+        }
+    }
+
+    &.cols_5 {
+        --cols: 5;
+
+        @include respond-to('pc') {
+            --cols: 4;
+        }
+
+        @include respond-to('pc-old') {
+            --cols: 3;
+        }
+
+        @include respond-to('tab') {
+            --cols: 2;
+        }
+
+        @include respond-to('tel') {
+            --cols: 1;
+        }
+    }
+
+}

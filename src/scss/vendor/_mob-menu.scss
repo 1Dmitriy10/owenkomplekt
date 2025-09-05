@@ -1,0 +1,208 @@
+@use "../main/mixins-vars"as *;
+
+//======================[мобильное меню]=========================
+
+// body{
+//     height: 100%;
+//     overflow: hidden; /* убедитесь, что iOS не пытается сначала прокрутить тело */
+// }
+// ------------------------кнопка бургера---------------------------
+.mob-nav-btn {
+    display: none;
+    position: relative;
+    z-index: 100;
+    min-width: 20px;
+    height: 16px;
+    background: none;
+    border: none;
+    align-items: center;
+    cursor: pointer;
+    margin-left: auto;
+
+    &.show {
+        display: flex;
+    }
+
+    &>span {
+        display: flex;
+        width: 100%;
+        height: 2px;
+        background-color: black;
+        position: relative;
+
+        &::after {
+            content: "";
+            transition: 0.3s;
+            position: absolute;
+            display: flex;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            bottom: 7px;
+        }
+
+        &::before {
+            content: "";
+            transition: 0.3s;
+            position: absolute;
+            display: flex;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            top: 7px;
+        }
+    }
+
+    &.active {
+        &>span {
+            border: none;
+            height: 0;
+
+            &::after {
+                transition: 0.3s;
+                transform: rotate(45deg);
+                bottom: -1px;
+            }
+
+            &::before {
+                transition: 0.3s;
+                transform: rotate(-45deg);
+                top: -1px;
+            }
+        }
+    }
+
+    @media (max-width:600px) {
+        display: flex;
+    }
+}
+
+// ----------------------------мобильное меню----------------------------------------------------
+.mob-nav {
+    z-index: 100;
+    width: 100%;
+    padding: 50px 20px 20px 20px;
+    // transform: translateX(200%);
+    transition: 0.5s;
+    background: gray;
+    position: fixed;
+    top: 0;
+    left: 0;
+    // left: 10px;
+    bottom: 10px;
+    height: 100dvh;
+    transform: translateY(-100%);
+    opacity: 0;
+    overflow: scroll;
+    /* не автоматический! */
+    //   для сафари
+    // height: -webkit-fill-available;
+    -webkit-overflow-scrolling: touch;
+
+    &.horizontal {
+        transform: translateX(100%);
+
+        &.active {
+            transform: translateX(0);
+        }
+    }
+
+    &.vertical {
+        transform: translateY(-100%);
+
+        &.active {
+            transform: translateY(0);
+        }
+    }
+
+    &.active {
+        display: flex;
+        flex-direction: column;
+        // transform: translateX(95%);
+        right: 10px;
+        transition: 0.5s;
+        opacity: 1;
+
+    }
+
+    &>nav {
+        margin-bottom: 20px;
+    }
+
+}
+
+.mob-menu-exit {
+    width: 30px;
+    min-height: 30px;
+    border-radius: 100%;
+    background-color: #f2ece8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.mob-nav-list {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    min-height: 70%
+}
+
+.mob-nav-link {
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--white);
+}
+
+.mob-nav-item>a {
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--white);
+}
+
+.social-box__mob {
+    margin-top: auto;
+
+    @include respond-to('tel') {
+        display: flex;
+    }
+
+}
+
+// =============================== [спойлеры] ==========================
+._spoiler-js-menu {
+    color: white;
+    position: absolute;
+    top: 0;
+    right: -25px;
+    transition: 0.3s;
+}
+
+._spoiler-js-menu.active {
+    transition: 0.3s;
+    transform: rotate(180deg);
+}
+
+.mob-nav-item {
+    position: relative;
+    max-width: 150px;
+}
+
+.spoiler-content-menu {
+    margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &>.mob-nav-item>a {
+        font-size: 14px;
+    }
+
+    &>.mob-nav-item>.spoiler-content-menu>.mob-nav-item>a {
+        font-weight: 500;
+    }
+
+}

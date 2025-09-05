@@ -1,0 +1,8 @@
+@use "../main/mixins-vars"as *;
+// =========== [Хлебные крошки] ===============
+
+.breadcrambs__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

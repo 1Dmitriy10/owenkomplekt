@@ -1,0 +1,100 @@
+@use "../main/mixins-vars"as *;
+
+.btn-up {
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    position: fixed;
+    bottom: 5%;
+    right: 10px;
+
+    &::before {
+        content: "";
+        border-radius: 100%;
+        border: 1px solid red;
+        margin: -30px 0 0 -30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+    }
+
+    &:hover::before {
+        animation: top_button 1s infinite ease-in;
+    }
+}
+
+
+/* Up Link */
+@-webkit-keyframes top_button {
+    0% {
+        opacity: 0;
+        width: 60px;
+        height: 60px;
+        margin: -30px 0 0 -30px;
+    }
+
+    50% {
+        opacity: 0.5;
+        width: 90px;
+        height: 90px;
+        margin: -45px 0 0 -45px;
+    }
+
+    100% {
+        opacity: 0;
+        width: 120px;
+        height: 120px;
+        margin: -60px 0 0 -60px;
+    }
+}
+
+@-moz-keyframes top_button {
+    0% {
+        opacity: 0;
+        width: 60px;
+        height: 60px;
+        margin: -30px 0 0 -30px;
+    }
+
+    50% {
+        opacity: 0.5;
+        width: 90px;
+        height: 90px;
+        margin: -45px 0 0 -45px;
+    }
+
+    100% {
+        opacity: 0;
+        width: 120px;
+        height: 120px;
+        margin: -60px 0 0 -60px;
+    }
+}
+
+@keyframes top_button {
+    0% {
+        opacity: 0;
+        width: 60px;
+        height: 60px;
+        margin: -30px 0 0 -30px;
+    }
+
+    50% {
+        opacity: 0.5;
+        width: 90px;
+        height: 90px;
+        margin: -45px 0 0 -45px;
+    }
+
+    100% {
+        opacity: 0;
+        width: 120px;
+        height: 120px;
+        margin: -60px 0 0 -60px;
+    }
+}
