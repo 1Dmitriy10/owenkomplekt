@@ -13,57 +13,100 @@ main.ui-kit {
     gap: 100px;
 }
 
-.logo {
-    margin-right: clamp-px(20, 73);
-}
-
-.contact-box {
-    margin-right: clamp-px(40, 124);
-    margin-left: auto;
-}
-
-.email,
-.phone {
-    font-weight: 400;
-    font-size: clamp-px(14, 16);
-    color: var(--white);
-}
-
-.social-link {
-    font-size: clamp-px(18, 24);
-    color: var(--white);
-}
-
 .btn {
+    border-radius: clamp-px(8, 10);
+    padding: clamp-px(8, 12) clamp-px(15, 32);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp-px(8, 12) clamp-px(12, 18);
-    background-color: transparent;
-    border: 2px solid #fff;
-    border-radius: 4px;
-    font-weight: 400;
-    font-size: clamp-px(14, 16);
-    text-align: center;
-    color: var(--white);
-}
-
-.btn_second {
-    border: 2px solid var(--secondary-color);
-    color: var(--secondary-color);
-}
-
-.header-btn {
-    font-weight: 600;
+    background: var(--red);
+    font-weight: 500;
     font-size: clamp-px(12, 14);
-    line-height: 132%;
-    border: 2px solid rgba(255, 255, 255, 0.16);
-    border-radius: clamp-px(6, 8);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 24px 80px 0 rgba(10, 10, 10, 0.96);
-    background: rgba(24, 24, 24, 0.4);
+    line-height: 140%;
+    color: var(--white);
+    border: 1px solid var(--red);
+    transition: 0.3s;
 
-    @include respond-to("tab") {
-        margin-right: 15px;
+    &:hover {
+        transition: 0.3s;
+        background-color: transparent;
+        color: var(--red);
     }
+}
+
+.btn-menu {
+    gap: 10px;
+    border-radius: clamp-px(10, 16);
+    border-radius: clamp-px(10, 16);
+    margin-right: clamp-px(30, 60);
+
+    &>svg>path {
+        transition: 0.3s;
+    }
+
+    &:hover {
+        &>svg>path {
+            transition: 0.3s;
+            fill: var(--red);
+        }
+    }
+}
+
+.menu-wrap {
+    display: flex;
+    align-items: center;
+    background-color: var(--gray-2);
+    border-radius: clamp-px(10, 16);
+    padding: 0px clamp-px(20, 60) 0px 0px;
+    margin-right: clamp-px(20, 34);
+}
+
+.form-footer-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-footer__title {
+    font-family: var(--third-family);
+    font-weight: 600;
+    font-size: clamp-px(14, 16);
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #f8f8f8;
+    margin-bottom: 10px;
+}
+
+.form-footer__subtitle {
+    font-weight: 500;
+    font-size: clamp-px(12, 14);
+    line-height: 120%;
+    text-align: center;
+    color: #9399a9;
+    margin-bottom: 10px;
+}
+
+.form-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__row {
+    width: 100%;
+
+    &>input {
+        border-radius: 5px;
+        padding: clamp-px(8, 10) clamp-px(15, 20);
+        width: 100%;
+        backdrop-filter: blur(7.3621063232421875px);
+        background: rgba(121, 121, 121, 0.13);
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: clamp-px(12, 14);
+        line-height: 120%;
+        color: #959aa7;
+    }
+}
+
+.footer-form__btn {
+    margin-top: 10px;
 }

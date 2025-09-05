@@ -1,6 +1,9 @@
+// -------------------- Tailwind ------------------------
+import '../scss/tailwind.css';
+
 // -------------------- Стили ------------------------
 import '../scss/style.scss';
-import '../scss/tailwind.css';
+import '../files/fontello-c8082328/css/owen.css';
 
 //------------------------Спойлеры-----------------------
 import { spoilers } from "./libs/spoilers.js";
@@ -70,7 +73,7 @@ import { mask } from "./libs/mask.js";
 // import { customCheckbox } from "./libs/customCheckbox.js";
 
 //---------------Навигация для гита---------------
-// import { gitNav } from "./libs/gitNav.js";
+import { gitNav } from "./libs/gitNav.js";
 
 //---------------Слайдер мобильного меню---------------
 // import { mobMenuSlider } from "./libs/mobMenuSlider.js";

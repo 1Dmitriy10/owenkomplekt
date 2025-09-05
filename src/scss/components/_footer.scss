@@ -1,1 +1,129 @@
 @use "../main/mixins-vars"as *;
+
+footer {
+    background-color: var(--black);
+    padding: 0 20px;
+    color: var(--white);
+}
+
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    padding: clamp-px(30, 80) 0;
+}
+
+.footer__top {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    margin-bottom: clamp-px(20, 40);
+}
+
+.footer-logo {
+    display: block;
+    margin-bottom: clamp-px(15, 20);
+    width: clamp-px(120, 142);
+}
+
+.address {
+    font-weight: 500;
+    font-size: clamp-px(12, 14);
+    color: #f8f8f8;
+    margin-bottom: 10px;
+}
+
+.work-day-footer {
+    font-weight: 500;
+    font-size: clamp-px(12, 14);
+    color: #f8f8f8;
+    margin-bottom: 10px;
+}
+
+.footer-phone {
+    font-weight: 700;
+    font-size: clamp-px(14, 16);
+    color: #f8f8f8;
+    margin-bottom: 10px;
+}
+
+.footer-mail {
+    font-weight: 500;
+    font-size: clamp-px(14, 16);
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #f8f8f8;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.social-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.social-link {
+    width: clamp-px(30, 40);
+    height: clamp-px(30, 40);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--red);
+    transition: 0.3s;
+
+    &>svg {
+        width: clamp-px(20, 24);
+        height: clamp-px(20, 24);
+    }
+
+    &:hover {
+        transition: 0.3s;
+        transform: translateY(-5px);
+    }
+}
+
+.footer-menu-title {
+    font-weight: 700;
+    font-size: clamp-px(12, 14);
+    line-height: 120%;
+    color: #f8f8f8;
+    margin-bottom: clamp-px(15, 20);
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &:not(:last-child) {
+        margin-bottom: clamp-px(15, 20);
+    }
+}
+
+.footer-menu-link {
+    font-weight: 400;
+    font-size: clamp-px(12, 14);
+    line-height: 120%;
+    color: #fff;
+}
+
+.footer-menu_bold {
+    display: flex;
+    flex-direction: column;
+    gap: clamp-px(15, 20);
+
+    & .footer-menu-link {
+        font-weight: 700;
+    }
+}
+
+.footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: clamp-px(12, 14);
+    color: #9ea3b0;
+}

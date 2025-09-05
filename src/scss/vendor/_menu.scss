@@ -15,10 +15,21 @@
     }
 
     &>li {
+        align-items: flex-start;
+        display: flex;
+
         & a {
-            color: var(--white);
-            font-weight: 300;
-            font-size: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 135%;
+            text-align: right;
+            color: #000;
+            transition: 0.3s;
+
+            &:hover {
+                transition: 0.3s;
+                text-shadow: 0 0 0.5px rgba(0, 0, 0, 0.699);
+            }
         }
 
         &.item {
@@ -175,6 +186,11 @@
 
 .drop-menu {
     position: relative;
+    margin-left: clamp-px(5, 10);
+
+    &>svg {
+        margin-top: 2px;
+    }
 }
 
 .nav__item-wrap:hover>.nav__item-opacity {

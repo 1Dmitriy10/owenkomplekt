@@ -3,13 +3,19 @@
 :root {
 
     //===========Шрифты============
-    --ff: "Montserrat", 'sans-serif';
+    --font-family: "Manrope", sans-serif;
+    --second-family: "Inter", sans-serif;
+    --third-family: "Montserrat", sans-serif;
+    --font3: "Open Sans", sans-serif;
+    --font4: "Stolzl", sans-serif;
     //===========Цвета===========
-    --white: #fff;
-    --black: #333;
-    --primary-color: #d6e0e2;
-    --secondary-color: #d5ff5f;
-    --tertiary-color: #4E6075;
+    --white: #FFFFFF;
+    --black: #1D222F;
+    --gray: #646978;
+    --gray-2: #EFF1F3;
+    --red: #E33624;
+    --text: #171717;
+    --text-2: #737373;
     // ===========gap===========
     --gap: 20px;
 
@@ -21,7 +27,7 @@
 
     //container
     .container {
-        max-width: 1440px;
+        max-width: 1300px;
         margin: 0 auto;
 
         @include respond-to("pc") {

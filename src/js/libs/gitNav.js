@@ -1,6 +1,6 @@
 export function gitNav() {
     let block = document.querySelector(".git-nav-box");
-    let check = true;
+    let check = false;
     
     block.addEventListener("click", function() {
         block.classList.toggle("show");
