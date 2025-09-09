@@ -103,6 +103,20 @@
       "search": [
         "arrow-bottom"
       ]
+    },
+    {
+      "uid": "3214c904fd353740bfb44b5c42aa79e9",
+      "css": "vector-6",
+      "code": 59399,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M500 28.6L28.6 500 500 971.4 971.4 500 500 28.6Z",
+        "width": 1000
+      },
+      "search": [
+        "vector-6"
+      ]
     }
   ]
 }

@@ -8,6 +8,20 @@ h3 {}
 
 h4 {}
 
+.block-title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: clamp-px(20, 40);
+    line-height: 120%;
+    color: var(--grey06);
+    margin-bottom: clamp-px(20, 48);
+    align-self: center;
+
+    @include respond-to('tab') {
+        text-align: center;
+    }
+}
+
 p {
     font-family: var(--font-family);
     font-weight: 300;

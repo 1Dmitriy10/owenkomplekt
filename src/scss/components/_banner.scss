@@ -1,0 +1,69 @@
+@use "../main/mixins-vars.scss"as *;
+
+.banner {}
+
+.banner__container {
+    display: flex;
+    border-radius: clamp-px(20, 30);
+    background: var(--grey02);
+
+    @include respond-to("nout") {
+        flex-direction: column;
+    }
+}
+
+.banner__img-wrap {
+    flex: 1 1 50%;
+    max-width: 620px;
+    position: relative;
+    border-radius: clamp-px(20, 30) 0 0 clamp-px(20, 30);
+    overflow: hidden;
+
+    & img-bg {
+        border-radius: clamp-px(20, 30) 0 0 clamp-px(20, 30);
+    }
+
+    @include respond-to("nout") {
+        flex: 1 clamp-px(230, 750);
+        max-width: 100%;
+        border-radius: clamp-px(20, 30) clamp-px(20, 30) 0 0;
+    }
+
+}
+
+.banner__right-col {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 13px 63px 40px;
+
+    @include respond-to("nout") {
+        padding: 20px 20px 40px 20px;
+        text-align: center;
+    }
+}
+
+.banner__title {
+    line-height: 120%;
+    margin-bottom: clamp-px(20, 30);
+}
+
+.banner__text {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey04);
+    margin-bottom: clamp-px(20, 36);
+}
+
+.banner__btn {
+    padding: clamp-px(18, 24) clamp-px(36, 48);
+    align-self: flex-start;
+    min-width: clamp-px(160, 220);
+
+    @include respond-to("nout") {
+        align-self: center;
+        min-width: clamp-px(160, 220);
+    }
+}

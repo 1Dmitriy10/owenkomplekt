@@ -76,7 +76,7 @@ import { mask } from "./libs/mask.js";
 import { gitNav } from "./libs/gitNav.js";
 
 //---------------Слайдер мобильного меню---------------
-// import { mobMenuSlider } from "./libs/mobMenuSlider.js";
+import { mobMenuSlider } from "./libs/mobMenuSlider.js";
 
 //------------Галлерея изменение главного изображения при клике---------------
 // import { galleryChangeImageClick } from "./libs/galleryChangeImageClick.js";

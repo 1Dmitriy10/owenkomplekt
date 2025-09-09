@@ -1,6 +1,23 @@
 @use "../main/mixins-vars"as *;
 
 //====================[Меню]===============================
+.nav-list {
+    &>li:first-child {
+        cursor: pointer;
+
+        &>a {
+            transition: 0.3s;
+            color: var(--white);
+        }
+
+        &:hover {
+            &>a {
+                transition: 0.3s;
+                color: var(--red);
+            }
+        }
+    }
+}
 
 .nav-list,
 .nav-list-sticky {
@@ -10,12 +27,12 @@
     justify-content: space-between;
     position: relative;
 
-    &.hidden {
-        display: none;
-    }
+    // &.hidden {
+    //     display: none;
+    // }
 
     &>li {
-        align-items: flex-start;
+        align-items: center;
         display: flex;
 
         & a {
@@ -28,8 +45,18 @@
 
             &:hover {
                 transition: 0.3s;
-                text-shadow: 0 0 0.5px rgba(0, 0, 0, 0.699);
+                color: var(--red);
             }
+        }
+
+        &>.drop-menu {
+            transition: 0.3s;
+
+            &>svg>path {
+                transition: 0.3s;
+                fill: #1D222F;
+            }
+
         }
 
         &.item {
@@ -41,29 +68,62 @@
         }
 
         &>.sub-menu {
-            display: flex;
-            margin-top: 12px;
-            padding: 50px 0;
-            flex-wrap: wrap;
-            gap: 20px;
+
+            max-height: 500px;
+            display: grid;
+            row-gap: 40px;
+            column-gap: 20px;
+            grid-auto-flow: row dense;
+            grid-auto-rows: minmax(30px, auto);
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 60px;
+            padding: clamp-px(20, 40);
             position: absolute;
-            width: 100%;
+            top: 0;
+            // width: calc(clamp-px(20, 60) + 100%);
             left: 0;
             z-index: 3;
             transition: 0.3s;
             transition-delay: 0.3s;
             opacity: 0;
             visibility: hidden;
-            background-color: rgb(0, 204, 255);
+            background: var(--grey02);
+            border-radius: 20px;
 
+
+            & a {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 150%;
+                color: var(--grey05);
+                transition: 0.3s;
+                width: fit-content;
+                border-bottom: 1px solid transparent;
+
+                &:hover {
+                    transition: 0.3s;
+                    color: var(--red);
+                    border-bottom: 1px solid var(--red);
+                }
+            }
         }
 
         &:hover {
             &>.sub-menu {
-                display: flex;
+                // display: flex;
                 transition: 0.3s;
                 opacity: 1;
                 visibility: visible;
+            }
+
+            &>.drop-menu {
+                transition: 0.3s;
+                transform: rotate(180deg);
+
+                &>svg>path {
+                    transition: 0.3s;
+                    fill: var(--red)
+                }
             }
         }
 
@@ -197,4 +257,22 @@
     transition: 0.3s;
     transform: translateX(0);
     z-index: 10;
+}
+
+.nav-item-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 700;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey06);
+    margin-bottom: 16px;
+    margin-left: -22px;
+}
+
+.sub-menu-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

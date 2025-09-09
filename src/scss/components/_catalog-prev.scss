@@ -1,0 +1,207 @@
+@use "../main/mixins-vars.scss"as *;
+
+.catalog-prev {}
+
+.catalog-prev__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-prev__title {
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.catalog-prev__subtitle {
+    align-self: center;
+    font-weight: 400;
+    font-size: clamp-px(14, 20);
+    line-height: 120%;
+    text-align: center;
+    color: var(--grey05);
+    margin-bottom: clamp-px(20, 40);
+}
+
+.catalog-prev__card-box {
+    display: grid;
+    gap: clamp-px(10, 20);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    @include respond-to('tab') {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, minmax(113px, auto));
+    }
+}
+
+.catalog-prev__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    min-height: clamp-px(240, 400);
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(16, 40) clamp-px(16, 15) clamp-px(16, 40) clamp-px(16, 40);
+    background: var(--grey02);
+    overflow: hidden;
+
+    & .img-bg {
+        border-radius: clamp-px(20, 30);
+
+
+        @include respond-to('nout') {
+            height: 80%;
+            object-fit: cover;
+        }
+
+        @include respond-to('tab') {
+            height: 100%;
+            object-fit: cover;
+        }
+
+    }
+
+    &:nth-child(2) {
+        @include respond-to('tab') {
+            & .img-bg {
+                height: 80%;
+            }
+        }
+    }
+
+    &:nth-child(3) {
+        grid-column: span 2;
+        justify-content: flex-start;
+
+        & .catalog-prev__card-title {
+            max-width: 260px;
+
+            @include respond-to('tab') {
+                max-width: 189px;
+            }
+        }
+
+        & .catalog-prev__card-subtitle {
+            max-width: 260px;
+
+            @include respond-to('tab') {
+                max-width: 189px;
+            }
+        }
+
+        @include respond-to('tab') {
+            & .img-bg {
+                left: auto;
+                right: -60px;
+            }
+        }
+    }
+
+    &:nth-child(4) {
+        grid-column: span 2;
+        justify-content: flex-start;
+
+        & .catalog-prev__card-title {
+            max-width: 260px;
+
+            @include respond-to('tab') {
+                max-width: 189px;
+            }
+        }
+
+        & .catalog-prev__card-subtitle {
+            max-width: 260px;
+
+            @include respond-to('tab') {
+                max-width: 189px;
+            }
+        }
+
+        @include respond-to('tab') {
+            grid-column: span 1;
+
+            & .img-bg {
+                height: 55%;
+                left: -25%;
+                top: auto;
+                bottom: 0;
+            }
+        }
+    }
+
+    &:nth-child(5) {
+        @include respond-to('tab') {
+            grid-column: span 1;
+
+            & .img-bg {
+                height: 80%;
+                width: 80%;
+                left: 10px;
+                // top: 10px;
+
+            }
+        }
+    }
+
+    &:last-child {
+        justify-content: flex-start;
+        background-color: var(--red);
+        color: var(--white);
+
+        & .catalog-prev__card-title {
+            text-transform: uppercase;
+            color: var(--white01);
+        }
+
+        @include respond-to('tab') {
+            grid-column: span 2;
+            min-height: 113px;
+            height: 113px;
+        }
+
+    }
+
+    @include respond-to('tab') {
+        min-height: clamp-px(240, 700);
+
+    }
+}
+
+.catalog-prev__card-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 4;
+}
+
+.catalog-prev__card-title {
+    font-weight: 700;
+    font-size: clamp-px(14, 20);
+    line-height: 120%;
+    color: var(--grey06);
+    position: relative;
+    z-index: 2;
+    margin-bottom: clamp-px(15, 20);
+}
+
+.catalog-prev__card-subtitle {
+    font-weight: 400;
+    font-size: clamp-px(12, 16);
+    line-height: 150%;
+    color: var(--grey05);
+    position: relative;
+    z-index: 2;
+}
+
+.catalog-prev__card-logo {
+    width: 86px;
+    margin-bottom: 10px;
+}
+
+.catalog-pre-more {
+    margin-top: auto;
+    align-self: flex-end;
+}

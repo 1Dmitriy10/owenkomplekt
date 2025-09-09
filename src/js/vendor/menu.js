@@ -49,12 +49,14 @@ export class Menu {
     }
 
     firstRender() {
-        if (!this.hasOpacityItems) return;
+       document.addEventListener('DOMContentLoaded', () => {
+if (!this.hasOpacityItems) return;
 
         const positionStart = this.items[0].getBoundingClientRect().top;
         this.menuItems = this.items.filter(item => {
             const itemTop = item.getBoundingClientRect().top;
             if (itemTop !== positionStart) {
+                 
                 this.opacityMenuItems.push(item);
                 return false;
             }
@@ -63,6 +65,7 @@ export class Menu {
 
         this.updateMenuLayout();
         this.setupResizeObserver();
+       })
     }
 
     updateMenuLayout() {

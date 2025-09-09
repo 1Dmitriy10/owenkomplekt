@@ -1,7 +1,7 @@
 @use "../main/mixins-vars"as *;
 
 header {
-    padding: 0 20px;
+    padding: 0 clamp-px(16, 20);
 }
 
 .header__container {
@@ -14,22 +14,17 @@ header {
     align-items: center;
     padding: clamp-px(15, 30) 0;
 
-    @include respond-to("tab") {
-        display: none;
-    }
+
 }
 
 .logo {
-    width: clamp-px(140, 172);
+    width: clamp-px(115, 172);
 }
 
 .logo-2 {
-    width: clamp-px(140, 172);
+    width: clamp-px(115, 172);
     margin-right: clamp-px(20, 51);
 
-    @include respond-to("nout") {
-        display: none;
-    }
 }
 
 .header-logo {
@@ -57,6 +52,12 @@ header {
             transition: 0.3s;
             opacity: 1;
             visibility: visible;
+        }
+    }
+
+    &.header__choosing-city {
+        @include respond-to("nout") {
+            display: none;
         }
     }
 }
@@ -201,6 +202,10 @@ header {
         transition: 0.3s;
     }
 
+
+}
+
+.header__phone {
     @include respond-to("pc") {
         border: 1px solid var(--red);
         border-radius: clamp-px(8, 10);
@@ -229,19 +234,32 @@ header {
             }
         }
     }
+
+    @include respond-to("tel") {
+        display: none;
+    }
 }
 
 .header-btn {
+    font-size: clamp-px(12, 14);
     margin-left: auto;
 
     @include respond-to("pc") {
         margin-left: 20px;
+    }
+
+    @include respond-to("tel") {
+        display: none;
     }
 }
 
 .header-bottom {
     display: flex;
     align-items: center;
+
+    @include respond-to("tab") {
+        display: none;
+    }
 }
 
 .header-nav {
@@ -275,5 +293,14 @@ header {
         font-size: clamp-px(12, 14);
         text-align: center;
         color: var(--white);
+    }
+}
+
+.btnBurgerMenu {
+    margin-left: auto;
+    display: none;
+
+    @include respond-to("tab") {
+        display: block;
     }
 }

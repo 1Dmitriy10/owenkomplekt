@@ -21,7 +21,7 @@ main.ui-kit {
     justify-content: center;
     background: var(--red);
     font-weight: 500;
-    font-size: clamp-px(12, 14);
+    font-size: clamp-px(14, 16);
     line-height: 140%;
     color: var(--white);
     border: 1px solid var(--red);
@@ -37,11 +37,22 @@ main.ui-kit {
 .btn-menu {
     gap: 10px;
     border-radius: clamp-px(10, 16);
-    border-radius: clamp-px(10, 16);
-    margin-right: clamp-px(30, 60);
+    color: var(--white) !important;
 
-    &>svg>path {
-        transition: 0.3s;
+
+    // border-radius: clamp-px(10, 16);
+    // margin-right: clamp-px(30, 60);
+    & .drop-menu {
+        display: none;
+
+    }
+
+    &>svg {
+        align-self: center;
+
+        &>path {
+            transition: 0.3s;
+        }
     }
 
     &:hover {
@@ -64,6 +75,10 @@ main.ui-kit {
 .form-footer-wrap {
     display: flex;
     flex-direction: column;
+
+    @include respond-to("tel") {
+        display: none;
+    }
 }
 
 .form-footer__title {

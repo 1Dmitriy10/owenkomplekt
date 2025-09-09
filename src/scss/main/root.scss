@@ -16,6 +16,17 @@
     --red: #E33624;
     --text: #171717;
     --text-2: #737373;
+
+    --white01: #fff;
+    --red01: #e33624;
+    --grey01: #f8f8f8;
+    --grey02: #eff1f3;
+    --grey03: #9399a9;
+    --grey04: #646978;
+    --grey05: #30333d;
+    --grey06: #1d222f;
+
+
     // ===========gap===========
     --gap: 20px;
 
@@ -57,6 +68,6 @@
     }
 
     section {
-        padding: 0 20px;
+        padding: 0 clamp-px(16, 20);
     }
 }

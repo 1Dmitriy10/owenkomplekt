@@ -18,7 +18,7 @@ export function mobMenuSlider(){
     if(!mobSlider){return null}
     let width = mobSlider.clientWidth
     // кнопка вперед
-    let btnCatalog = document.querySelector(".mob-nav-catalog__btn");
+    let btnCatalog = document.querySelector(".slider-menu-next");
     // Обертка слайдера
     let sliderTrack = document.querySelector(".mob-slider-wrap");
     // слайды

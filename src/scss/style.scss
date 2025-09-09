@@ -13,6 +13,13 @@
 
 //================Импорты компонентов=====================
 @use "./components/header.scss";
+@use "./components/_hero.scss";
+@use "./components/choice.scss";
+@use "./components/_banner.scss";
+@use "./components/_catalog-prev.scss";
+@use "./components/_industries.scss";
+@use "./components/_technologies.scss";
+
 @use "./components/footer.scss";
 
 //================Атомарные стили=====================
@@ -21,4 +28,8 @@
 //========основные стили============
 body {
     font-family: var(--font-family);
+}
+
+section {
+    margin-bottom: clamp-px(40, 80);
 }

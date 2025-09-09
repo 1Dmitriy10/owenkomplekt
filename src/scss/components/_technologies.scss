@@ -1,0 +1,78 @@
+@use "../main/mixins-vars.scss"as *;
+
+.technologies {}
+
+.technologies__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.technologies__title {
+    align-self: center;
+}
+
+.technologies__card-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @include respond-to("nout") {
+        flex-direction: column;
+    }
+}
+
+.technologies__card {
+    flex: 0 1 calc((100% - 20px * 1) / 2);
+    display: flex;
+    gap: clamp-px(10, 20);
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(16, 40);
+    background: var(--grey02);
+
+    @include respond-to("tel") {
+        flex-direction: column;
+    }
+}
+
+.technologies__card-img-wrap {
+    width: 269%;
+    // min-width: 240px;
+    aspect-ratio: 1/1.1;
+    position: relative;
+    border-radius: 20px;
+    height: fit-content;
+
+    & .img-bg {
+        border-radius: 20px;
+    }
+
+    @include respond-to("nout") {
+        width: 100%;
+    }
+
+    @include respond-to("tel") {
+        aspect-ratio: 1/0.52;
+    }
+}
+
+
+
+.technologies__card-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: clamp-px(10, 20);
+}
+
+.technologies__card-title {
+    font-weight: 700;
+    font-size: clamp-px(14, 20);
+    line-height: 120%;
+    color: var(--grey06);
+}
+
+.technologies__card-text {
+    font-weight: 400;
+    font-size: clamp-px(12, 16);
+    line-height: 150%;
+    color: var(--grey06);
+}

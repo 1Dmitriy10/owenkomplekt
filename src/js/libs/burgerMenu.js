@@ -2,9 +2,9 @@ import { BurgerMenu } from "../vendor/burgerMenu.js";
 
 export const mobMenu = new BurgerMenu({
     /*---Класс кнопки для открывания меню---*/
-    openBtn: ".mob-nav-btn",
+    openBtn: ".btnBurgerMenu",
     /*---Класс кнопки для закрытия меню (если кнопка для откр/закр одна - то оставить пустой)---*/
-    closeBtn: "",
+    closeBtn: ".close-mob-menu",
     /*---Иконка стрелки спойлера (svg или <i>)---*/
     arrowIcon: `
     <svg width="10" height="10" viewBox="0 0 52 27" fill="none" xmlns="http://www.w3.org/2000/svg">

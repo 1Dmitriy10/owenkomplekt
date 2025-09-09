@@ -1,0 +1,80 @@
+@use "../main/mixins-vars.scss"as *;
+
+.industries {}
+
+.industries__container {}
+
+.industries__card-box {
+    display: grid;
+    gap: clamp-px(10, 20);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    @include respond-to("nout") {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    @include respond-to("tel") {
+        grid-template-columns: repeat(2, minmax(0, auto));
+        grid-template-rows: repeat(3, auto);
+    }
+}
+
+.industries__card {
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(16, 40);
+    background: var(--grey02);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &:first-child {
+        grid-column: span 2;
+        background-color: transparent;
+        padding: 0;
+        gap: 0;
+
+        @include respond-to("nout") {
+            grid-column: 1/-1;
+        }
+    }
+
+    & .choice__card-item-text {
+        color: var(--grey05);
+    }
+
+    & .choice__card-item-top {
+        min-height: 132px;
+
+        @include respond-to("tab") {
+            min-height: auto;
+        }
+    }
+}
+
+.industries__title {
+    margin-bottom: 20px;
+
+    @include respond-to("tab") {
+        text-align: left;
+    }
+}
+
+.industries__subtitle {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 120%;
+    color: var(--grey06);
+    margin-bottom: clamp-px(20, 35);
+}
+
+.industries__btn {
+    padding: clamp-px(18, 24) clamp-px(36, 48);
+    align-self: flex-start;
+    margin-bottom: clamp-px(20, 33);
+
+    @include respond-to("tab") {
+        display: none;
+    }
+}

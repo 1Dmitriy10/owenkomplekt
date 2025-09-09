@@ -19,6 +19,8 @@
 <glyph glyph-name="arrow-right-link" unicode="&#xe805;" d="M195 350h545m-273 273l273-273-273-273" horiz-adv-x="958" />
 
 <glyph glyph-name="arrow-bottom" unicode="&#xe806;" d="M542 343l162 165c16 16 43 16 59 0 16-16 16-43 0-59l-177-179c-24-25-64-25-89 0l-177 179c-15 16-15 42 0 59 17 16 43 16 60 0l162-165z" horiz-adv-x="1063" />
+
+<glyph glyph-name="vector-6" unicode="&#xe807;" d="M500 821l-471-471 471-471 471 471-471 471z" horiz-adv-x="1000" />
 </font>
 </defs>
 </svg>

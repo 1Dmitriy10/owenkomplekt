@@ -1,6 +1,7 @@
 @use "../main/mixins-vars"as *;
 
 footer {
+    padding: 0 clamp-px(16, 20);
     background-color: var(--black);
     padding: 0 20px;
     color: var(--white);
@@ -14,40 +15,45 @@ footer {
 
 .footer__top {
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
     margin-bottom: clamp-px(20, 40);
+    gap: clamp-px(20, 50);
 }
 
 .footer-logo {
     display: block;
     margin-bottom: clamp-px(15, 20);
     width: clamp-px(120, 142);
+
+    @include respond-to("nout") {
+        margin: 0 auto 20px auto;
+    }
 }
 
 .address {
     font-weight: 500;
-    font-size: clamp-px(12, 14);
+    font-size: 14;
     color: #f8f8f8;
     margin-bottom: 10px;
 }
 
 .work-day-footer {
     font-weight: 500;
-    font-size: clamp-px(12, 14);
+    font-size: 14px;
     color: #f8f8f8;
     margin-bottom: 10px;
 }
 
 .footer-phone {
     font-weight: 700;
-    font-size: clamp-px(14, 16);
+    font-size: 16px;
     color: #f8f8f8;
     margin-bottom: 10px;
 }
 
 .footer-mail {
     font-weight: 500;
-    font-size: clamp-px(14, 16);
+    font-size: 16px;
     text-decoration: underline;
     text-decoration-skip-ink: none;
     color: #f8f8f8;
@@ -126,4 +132,11 @@ footer {
     font-weight: 600;
     font-size: clamp-px(12, 14);
     color: #9ea3b0;
+}
+
+.footer__social-box {
+    @include respond-to("nout") {
+        width: fit-content;
+        margin: 0 auto;
+    }
 }
