@@ -1,0 +1,138 @@
+@use "../main/mixins-vars.scss"as *;
+
+.second-banner {}
+
+.second-banner__container {
+    position: relative;
+    background: var(--grey02);
+    border-radius: 30px;
+    padding: clamp-px(30, 60);
+    overflow: hidden;
+
+    @include respond-to("nout") {
+        flex-direction: column;
+        padding: 25px;
+    }
+}
+
+.second-banner__text-box {
+    position: relative;
+    z-index: 3;
+    max-width: 647px;
+    display: flex;
+    flex-direction: column;
+}
+
+.second-banner__title {
+    color: var(--white01);
+    margin-bottom: clamp-px(20, 30);
+    font-size: clamp-px(20, 40);
+
+    @include respond-to("tab") {
+        text-align: left;
+    }
+}
+
+.second-banner__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: clamp-px(20, 42);
+
+    & li {
+        font-weight: 400;
+        font-size: clamp-px(14, 16);
+        line-height: 150%;
+        color: var(--white01);
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: '\e807';
+            font-family: "owen";
+            font-style: normal;
+            font-weight: normal;
+            speak: never;
+            display: inline-block;
+            text-decoration: inherit;
+            width: 1em;
+            text-align: center;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: var(--red01);
+            margin-right: 10px;
+        }
+    }
+}
+
+.second-banner__btn {
+    padding: clamp-px(12, 24) clamp-px(32, 48);
+    align-self: flex-start;
+}
+
+.second-banner__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: clamp-px(100, 1060);
+    height: 100%;
+    z-index: 2;
+
+    & .img-bg.mob {
+        display: none;
+    }
+
+    @include respond-to("nout") {
+        max-width: 100%;
+        height: 50%;
+
+        & .img-bg.desc {
+            display: none;
+        }
+
+        & .img-bg.mob {
+            display: block;
+        }
+
+    }
+
+    @include respond-to("tel") {
+        height: 80%;
+    }
+}
+
+.second-banner-img {
+    position: absolute;
+    top: 19px;
+    right: -38px;
+    height: 100%;
+    width: clamp-px(350, 576);
+    z-index: 1;
+
+    & .img-bg {
+        object-fit: contain;
+    }
+
+    @include respond-to("nout") {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1/1;
+        top: auto;
+        bottom: -32px;
+        right: auto;
+        left: 0;
+
+        & .img-bg {
+            object-fit: cover;
+        }
+    }
+
+    @include respond-to("tel") {
+        margin-top: clamp-px(50, 80);
+    }
+
+}

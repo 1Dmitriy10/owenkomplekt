@@ -1,0 +1,197 @@
+@use "../main/mixins-vars.scss"as *;
+
+.partner {
+    background: #f2f2f1;
+}
+
+.partner__container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 43px;
+
+
+}
+
+.partner__top {
+    display: flex;
+    gap: 20px;
+
+    @include respond-to("nout") {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+.partner__text-box {
+    flex: 0 1 calc((100% - 20px * 1) / 2);
+    display: flex;
+    flex-direction: column;
+}
+
+.partner__title {
+    margin-bottom: clamp-px(20, 40);
+    align-self: flex-start;
+}
+
+.partner__subtitle {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey05);
+    margin-bottom: clamp-px(20, 30);
+}
+
+.partner__btn {
+    padding: clamp-px(18, 24) clamp-px(36, 48);
+    align-self: flex-start;
+}
+
+.partner__card-box {
+    flex: 0 1 calc((100% - 20px * 1) / 2);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fit, minmax(0, auto));
+    gap: clamp-px(10, 20);
+}
+
+.partner__card {
+    border-radius: clamp-px(16, 20);
+    padding: clamp-px(10, 20) clamp-px(10, 24);
+    background: var(--white01);
+    display: flex;
+    gap: 10px;
+
+    &:first-child {
+        grid-column: span 2;
+        background: var(--grey04);
+        padding: clamp-px(20, 40);
+        border-radius: clamp-px(20, 30);
+
+        & .partner__card-icon {
+            margin-top: 0;
+            height: fit-content;
+
+            &>svg {
+                width: clamp-px(40, 60);
+                height: clamp-px(40, 60);
+            }
+        }
+
+        & .partner__card-text {
+            font-weight: 400;
+            font-size: clamp-px(14, 20);
+            line-height: 150%;
+            color: var(--white01);
+        }
+    }
+}
+
+.partner__card-icon {
+    margin-top: 5px;
+    height: fit-content;
+}
+
+.partner__card-text {
+    font-weight: 400;
+    font-size: clamp-px(12, 16);
+    line-height: 150%;
+    color: var(--grey06);
+}
+
+.partner__bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.partner__bottom-title {
+    font-weight: 700;
+    font-size: clamp-px(16, 24);
+    line-height: 150%;
+    color: var(--grey06);
+    margin-bottom: clamp-px(20, 40);
+    align-self: center;
+
+    @include respond-to("tel") {
+        text-align: center;
+    }
+}
+
+.partner__bottom-card-box {
+    --row-gap: clamp-px(10, 20);
+    --col-gap: clamp-px(10, 20);
+
+    & .card {
+        height: fit-content;
+
+        @include respond-to("tab") {
+            height: auto;
+        }
+
+        &:first-child {
+            min-height: 358px;
+            height: auto;
+
+            @include respond-to("tab") {
+                min-height: auto;
+            }
+        }
+
+        &:last-child {
+            min-height: 358px;
+            height: auto;
+
+            @include respond-to("tab") {
+                min-height: auto;
+            }
+        }
+    }
+}
+
+.partner__bottom-card {
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(16, 40);
+    background: var(--white01);
+
+    & .choice__card-item-top {
+        gap: clamp-px(10, 20);
+        margin-bottom: clamp-px(10, 20);
+    }
+}
+
+.partner-ul {
+    display: flex;
+    flex-direction: column;
+
+    @include respond-to("tel") {
+        gap: 5px;
+    }
+
+
+    & li {
+        font-weight: 400;
+        font-size: clamp-px(12, 16);
+        line-height: 150%;
+        color: var(--grey05);
+        position: relative;
+        padding-left: 14px;
+        margin-left: 10px;
+
+        @include respond-to("tel") {
+            margin-left: 7px;
+        }
+
+        &::before {
+            position: absolute;
+            top: 9px;
+            left: 0;
+            content: "";
+            display: flex;
+            width: 4px;
+            height: 4px;
+            border-radius: 100%;
+            background-color: var(--grey05);
+        }
+    }
+}

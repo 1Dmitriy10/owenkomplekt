@@ -1,6 +1,51 @@
 @use "../main/mixins-vars"as *;
 
 // ---gap---
+.col-gap_10 {
+
+    --col-gap: 10px;
+}
+
+.row-gap_10 {
+    --row-gap: 10px;
+}
+
+.col-gap_11 {
+
+    --col-gap: 11px;
+}
+
+.row-gap_11 {
+    --row-gap: 11px;
+}
+
+.col-gap_12 {
+
+    --col-gap: 12px;
+}
+
+.row-gap_12 {
+    --row-gap: 12px;
+}
+
+.col-gap_13 {
+
+    --col-gap: 13px;
+}
+
+.row-gap_13 {
+    --row-gap: 13px;
+}
+
+.col-gap_14 {
+
+    --col-gap: 14px;
+}
+
+.row-gap_14 {
+    --row-gap: 14px;
+}
+
 .col-gap_15 {
 
     --col-gap: 15px;

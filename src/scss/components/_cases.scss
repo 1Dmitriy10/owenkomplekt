@@ -1,0 +1,298 @@
+@use "../main/mixins-vars.scss"as *;
+
+.cases {
+    margin-bottom: clamp-px(40, 69);
+}
+
+.cases__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-box {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp-px(20, 40);
+
+    & .block-title {
+        margin-bottom: 0;
+    }
+}
+
+.cases__title {}
+
+.cases__btn {
+    width: fit-content;
+    padding: 12px 23px;
+
+    @include respond-to("tab") {
+        display: none;
+    }
+}
+
+.cases__card-box {
+    display: grid;
+    gap: clamp-px(10, 20);
+    grid-template-columns: minmax(300px, 820px) 220px 220px;
+    margin-bottom: 10px;
+
+    @include respond-to("pc-old") {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(auto-fit, minmax(0, auto));
+    }
+}
+
+.cases__card {
+    background-color: var(--grey02);
+    border-radius: clamp-px(16, 20);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: clamp-px(16, 20) 0;
+
+    @include respond-to("pc-old") {
+        height: auto;
+
+        min-height: 240px;
+
+        &:not(:first-child) {
+            aspect-ratio: 1/1;
+
+            @include respond-to("tel") {
+                aspect-ratio: auto;
+            }
+        }
+    }
+
+
+
+    & .img-bg {
+        border-radius: clamp-px(16, 20);
+    }
+
+    &:first-child {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        gap: clamp-px(20, 40);
+
+        & .slider-wrap {
+            max-width: 284px;
+            width: 284px;
+        }
+
+        @include respond-to("pc-old") {
+            grid-column: span 2;
+        }
+
+        @include respond-to("tab") {
+            flex-direction: column;
+
+            & .slider-wrap {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.tag {
+    border: 1px solid var(--white01);
+    border-radius: 200px;
+    padding: 8px clamp-px(10, 20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    font-weight: 700;
+    font-size: clamp-px(12, 14);
+    line-height: 120%;
+    color: var(--white01);
+}
+
+.cases__tag {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    margin-bottom: auto;
+}
+
+.cases__name {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    text-align: center;
+    color: var(--white01);
+    position: relative;
+    z-index: 2;
+    margin-top: 20px;
+}
+
+.cases-prev-slider {
+    position: relative;
+}
+
+.cases__card-info-box {
+    display: flex;
+    flex-direction: column;
+    padding: 30px clamp-px(20, 40) clamp-px(20, 40) 0;
+
+    @include respond-to("tab") {
+        padding: 20px 16px 16px 16px;
+    }
+}
+
+.cases__card-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: clamp-px(20, 54);
+}
+
+.cases__card-about-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 0.70px solid #e6ebf5;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: var(--white01);
+}
+
+.cases__card-about-tab-name {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 120%;
+    color: var(--grey06);
+}
+
+.cases__card-about-tab-val {
+    font-weight: 400;
+    font-size: clamp-px(16, 20);
+    line-height: 120%;
+    color: var(--grey06);
+}
+
+.cases__card-bottom {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cases__card-title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: clamp-px(14, 20);
+    line-height: 120%;
+    color: var(--grey06);
+    margin-bottom: clamp-px(10, 20);
+}
+
+.cases__card-text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: clamp-px(12, 16);
+    line-height: 150%;
+    color: #6e6e6e;
+    margin-bottom: 20px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey06);
+
+}
+
+.cases__card-link {
+    margin-top: auto;
+}
+
+.cases-prev-slide {
+    height: 367px;
+
+    @include respond-to("tab") {
+        height: auto;
+        aspect-ratio: 1/0.8;
+        min-height: 240px;
+    }
+
+    @include respond-to("tel") {
+        aspect-ratio: auto;
+    }
+}
+
+.slider-btn-box {
+
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.cases__slider-btn-box {
+    left: 19px;
+    bottom: 21px;
+}
+
+.slider-btn {
+    cursor: pointer;
+    border-radius: 10px;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    background: var(--white01);
+
+    font-family: "owen";
+    font-style: normal;
+    font-weight: normal;
+    speak: never;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    margin-left: .2em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-btn-prev {
+    &::before {
+        content: '\e804';
+    }
+}
+
+.slider-btn-next {
+    &::before {
+        content: '\e801';
+    }
+
+}
+
+.cases__btn-mob {
+    display: none;
+    align-self: center;
+
+    @include respond-to("tab") {
+        display: flex;
+    }
+}

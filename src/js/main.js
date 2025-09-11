@@ -27,7 +27,7 @@ import { tabs } from "./libs/tabs.js";
 
 
 // ---------------------Слайдер swiper-----------------
-import { slider } from "./libs/slider.js";
+import { casesPrevSlider } from "./libs/slider.js";
 
 
 //---------------------Модальные окна------------------

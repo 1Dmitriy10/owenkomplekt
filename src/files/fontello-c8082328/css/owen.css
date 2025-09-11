@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'owen';
-  src: url('../font/owen.eot?66640646');
-  src: url('../font/owen.eot?66640646#iefix') format('embedded-opentype'),
-       url('../font/owen.woff2?66640646') format('woff2'),
-       url('../font/owen.woff?66640646') format('woff'),
-       url('../font/owen.ttf?66640646') format('truetype'),
-       url('../font/owen.svg?66640646#owen') format('svg');
+  src: url('../font/owen.eot?97416016');
+  src: url('../font/owen.eot?97416016#iefix') format('embedded-opentype'),
+       url('../font/owen.woff2?97416016') format('woff2'),
+       url('../font/owen.woff?97416016') format('woff'),
+       url('../font/owen.ttf?97416016') format('truetype'),
+       url('../font/owen.svg?97416016#owen') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'owen';
-    src: url('../font/owen.svg?66640646#owen') format('svg');
+    src: url('../font/owen.svg?97416016#owen') format('svg');
   }
 }
 */
@@ -62,3 +62,5 @@
 .icon-arrow-right-link:before { content: '\e805'; } /* '' */
 .icon-arrow-bottom:before { content: '\e806'; } /* '' */
 .icon-vector-6:before { content: '\e807'; } /* '' */
+.icon-frame:before { content: '\e808'; } /* '' */
+.icon-right:before { content: '\e809'; } /* '' */

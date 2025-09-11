@@ -4,11 +4,21 @@ import Swiper from 'swiper/bundle';
 import "swiper/swiper-bundle.css";
 
 
+export const casesPrevSlider = new Swiper('.cases-prev-slider', {
+    // Стрелки
+    navigation: {
+        nextEl: '.slider-btn-next',
+        prevEl: '.slider-btn-prev',
+    },
+    grabCursor: true,
+    speed: 700,
+});
+
 export const slider = new Swiper('.swiper', {
     // Стрелки
     navigation: {
-        nextEl: '',
-        prevEl: '',
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
     pagination: {
         el: '.swiper-pagination',

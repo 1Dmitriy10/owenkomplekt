@@ -14,7 +14,7 @@
     min-height: 501px;
     background: var(--grey02);
     border-radius: clamp-px(20, 30);
-    padding: 20px 20px 20px clamp-px(30, 70);
+    padding: 57px 20px 20px clamp-px(30, 70);
     display: flex;
     gap: 20px;
     justify-content: space-between;
@@ -105,8 +105,8 @@
     position: absolute;
     width: 100%;
     aspect-ratio: 1/0.67;
-    top: 30px;
-    left: 0;
+    top: -7px;
+    left: 32px;
 
     @include respond-to("nout") {
         top: auto;
@@ -131,8 +131,8 @@
     position: absolute;
     z-index: 3;
     width: clamp-px(158, 310);
-    left: 0;
-    bottom: 45px;
+    left: 32px;
+    bottom: 32px;
 
     @include respond-to("tel") {
         bottom: 0;
@@ -161,7 +161,7 @@
 
     @include respond-to("nout") {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-rows: repeat(auto-fit, 1fr);
         gap: 10px;
     }
@@ -188,7 +188,7 @@
 
 .hero__teaser-text {
     font-weight: 400;
-    font-size: clamp-px(14, 16);
+    font-size: clamp-px(12, 16);
     line-height: 150%;
     color: var(--grey05);
 }
@@ -198,7 +198,7 @@
     max-width: 160px;
     // height: clamp-px(114, 196);
     border-radius: clamp-px(20, 30);
-    padding: clamp-px(20, 40) clamp-px(20, 30);
+    padding: clamp-px(20, 35);
     background: var(--grey02);
     display: flex;
     flex-direction: column;
@@ -222,6 +222,10 @@
 
         & .hero__teaser-text {
             color: var(--white01);
+        }
+
+        @include respond-to("tel") {
+            min-width: auto;
         }
     }
 

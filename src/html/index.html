@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-{{> head title='Главная'}}
+{{> head title='Главная' description='Описание главная'}}
 
 <body>
   {{> header}}
@@ -12,9 +12,88 @@
     {{> banner}}
     {{> industries}}
     {{> technologies}}
+    {{> main-form}}
+    {{> partner}}
+    {{> steps}}
+    {{> cases}}
+    {{> second-banner}}
+    {{> we-are-chosen}}
+    {{> documents}}
+
+    <section class='main-form-section'>
+      <div class='container main-form__container'>
+
+        <div class="main-form__text-col !max-w-[720px]">
+
+
+          <div class="main-form__title">
+            <h2>Автоматизация без компромиссов: </h2>
+            <ul>
+              <li>
+                эффективность,
+              </li>
+              <li>
+                энергосбережение,
+              </li>
+              <li>
+                гарантия.
+              </li>
+            </ul>
+          </div>
+
+          <div class="main-form__info-text">
+            <div>
+              Вы можете задать интересующий вопрос, мы с радостью на него ответим:
+            </div>
+            <div>
+              Почта: <a class="!underline underline-offset-[4px]" href="mailto:channel@okatec.ru">channel@okatec.ru</a>
+            </div>
+            <div>
+              Телефон: <a href="tel:+74951353602">+7 (495) 135 - 36 - 02</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-form__form-col">
+          <form class="form main-form !max-w-[380px]">
+
+            <div class="form-text-box">
+
+              <div class="form-text-box-text text-center">
+                Мы свяжимся с вами в течение 30 минут и озвучим предстоящую выгоду от сотрудничества
+              </div>
+            </div>
+
+            <div class="form__row">
+
+              <input type="text" name="name" placeholder="Ваше имя">
+            </div>
+
+            <div class="form__row">
+
+              <input type="text" name="tel" placeholder="Ваш телефон">
+            </div>
+
+            <button class="btn main-form__btn" type="submit">Оставить заявку</button>
+
+
+            <div class="agree-box">
+              <input class="agree-check" type="checkbox" checked>
+              <span>
+                Я даю разрешение на обработку персональных данных
+              </span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    {{> articles-prev}}
 
   </main>
   {{> footer}}
+
 </body>
 
 </html>

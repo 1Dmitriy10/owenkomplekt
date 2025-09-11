@@ -70,25 +70,20 @@ ol {}
 
 ::-webkit-input-placeholder {
     font-family: var(--ff);
+    color: var(--grey06);
 }
 
 :-ms-input-placeholder {
     font-family: var(--ff);
+    color: var(--grey06);
 }
 
 :-moz-placeholder {
     font-family: var(--ff);
+    color: var(--grey06);
 }
 
 ::-moz-placeholder {
     font-family: var(--ff);
-}
-
-h2.title {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: clamp-px(24, 36);
-    line-height: 140%;
-    color: var(--black);
-    margin-bottom: clamp-px(30, 60);
+    color: var(--grey06);
 }

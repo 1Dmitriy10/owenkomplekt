@@ -1,0 +1,230 @@
+@use "../main/mixins-vars.scss"as *;
+
+.main-form {}
+
+.main-form__container {
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(20, 71) clamp-px(20, 80);
+    background: var(--grey04);
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+    @include respond-to("nout") {
+        flex-direction: column;
+    }
+}
+
+.main-form__text-col {
+    flex: 1 0 50%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-form__subtitle {
+    font-weight: 400;
+    font-size: clamp-px(11, 18);
+    line-height: 120%;
+    color: var(--white01);
+    margin-bottom: clamp-px(20, 30);
+}
+
+.main-form__title {
+    font-weight: 700;
+    font-size: clamp-px(20, 40);
+    line-height: 120%;
+    color: var(--white01);
+    margin-bottom: clamp-px(20, 66);
+
+    &>ul {
+        margin-top: 10px;
+        margin-bottom: clamp-px(20, 30);
+
+        & li {
+            display: flex;
+            align-items: center;
+
+            &::before {
+                content: "";
+                display: flex;
+                width: 20px;
+                height: 3px;
+                background-color: var(--white01);
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.main-form__sale-box {
+    display: flex;
+    max-width: 624px;
+    gap: clamp-px(10, 40);
+    align-items: center;
+    border: 2px solid var(--white01);
+    border-radius: clamp-px(16, 30);
+    padding: clamp-px(10, 20) clamp-px(16, 30);
+}
+
+.main-form__sale-name {
+    font-weight: 800;
+    font-size: clamp-px(20, 64);
+    line-height: 150%;
+    color: var(--white01);
+}
+
+.main-form__sale-val {
+    font-weight: 400;
+    font-size: clamp-px(14, 24);
+    line-height: 150%;
+    color: var(--white01);
+}
+
+.main-form__form-col {
+    @include respond-to("nout") {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    border-radius: clamp-px(16, 24);
+    padding: clamp-px(20, 40);
+    background: var(--white01);
+    gap: clamp-px(10, 20);
+}
+
+.main-form {
+    max-width: 420px;
+
+}
+
+.form-text-box {
+    display: flex;
+    gap: clamp-px(10, 12);
+    align-items: center;
+}
+
+.form-text-box-img {
+    border-radius: 100%;
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+
+    & .img-bg {
+        border-radius: 100%;
+    }
+}
+
+
+
+.form-text-box-text {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey06);
+}
+
+.form__row {
+    width: 100%;
+
+    & input {
+        border: 1px solid #d6d6d6;
+        border-radius: 10px;
+        padding: clamp-px(16, 24);
+        font-weight: 400;
+        font-size: clamp-px(14, 16);
+        line-height: 120%;
+        color: var(--grey06);
+        background-color: var(--white);
+    }
+}
+
+.main-form__btn {
+    padding: clamp-px(18, 24) 48px;
+}
+
+.agree-box {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 100%;
+    color: var(--grey04);
+    display: flex;
+    gap: 20px;
+}
+
+.agree-check {
+    position: relative;
+
+    &::before {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-25%);
+        z-index: 2;
+        content: "\e808";
+        font-family: "owen";
+        font-style: normal;
+        font-weight: normal;
+        speak: never;
+        display: inline-block;
+        text-decoration: inherit;
+        width: 1em;
+        margin-right: .2em;
+        text-align: center;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1em;
+        margin-left: .2em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: var(--white);
+        font-size: 12px;
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 24px;
+        height: 24px;
+        background: white;
+        border: 2px solid var(--grey04);
+        border-radius: 6px;
+        /* Вот наш border-radius */
+        display: inline-block;
+        position: relative;
+        margin-right: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    &:checked {
+
+        &::after {
+            background-color: var(--grey04);
+            border-color: var(--grey04);
+        }
+    }
+
+
+}
+
+.main-form__info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: clamp-px(14, 20);
+    line-height: 150%;
+    color: var(--white01);
+
+    & a {
+        font-weight: 700;
+    }
+}

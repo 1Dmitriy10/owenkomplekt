@@ -1,0 +1,72 @@
+@use "../main/mixins-vars.scss"as *;
+
+.documents {
+    margin-bottom: clamp-px(40, 72);
+}
+
+.documents__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.documents__title {}
+
+
+.documents__btn {
+    min-width: clamp-px(151, 158);
+    padding: 12px 25px;
+
+    @include respond-to("tab") {
+        display: none;
+    }
+}
+
+.documents__btn-mob {
+    display: none;
+    align-self: center;
+
+    @include respond-to("tab") {
+        display: flex;
+    }
+}
+
+.documents__card-box {
+    display: grid;
+    gap: clamp-px(10, 20);
+    grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));
+    margin-bottom: 10px;
+
+    @include respond-to("tel") {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.documents__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e5e5;
+    border-radius: clamp-px(16, 20);
+    padding: clamp-px(10, 20);
+    min-height: clamp-px(160, 296);
+    background: var(--white01);
+}
+
+.documents__card-img {
+    margin-bottom: clamp-px(10, 16);
+
+    &>svg {
+        width: clamp-px(101, 156);
+        min-width: clamp-px(101, 156);
+        height: clamp-px(101, 156);
+    }
+}
+
+.documents__card-title {
+    font-weight: 700;
+    font-size: clamp-px(14, 20);
+    line-height: 120%;
+    text-align: center;
+    color: #404040;
+}

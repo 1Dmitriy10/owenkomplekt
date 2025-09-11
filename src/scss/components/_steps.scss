@@ -1,0 +1,63 @@
+@use "../main/mixins-vars.scss"as *;
+
+.steps {}
+
+.steps__container {
+    border-radius: 30px;
+    padding: clamp-px(20, 76);
+    background: var(--grey04);
+    display: flex;
+    flex-direction: column;
+
+    & .card-box-grid {
+        counter-reset: num;
+    }
+}
+
+.steps__title {
+    color: var(--white01);
+    align-self: center;
+    margin-bottom: clamp-px(20, 40);
+    text-align: center;
+}
+
+.steps__card {
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(20, 40);
+    min-height: clamp-px(140, 272);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    counter-increment: num 1;
+    overflow: hidden;
+
+    &::before {
+        position: absolute;
+        bottom: -60px;
+        right: 0;
+        content: counter(num);
+        display: flex;
+        font-family: var(--second-family);
+        font-weight: 700;
+        font-size: 128px;
+        line-height: 120%;
+        text-align: right;
+        color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.steps__card-title {
+    font-weight: 700;
+    font-size: clamp-px(16, 20);
+    line-height: 120%;
+    color: var(--white01);
+    margin-bottom: clamp-px(10, 20);
+}
+
+.steps__card-text {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey02);
+}

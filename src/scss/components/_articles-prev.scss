@@ -1,0 +1,93 @@
+@use "../main/mixins-vars.scss"as *;
+
+.articles-prev {
+    margin-bottom: clamp-px(40, 75);
+}
+
+.articles-prev__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-box {
+    & .articles-prev__title {
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: clamp-px(20, 40);
+        line-height: 120%;
+        color: var(--grey06);
+    }
+
+}
+
+
+
+.articles-prev__btn {
+    padding: 12px 25px;
+
+    @include respond-to("tab") {
+        display: none;
+    }
+}
+
+.articles-prev__btn-mob {
+    display: none;
+    align-self: center;
+
+    @include respond-to("tab") {
+        display: flex;
+    }
+}
+
+.articles-prev__card-box {
+    display: grid;
+    gap: clamp-px(10, 20);
+    grid-template-columns: repeat(auto-fit, minmax(clamp-px(160, 310), 1fr));
+    margin-bottom: 10px;
+}
+
+.articles-prev__card {
+    border-radius: clamp-px(16, 20);
+    background: var(--grey02);
+}
+
+.articles-prev__card-img {
+    width: 100%;
+    aspect-ratio: 1/0.78;
+    position: relative;
+    border-radius: clamp-px(16, 20);
+    overflow: hidden;
+    margin-bottom: 10px;
+
+    @include respond-to("tab") {
+        aspect-ratio: 1/0.95;
+    }
+
+}
+
+.articles-prev__card-bottom {
+    display: flex;
+    flex-direction: column;
+    padding: 0 clamp-px(16, 30) clamp-px(16, 30) clamp-px(16, 30);
+}
+
+.articles-prev__date {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 120%;
+    text-align: right;
+    color: #737373;
+    margin-bottom: clamp-px(10, 16);
+}
+
+.articles-prev__title {
+    font-weight: 700;
+    font-size: clamp-px(14, 20);
+    line-height: 120%;
+    color: #404040;
+    margin-bottom: clamp-px(10, 16);
+}
+
+.rticles-prev-link {
+    margin-top: auto;
+}

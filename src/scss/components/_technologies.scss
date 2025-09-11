@@ -9,6 +9,9 @@
 
 .technologies__title {
     align-self: center;
+    max-width: 700px;
+    text-align: center;
+    margin-bottom: clamp-px(20, 41);
 }
 
 .technologies__card-box {
@@ -26,7 +29,7 @@
     display: flex;
     gap: clamp-px(10, 20);
     border-radius: clamp-px(20, 30);
-    padding: clamp-px(16, 40);
+    padding: clamp-px(16, 32);
     background: var(--grey02);
 
     @include respond-to("tel") {

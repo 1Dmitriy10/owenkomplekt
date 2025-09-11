@@ -1,0 +1,92 @@
+@use "../main/mixins-vars.scss"as *;
+
+.we-are-chosen {}
+
+.we-are-chosen__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.we-are-chosen__title {
+    max-width: 638px;
+
+    @include respond-to("tab") {
+        text-align: left;
+    }
+}
+
+.we-are-chosen__btn {
+    min-width: clamp-px(140, 158);
+    padding: 12px 25px;
+
+    @include respond-to("tab") {
+        display: none;
+    }
+}
+
+.we-are-chosen__card-box {
+    display: grid;
+    gap: clamp-px(10, 30);
+    grid-template-columns: repeat(auto-fit, minmax(160px, auto));
+}
+
+.we-are-chosen__card {
+    display: flex;
+    flex-direction: column;
+}
+
+.we-are-chosen__card-img {
+    position: relative;
+    border-radius: 14px;
+    height: 160px;
+    background: var(--grey01);
+    margin-bottom: 10px;
+
+    & .img-bg {
+        object-fit: none;
+    }
+}
+
+
+
+.btn-second {
+    background-color: transparent;
+    color: var(--red);
+
+
+    &:hover {
+        transition: 0.3s;
+        background-color: var(--red);
+        color: var(--white);
+    }
+}
+
+.we-are-chosen__card-link {
+    padding: 8px 30px;
+    font-weight: 300;
+    font-size: clamp-px(14, 16);
+}
+
+.we-are-chosen__card-more {
+    display: none;
+    background: var(--red01);
+    border-radius: 16px;
+    padding: 16px;
+
+    &>svg {
+        align-self: flex-end;
+    }
+
+    @include respond-to("tab") {
+        display: flex;
+    }
+}
+
+.we-are-chosen__card-more-text {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: var(--white01);
+    margin-bottom: auto;
+}
