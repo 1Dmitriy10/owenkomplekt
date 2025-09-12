@@ -46,6 +46,7 @@
     overflow: hidden;
 
     & .img-bg {
+        transition: 0.3s;
         border-radius: clamp-px(20, 30);
 
 
@@ -69,11 +70,24 @@
         }
     }
 
+    &:hover {
+        & .img-bg {
+            transition: 0.3s;
+            transform: scale(102%);
+        }
+
+        & .catalog-prev__card-title {
+            transition: 0.3s;
+            color: var(--red);
+        }
+    }
+
     &:nth-child(3) {
         grid-column: span 2;
         justify-content: flex-start;
 
         & .catalog-prev__card-title {
+            transition: 0.3s;
             max-width: 260px;
 
             @include respond-to('tab') {
@@ -159,6 +173,12 @@
             height: 113px;
         }
 
+        &:hover {
+            & .catalog-pre-more {
+                transform: translate(5px, 5px);
+            }
+        }
+
     }
 
     @include respond-to('tab') {
@@ -168,6 +188,7 @@
 }
 
 .catalog-prev__card-link {
+    transition: 0.3s;
     position: absolute;
     top: 0;
     left: 0;
@@ -175,6 +196,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 4;
+
 }
 
 .catalog-prev__card-title {
@@ -198,10 +220,13 @@
 
 .catalog-prev__card-logo {
     width: 86px;
+    // min-width: 86px;
+    // height: 30px;
     margin-bottom: 10px;
 }
 
 .catalog-pre-more {
+    transition: 0.3s;
     margin-top: auto;
     align-self: flex-end;
 }

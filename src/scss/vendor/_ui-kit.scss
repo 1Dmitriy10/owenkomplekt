@@ -26,6 +26,7 @@ main.ui-kit {
     color: var(--white);
     border: 1px solid var(--red);
     transition: 0.3s;
+    cursor: pointer;
 
     &:hover {
         transition: 0.3s;

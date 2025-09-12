@@ -49,6 +49,14 @@
 .articles-prev__card {
     border-radius: clamp-px(16, 20);
     background: var(--grey02);
+
+    &:hover {
+
+        & .articles-prev__title {
+            transition: 0.3s;
+            color: var(--red);
+        }
+    }
 }
 
 .articles-prev__card-img {
@@ -86,6 +94,7 @@
     line-height: 120%;
     color: #404040;
     margin-bottom: clamp-px(10, 16);
+    transition: 0.3s;
 }
 
 .rticles-prev-link {

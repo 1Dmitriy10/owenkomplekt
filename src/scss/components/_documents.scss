@@ -51,6 +51,13 @@
     padding: clamp-px(10, 20);
     min-height: clamp-px(160, 296);
     background: var(--white01);
+    position: relative;
+    transition: 0.3s;
+
+    &:hover {
+        transition: 0.3s;
+        filter: drop-shadow(2px 4px 6px black);
+    }
 }
 
 .documents__card-img {
@@ -69,4 +76,14 @@
     line-height: 120%;
     text-align: center;
     color: #404040;
+}
+
+.documents__card-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
 }

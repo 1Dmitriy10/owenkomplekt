@@ -160,6 +160,8 @@
 
 .agree-check {
     position: relative;
+    // width: 1px;
+    // height: 1px;
 
     &::before {
         position: absolute;
@@ -189,6 +191,8 @@
 
     &::after {
         position: absolute;
+        top: 0;
+        left: -5;
         content: "";
         width: 24px;
         height: 24px;
@@ -197,7 +201,6 @@
         border-radius: 6px;
         /* Вот наш border-radius */
         display: inline-block;
-        position: relative;
         margin-right: 15px;
         cursor: pointer;
         transition: all 0.3s ease;

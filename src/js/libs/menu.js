@@ -26,7 +26,7 @@ export const menuSticky = new Menu({
     /*Добавление не помещающихся элементов меню в специальный контейнер*/
     opacityItem: true,
     /*Тип меню full,container,item*/
-    TypMenu: "item",
+    TypMenu: "container",
     /*Обертка для подменю скрытых элементов
     Разместить в нужном месте <div class="sub-menu-wrap-sticky"></div>*/
     solutionForSubmenu: true,

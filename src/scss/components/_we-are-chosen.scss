@@ -28,6 +28,10 @@
     display: grid;
     gap: clamp-px(10, 30);
     grid-template-columns: repeat(auto-fit, minmax(160px, auto));
+
+    @include respond-to('tel') {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .we-are-chosen__card {

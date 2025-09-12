@@ -53,7 +53,10 @@ export class BurgerMenu {
     getIconForSpoilers() {
         document.querySelectorAll(".mob-nav-item").forEach(el => {
             if (el.querySelector(".spoiler-content-menu")) {
-                el.insertAdjacentHTML("beforeend", this.renderArrow());
+                // Проверяем, не существует ли уже кнопка спойлера
+                if (!el.querySelector('._spoiler-js-menu')) {
+                    el.insertAdjacentHTML("beforeend", this.renderArrow());
+                }
             }
         });
     }
@@ -151,7 +154,7 @@ export class BurgerMenu {
         }, 10);
 
         setTimeout(() => {
-            element.style.cssText = 'display: block';
+            element.style.cssText = 'display: flex';
         }, duration + 10);
     }
 
@@ -167,4 +170,3 @@ export class BurgerMenu {
         window.addEventListener('resize', checkVisibility);
     }
 }
-

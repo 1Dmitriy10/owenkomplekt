@@ -90,6 +90,9 @@ import { mobMenuSlider } from "./libs/mobMenuSlider.js";
 //------------Звездный рейтинг---------------
 // import { starRating } from "./libs/starRating.js";
 
+//------------Замена иконки в мобильном меню---------------
+import { replacIcon } from "./components/replacIcon.js";
+
 
 
 
