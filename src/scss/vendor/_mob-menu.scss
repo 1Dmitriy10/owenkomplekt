@@ -196,11 +196,8 @@
     width: 100%;
     transition: 0.3s;
 
-    &:not(:first-child) {
-        &>svg {
-            margin-top: 21px;
-        }
-
+    &>svg {
+        margin-top: 21px !important;
     }
 
     .mob-nav-list &>svg {
@@ -214,7 +211,7 @@
     &:first-child {
         & ._spoiler-js-menu {
             &>svg {
-                margin-top: 4px;
+                margin-top: 4px !important;
             }
         }
     }
