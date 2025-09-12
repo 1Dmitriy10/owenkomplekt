@@ -156,6 +156,7 @@
     color: var(--grey04);
     display: flex;
     gap: 20px;
+    align-items: flex-start;
 }
 
 .agree-check {
@@ -165,8 +166,8 @@
 
     &::before {
         position: absolute;
-        top: 25%;
-        left: 50%;
+        top: 50%;
+        left: 25%;
         transform: translate(-25%);
         z-index: 2;
         content: "\e808";
@@ -192,7 +193,7 @@
     &::after {
         position: absolute;
         top: 0;
-        left: -5;
+        left: -5px;
         content: "";
         width: 24px;
         height: 24px;

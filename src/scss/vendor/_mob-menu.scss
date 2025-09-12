@@ -253,8 +253,17 @@
     flex-direction: column;
     gap: 10px;
 
-    &>.mob-nav-item>a {
-        font-size: 14px;
+    & .inner-sum-menu-mob {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    & .mob-nav-item>a {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 150%;
+        color: var(--grey05);
     }
 
     &>.mob-nav-item>.spoiler-content-menu>.mob-nav-item>a {
