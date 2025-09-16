@@ -425,6 +425,7 @@ export default defineConfig({
         index: path.resolve(__dirname, 'src/html/index.html'),
         ui_kit: path.resolve(__dirname, 'src/html/ui-kit.html'),
         error: path.resolve(__dirname, 'src/html/404.html'),
+        catalog_page_1: path.resolve(__dirname, 'src/html/OKATEC-Inverters.html'),
       },
     },
     emptyOutDir: true,

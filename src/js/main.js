@@ -6,7 +6,7 @@ import '../scss/style.scss';
 import '../files/fontello-c8082328/css/owen.css';
 
 //------------------------Спойлеры-----------------------
-import { spoilers } from "./libs/spoilers.js";
+import { spoilers, filterSpoilers } from "./libs/spoilers.js";
 
 // // ------------- Мобильное меню -------------------------
 import { mobMenu } from "./libs/burgerMenu.js";
@@ -92,6 +92,9 @@ import { mobMenuSlider } from "./libs/mobMenuSlider.js";
 
 //------------Замена иконки в мобильном меню---------------
 import { replacIcon } from "./components/replacIcon.js";
+
+//------------Фильтр---------------
+import { filter } from "./components/filter.js";
 
 
 

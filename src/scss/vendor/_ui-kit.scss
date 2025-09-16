@@ -64,6 +64,16 @@ main.ui-kit {
     }
 }
 
+.btn-tertiary {
+    background: var(--grey06);
+    color: var(--white);
+    border: 1px solid var(--grey06);
+
+    &:hover {
+        color: var(--grey06);
+    }
+}
+
 .menu-wrap {
     display: flex;
     align-items: center;

@@ -1,0 +1,23 @@
+@use "../main/mixins-vars.scss"as *;
+
+.сonfigurator {}
+
+.сonfigurator__container {
+    border: 1px solid var(--grey03);
+    border-radius: clamp-px(20, 40);
+    padding: clamp-px(15, 80) clamp-px(15, 122);
+    display: flex;
+    flex-direction: column;
+}
+
+.сonfigurator__title {
+    margin-bottom: clamp-px(20, 60);
+    align-self: flex-start;
+}
+
+.сonfigurator__bg {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/0.63;
+    max-width: 1056px;
+}

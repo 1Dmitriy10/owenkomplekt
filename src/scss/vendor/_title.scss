@@ -1,1 +1,5 @@
 @use "../main/mixins-vars"as *;
+
+.title-section {
+    margin-bottom: clamp-px(30, 60);
+}

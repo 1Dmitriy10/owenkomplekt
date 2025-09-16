@@ -1,0 +1,52 @@
+@use "../main/mixins-vars.scss"as *;
+
+.category-section {
+    margin-bottom: clamp-px(30, 60);
+}
+
+.category-section__container {}
+
+.category__card {
+    border-radius: clamp-px(16, 20);
+    padding: clamp-px(15, 20) clamp-px(20, 30);
+    background: var(--grey01);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    @include respond-to("tel") {
+        max-width: 300px;
+    }
+}
+
+.category__card-img {
+    width: clamp-px(40, 50);
+    min-width: clamp-px(40, 50);
+    height: clamp-px(65, 80);
+    position: relative;
+}
+
+.category__card-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.category__card-title {
+    font-weight: 700;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey07);
+}
+
+.category__card-list {
+    & li {
+        font-weight: 400;
+        font-size: clamp-px(12, 14);
+        line-height: 120%;
+        color: var(--grey07);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+}

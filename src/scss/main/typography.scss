@@ -1,6 +1,11 @@
 @use "./mixins-vars"as *;
 
-h1 {}
+h1 {
+    font-weight: 800;
+    font-size: clamp-px(22, 40);
+    line-height: 120%;
+    color: var(--grey07);
+}
 
 h2 {}
 

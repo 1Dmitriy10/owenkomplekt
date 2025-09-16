@@ -44,6 +44,13 @@
     margin-bottom: clamp-px(20, 30);
 }
 
+.hero__banner-text {
+    font-weight: 400;
+    font-size: clamp-px(14, 20);
+    line-height: 150%;
+    color: var(--grey07);
+}
+
 .hero__banner-ul {
     display: flex;
     flex-direction: column;
