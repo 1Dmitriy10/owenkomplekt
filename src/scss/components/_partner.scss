@@ -123,29 +123,29 @@
     --col-gap: clamp-px(10, 20);
 
     & .card {
-        height: fit-content;
+        height: auto;
 
-        @include respond-to("tab") {
-            height: auto;
-        }
+        // @include respond-to("tab") {
+        //     height: auto;
+        // }
 
-        &:first-child {
-            min-height: 358px;
-            height: auto;
+        // &:first-child {
+        //     min-height: 358px;
+        //     height: auto;
 
-            @include respond-to("tab") {
-                min-height: auto;
-            }
-        }
+        //     @include respond-to("tab") {
+        //         min-height: auto;
+        //     }
+        // }
 
-        &:last-child {
-            min-height: 358px;
-            height: auto;
+        // &:last-child {
+        //     min-height: 358px;
+        //     height: auto;
 
-            @include respond-to("tab") {
-                min-height: auto;
-            }
-        }
+        //     @include respond-to("tab") {
+        //         min-height: auto;
+        //     }
+        // }
     }
 }
 

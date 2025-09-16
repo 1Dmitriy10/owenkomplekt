@@ -101,7 +101,11 @@
     }
 
     @include respond-to("tel") {
-        height: 80%;
+        height: 70%;
+    }
+
+    @media (width<380px) {
+        height: 77%;
     }
 }
 
