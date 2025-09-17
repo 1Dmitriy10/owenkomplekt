@@ -135,10 +135,45 @@ export function filter() {
       }
     }
 
-    // Слушатели событий
-    sliderContainer.addEventListener('mousedown', startDrag);
-    document.addEventListener('mousemove', moveHandler);
-    document.addEventListener('mouseup', stopDrag);
+// 🖱️ Поддержка мыши
+sliderContainer.addEventListener('mousedown', startDrag);
+document.addEventListener('mousemove', moveHandler);
+document.addEventListener('mouseup', stopDrag);
+
+// 👆 Поддержка тач-устройств
+sliderContainer.addEventListener('touchstart', function(e) {
+  e.preventDefault(); // важно: иначе будет скролл вместо перетаскивания
+  const touch = e.touches[0];
+  const fakeMouseEvent = {
+    clientX: touch.clientX,
+    target: e.target
+  };
+  startDrag(fakeMouseEvent);
+});
+
+document.addEventListener('touchmove', function(e) {
+  if (isDragging) {
+    e.preventDefault(); // блокируем скролл во время перетаскивания
+    const touch = e.touches[0];
+    const fakeMouseEvent = { clientX: touch.clientX };
+    moveHandler(fakeMouseEvent);
+  }
+});
+
+document.addEventListener('touchend', stopDrag);
+
+document.addEventListener('touchmove', function(e) {
+  if (isDragging) {
+    e.preventDefault(); // предотвращаем скролл во время перетаскивания
+    const touch = e.touches[0];
+    const fakeMouseEvent = { clientX: touch.clientX };
+    moveHandler(fakeMouseEvent);
+  }
+});
+
+document.addEventListener('touchend', function(e) {
+  stopDrag();
+});
 
     // Также можно кликнуть по слайдеру
     sliderContainer.addEventListener('click', function (e) {

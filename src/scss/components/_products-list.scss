@@ -382,7 +382,7 @@
         top: 190px;
         transition: 0.3s;
         transform: translateX(-150%);
-        max-height: 600px;
+        max-height: calc(100dvh - 190px - 20px);
         overflow: auto;
 
         &.active {
