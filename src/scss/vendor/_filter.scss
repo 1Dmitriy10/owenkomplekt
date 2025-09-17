@@ -3,6 +3,8 @@
 .filter-container {
     margin: 20px;
     font-family: Arial, sans-serif;
+
+
 }
 
 h3 {
@@ -32,6 +34,11 @@ h3 {
     background: #ddd;
     border-radius: 5px;
     overflow: hidden;
+
+    touch-action: none;
+    /* 🔥 БЛОКИРУЕМ СИСТЕМНЫЕ ЖЕСТЫ — критично для iOS */
+    -webkit-tap-highlight-color: transparent;
+    /* убирает серый блик при тапе */
     cursor: pointer;
 }
 
@@ -54,6 +61,8 @@ h3 {
     transform: translate(-50%, -50%);
     cursor: grab;
     z-index: 2;
+    touch-action: none;
+    /* тоже важно */
 }
 
 .slider-handle:hover {

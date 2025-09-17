@@ -135,32 +135,59 @@ export function filter() {
       }
     }
 
+// Универсальная функция получения координат X
+function getClientX(e) {
+  if (e.type.startsWith('touch')) {
+    return e.touches && e.touches.length > 0 ? e.touches[0].clientX : 0;
+  }
+  return e.clientX;
+}
+
+// Универсальный обработчик начала перетаскивания
+function handleStart(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const handle = e.target.closest('.slider-handle');
+  if (!handle) return;
+
+  isDragging = true;
+  currentHandle = handle.dataset.handle;
+  handle.classList.add('active');
+
+  const rect = sliderContainer.getBoundingClientRect();
+  const clientX = getClientX(e);
+  const percent = ((clientX - rect.left) / rect.width) * 100;
+  updateHandlePosition(percent);
+}
+
+// Универсальный обработчик движения
+function handleMove(e) {
+  if (!isDragging) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const rect = sliderContainer.getBoundingClientRect();
+  const clientX = getClientX(e);
+  const percent = ((clientX - rect.left) / rect.width) * 100;
+  updateHandlePosition(percent);
+}
+
+// Обработчик окончания
+function handleEnd(e) {
+  stopDrag();
+}
+
 // 🖱️ Поддержка мыши
-sliderContainer.addEventListener('mousedown', startDrag);
-document.addEventListener('mousemove', moveHandler);
-document.addEventListener('mouseup', stopDrag);
+sliderContainer.addEventListener('mousedown', handleStart);
+document.addEventListener('mousemove', handleMove);
+document.addEventListener('mouseup', handleEnd);
 
 // 👆 Поддержка тач-устройств
-sliderContainer.addEventListener('touchstart', function(e) {
-  e.preventDefault(); // важно: иначе будет скролл вместо перетаскивания
-  const touch = e.touches[0];
-  const fakeMouseEvent = {
-    clientX: touch.clientX,
-    target: e.target
-  };
-  startDrag(fakeMouseEvent);
-}, { passive: false }); // 🔥 явно отключаем пассивность
-
-document.addEventListener('touchmove', function(e) {
-  if (isDragging) {
-    e.preventDefault(); // блокируем скролл во время перетаскивания
-    const touch = e.touches[0];
-    const fakeMouseEvent = { clientX: touch.clientX };
-    moveHandler(fakeMouseEvent);
-  }
-}, { passive: false }); // 🔥 обязательно для preventDefault
-
-document.addEventListener('touchend', stopDrag);
+sliderContainer.addEventListener('touchstart', handleStart, { passive: false });
+sliderContainer.addEventListener('touchmove', handleMove, { passive: false });
+sliderContainer.addEventListener('touchend', handleEnd);
 
     // Также можно кликнуть по слайдеру
     sliderContainer.addEventListener('click', function (e) {
