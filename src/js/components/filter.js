@@ -25,44 +25,65 @@ export function filter() {
         const minHandle = sliderContainer.querySelector('[data-handle="min"]');
         const maxHandle = sliderContainer.querySelector('[data-handle="max"]');
 
-        const rangeMin = parseFloat(minValueInput.min || minValueInput.getAttribute('min')) || 0;
-        const rangeMax = parseFloat(maxValueInput.max || maxValueInput.getAttribute('max')) || 100;
+        // Безопасное получение значений диапазона
+        const rangeMin = parseFloat(minValueInput.getAttribute('min')) || 3;
+        const rangeMax = parseFloat(maxValueInput.getAttribute('max')) || 170;
 
-        // Переменные для отслеживания состояния перетаскивания
-        let isDragging = false;
-        let currentHandle = null;
-        let startX = 0;
-        let startLeft = 0;
+        // Устанавливаем начальные значения, если они не установлены
+        if (!minValueInput.value || isNaN(parseFloat(minValueInput.value))) {
+            minValueInput.value = rangeMin;
+        }
+        if (!maxValueInput.value || isNaN(parseFloat(maxValueInput.value))) {
+            maxValueInput.value = rangeMax;
+        }
+
+        let activeHandle = null;
 
         // Инициализация
         updateSlider();
 
-        // Обработчики для полей ввода
-        minValueInput.addEventListener('change', updateFromInput);
-        maxValueInput.addEventListener('change', updateFromInput);
+        // Безопасная функция для парсинга чисел
+        function safeParseFloat(value, defaultValue) {
+            const parsed = parseFloat(value);
+            return isNaN(parsed) ? defaultValue : parsed;
+        }
 
-        function updateFromInput() {
-            const minVal = Math.max(rangeMin, Math.min(rangeMax, parseFloat(minValueInput.value) || rangeMin));
-            const maxVal = Math.max(rangeMin, Math.min(rangeMax, parseFloat(maxValueInput.value) || rangeMax));
-            
-            // Убедимся, что min <= max
+        // События для input полей
+        minValueInput.addEventListener('input', updateFromInput);
+        maxValueInput.addEventListener('input', updateFromInput);
+        minValueInput.addEventListener('blur', validateInputs);
+        maxValueInput.addEventListener('blur', validateInputs);
+
+        function validateInputs() {
+            let minVal = safeParseFloat(minValueInput.value, rangeMin);
+            let maxVal = safeParseFloat(maxValueInput.value, rangeMax);
+
+            // Валидация значений
+            minVal = Math.max(rangeMin, Math.min(rangeMax, minVal));
+            maxVal = Math.max(rangeMin, Math.min(rangeMax, maxVal));
+
+            // Убеждаемся, что min <= max
             if (minVal > maxVal) {
                 if (this === minValueInput) {
-                    minValueInput.value = maxVal;
+                    minVal = maxVal;
                 } else {
-                    maxValueInput.value = minVal;
+                    maxVal = minVal;
                 }
-            } else {
-                minValueInput.value = minVal;
-                maxValueInput.value = maxVal;
             }
-            
+
+            minValueInput.value = minVal;
+            maxValueInput.value = maxVal;
+
             updateSlider();
         }
 
+        function updateFromInput() {
+            validateInputs();
+        }
+
         function updateSlider() {
-            const minVal = parseFloat(minValueInput.value);
-            const maxVal = parseFloat(maxValueInput.value);
+            const minVal = safeParseFloat(minValueInput.value, rangeMin);
+            const maxVal = safeParseFloat(maxValueInput.value, rangeMax);
 
             const minPos = ((minVal - rangeMin) / (rangeMax - rangeMin)) * 100;
             const maxPos = ((maxVal - rangeMin) / (rangeMax - rangeMin)) * 100;
@@ -74,127 +95,177 @@ export function filter() {
             sliderTrack.style.left = `${minPos}%`;
         }
 
-        // Обработчики для мыши
-        minHandle.addEventListener('mousedown', (e) => startDrag(e, 'min'));
-        maxHandle.addEventListener('mousedown', (e) => startDrag(e, 'max'));
-        
-        // Обработчики для touch
-        minHandle.addEventListener('touchstart', (e) => startDrag(e, 'min'), { passive: false });
-        maxHandle.addEventListener('touchstart', (e) => startDrag(e, 'max'), { passive: false });
-
-        function startDrag(e, handle) {
+        // Функция для обработки Pointer Events
+        function handlePointerDown(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            isDragging = true;
-            currentHandle = handle;
+            const handle = e.target;
+            activeHandle = handle.dataset.handle;
             
-            // Получаем начальные координаты
-            if (e.type === 'touchstart') {
-                startX = e.touches[0].clientX;
-            } else {
-                startX = e.clientX;
-            }
+            handle.setPointerCapture(e.pointerId);
+            handle.classList.add('active');
             
-            // Сохраняем начальную позицию ползунка
-            const handleElement = handle === 'min' ? minHandle : maxHandle;
-            startLeft = parseFloat(handleElement.style.left) || 0;
+            // Добавляем обработчики
+            handle.addEventListener('pointermove', handlePointerMove);
+            handle.addEventListener('pointerup', handlePointerUp);
+            handle.addEventListener('pointercancel', handlePointerUp);
             
-            // Добавляем активный класс
-            handleElement.classList.add('active');
-            
-            // Добавляем обработчики событий
-            document.addEventListener('mousemove', handleDrag);
-            document.addEventListener('touchmove', handleDrag, { passive: false });
-            document.addEventListener('mouseup', stopDrag);
-            document.addEventListener('touchend', stopDrag);
-            document.addEventListener('touchcancel', stopDrag);
+            // Обновляем позицию сразу при нажатии
+            updateHandlePosition(e);
         }
 
-        function handleDrag(e) {
-            if (!isDragging) return;
-            
+        function handlePointerMove(e) {
+            if (!activeHandle) return;
             e.preventDefault();
-            e.stopPropagation();
+            updateHandlePosition(e);
+        }
+
+        function handlePointerUp(e) {
+            if (!activeHandle) return;
             
+            const handle = e.target;
+            handle.classList.remove('active');
+            handle.releasePointerCapture(e.pointerId);
+            
+            // Убираем обработчики
+            handle.removeEventListener('pointermove', handlePointerMove);
+            handle.removeEventListener('pointerup', handlePointerUp);
+            handle.removeEventListener('pointercancel', handlePointerUp);
+            
+            activeHandle = null;
+        }
+
+        function updateHandlePosition(e) {
             const rect = sliderContainer.getBoundingClientRect();
-            let clientX;
+            let clientX = e.clientX;
             
-            if (e.type === 'touchmove') {
+            // Для touch событий
+            if (e.touches && e.touches[0]) {
                 clientX = e.touches[0].clientX;
-            } else {
-                clientX = e.clientX;
             }
             
-            // Вычисляем новую позицию в процентах
-            let percent = ((clientX - rect.left) / rect.width) * 100;
-            percent = Math.max(0, Math.min(100, percent)); // Ограничиваем 0-100%
-            
-            // Обновляем значение соответствующего поля ввода
+            const percent = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
             const value = rangeMin + (percent / 100) * (rangeMax - rangeMin);
             const roundedValue = parseFloat(value.toFixed(2));
-            
-            if (currentHandle === 'min') {
-                const maxVal = parseFloat(maxValueInput.value);
-                if (roundedValue <= maxVal) {
-                    minValueInput.value = roundedValue;
-                }
+
+            if (activeHandle === 'min') {
+                const maxVal = safeParseFloat(maxValueInput.value, rangeMax);
+                const newValue = Math.max(rangeMin, Math.min(maxVal, roundedValue));
+                minValueInput.value = newValue;
             } else {
-                const minVal = parseFloat(minValueInput.value);
-                if (roundedValue >= minVal) {
-                    maxValueInput.value = roundedValue;
-                }
+                const minVal = safeParseFloat(minValueInput.value, rangeMin);
+                const newValue = Math.min(rangeMax, Math.max(minVal, roundedValue));
+                maxValueInput.value = newValue;
             }
-            
+
             updateSlider();
         }
 
-        function stopDrag() {
-            if (isDragging) {
-                isDragging = false;
+        // Добавляем обработчики Pointer Events
+        minHandle.addEventListener('pointerdown', handlePointerDown);
+        maxHandle.addEventListener('pointerdown', handlePointerDown);
+
+        // Fallback для браузеров без поддержки Pointer Events
+        if (!('PointerEvent' in window)) {
+            // Mouse events
+            function handleMouseDown(e, handleType) {
+                e.preventDefault();
+                activeHandle = handleType;
+                const handle = handleType === 'min' ? minHandle : maxHandle;
+                handle.classList.add('active');
                 
-                // Убираем активный класс
-                minHandle.classList.remove('active');
-                maxHandle.classList.remove('active');
-                
-                // Убираем обработчики событий
-                document.removeEventListener('mousemove', handleDrag);
-                document.removeEventListener('touchmove', handleDrag);
-                document.removeEventListener('mouseup', stopDrag);
-                document.removeEventListener('touchend', stopDrag);
-                document.removeEventListener('touchcancel', stopDrag);
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('mouseup', handleMouseUp);
+                updateHandlePosition(e);
             }
+
+            function handleMouseMove(e) {
+                if (!activeHandle) return;
+                e.preventDefault();
+                updateHandlePosition(e);
+            }
+
+            function handleMouseUp() {
+                if (activeHandle === 'min') minHandle.classList.remove('active');
+                if (activeHandle === 'max') maxHandle.classList.remove('active');
+                activeHandle = null;
+                
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseup', handleMouseUp);
+            }
+
+            minHandle.addEventListener('mousedown', (e) => handleMouseDown(e, 'min'));
+            maxHandle.addEventListener('mousedown', (e) => handleMouseDown(e, 'max'));
+
+            // Touch events
+            function handleTouchStart(e, handleType) {
+                e.preventDefault();
+                activeHandle = handleType;
+                const handle = handleType === 'min' ? minHandle : maxHandle;
+                handle.classList.add('active');
+                updateHandlePosition(e);
+            }
+
+            document.addEventListener('touchmove', (e) => {
+                if (!activeHandle) return;
+                e.preventDefault();
+                updateHandlePosition(e);
+            }, { passive: false });
+
+            document.addEventListener('touchend', () => {
+                if (activeHandle === 'min') minHandle.classList.remove('active');
+                if (activeHandle === 'max') maxHandle.classList.remove('active');
+                activeHandle = null;
+            });
+
+            minHandle.addEventListener('touchstart', (e) => handleTouchStart(e, 'min'), { passive: false });
+            maxHandle.addEventListener('touchstart', (e) => handleTouchStart(e, 'max'), { passive: false });
         }
 
-        // Обработчик клика по слайдеру для быстрого перемещения
+        // Обработчик клика по слайдеру
         sliderContainer.addEventListener('click', (e) => {
             const rect = sliderContainer.getBoundingClientRect();
-            let clientX;
-            
-            if (e.type === 'touchstart' || e.type === 'click') {
-                clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-            }
-            
-            const percent = ((clientX - rect.left) / rect.width) * 100;
+            const clientX = e.clientX || (e.touches && e.touches[0] && e.touches[0].clientX);
+            if (!clientX) return;
+
+            const percent = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
             const value = rangeMin + (percent / 100) * (rangeMax - rangeMin);
             const roundedValue = parseFloat(value.toFixed(2));
-            
-            const minVal = parseFloat(minValueInput.value);
-            const maxVal = parseFloat(maxValueInput.value);
-            
-            // Определяем, к какому ползунку ближе клик
-            const minDistance = Math.abs(percent - ((minVal - rangeMin) / (rangeMax - rangeMin)) * 100);
-            const maxDistance = Math.abs(percent - ((maxVal - rangeMin) / (rangeMax - rangeMin)) * 100);
-            
-            if (minDistance < maxDistance) {
-                minValueInput.value = Math.min(roundedValue, maxVal);
+
+            const minVal = safeParseFloat(minValueInput.value, rangeMin);
+            const maxVal = safeParseFloat(maxValueInput.value, rangeMax);
+
+            const minPos = ((minVal - rangeMin) / (rangeMax - rangeMin)) * 100;
+            const maxPos = ((maxVal - rangeMin) / (rangeMax - rangeMin)) * 100;
+
+            if (Math.abs(percent - minPos) < Math.abs(percent - maxPos)) {
+                minValueInput.value = Math.max(rangeMin, Math.min(roundedValue, maxVal));
             } else {
-                maxValueInput.value = Math.max(roundedValue, minVal);
+                maxValueInput.value = Math.min(rangeMax, Math.max(roundedValue, minVal));
             }
-            
+
             updateSlider();
+        });
+
+        // Обработчик для предотвращения ввода нечисловых значений
+        minValueInput.addEventListener('keypress', (e) => {
+            if (!/[0-9]/.test(e.key) && e.key !== '.' && e.key !== '-') {
+                e.preventDefault();
+            }
+        });
+
+        maxValueInput.addEventListener('keypress', (e) => {
+            if (!/[0-9]/.test(e.key) && e.key !== '.' && e.key !== '-') {
+                e.preventDefault();
+            }
         });
     });
 }
 
-filter();
+// Запускаем после загрузки DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', filter);
+} else {
+    filter();
+}
