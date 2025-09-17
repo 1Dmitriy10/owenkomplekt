@@ -203,4 +203,6 @@ export function filter() {
 
 
 }
-filter();
+document.addEventListener('DOMContentLoaded', function() {
+    filter();
+});
