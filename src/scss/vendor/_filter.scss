@@ -65,6 +65,14 @@ h3 {
     /* тоже важно */
 }
 
+/* Увеличиваем область касания для мобильных */
+@media (max-width: 768px) {
+    .slider-handle {
+        width: 24px;
+        height: 24px;
+    }
+}
+
 .slider-handle:hover {
     background: #000;
 }
