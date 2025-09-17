@@ -74,11 +74,11 @@ h3 {
 }
 
 .slider-handle:hover {
-    background: #000;
+    // background: #000;
 }
 
 .slider-handle.active {
-    background: #007bff;
+    // background: #007bff;
 }
 
 // ----------------------
@@ -106,20 +106,20 @@ h3 {
     width: 28px;
     height: 28px;
     background: #2196F3;
-    border: 3px solid #fff;
+    // border: 3px solid #fff;
     border-radius: 50%;
     cursor: pointer;
     transform: translateX(-50%);
-    top: -11px;
+    // top: -11px;
     touch-action: none;
     z-index: 2;
-    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.4);
+    // box-shadow: 0 2px 8px rgba(33, 150, 243, 0.4);
     transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .slider-handle.active {
     transform: translateX(-50%) scale(1.2);
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.6);
+    // box-shadow: 0 4px 12px rgba(33, 150, 243, 0.6);
     z-index: 3;
 }
 

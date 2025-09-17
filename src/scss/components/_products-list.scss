@@ -148,8 +148,8 @@
 .slider-handle {
     width: 16px;
     height: 16px;
-    background: #914545;
-    top: 2px;
+    background: #808080;
+    top: -7px;
 }
 
 .filter-container-checkbox {
@@ -195,7 +195,7 @@
         &::after {
             position: absolute;
             top: 0;
-            left: -5px;
+            left: -2px;
             content: "";
             width: 20px;
             height: 20px;
