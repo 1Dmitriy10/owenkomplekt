@@ -149,7 +149,7 @@ sliderContainer.addEventListener('touchstart', function(e) {
     target: e.target
   };
   startDrag(fakeMouseEvent);
-});
+}, { passive: false }); // 🔥 явно отключаем пассивность
 
 document.addEventListener('touchmove', function(e) {
   if (isDragging) {
@@ -158,22 +158,9 @@ document.addEventListener('touchmove', function(e) {
     const fakeMouseEvent = { clientX: touch.clientX };
     moveHandler(fakeMouseEvent);
   }
-});
+}, { passive: false }); // 🔥 обязательно для preventDefault
 
 document.addEventListener('touchend', stopDrag);
-
-document.addEventListener('touchmove', function(e) {
-  if (isDragging) {
-    e.preventDefault(); // предотвращаем скролл во время перетаскивания
-    const touch = e.touches[0];
-    const fakeMouseEvent = { clientX: touch.clientX };
-    moveHandler(fakeMouseEvent);
-  }
-});
-
-document.addEventListener('touchend', function(e) {
-  stopDrag();
-});
 
     // Также можно кликнуть по слайдеру
     sliderContainer.addEventListener('click', function (e) {
