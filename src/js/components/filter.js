@@ -15,7 +15,7 @@ export function filter() {
 </div>
 */
 // Находим все контейнеры фильтров
-  const filterContainers = document.querySelectorAll('.filter-container');
+    const filterContainers = document.querySelectorAll('.filter-container');
 
   filterContainers.forEach(container => {
     // Ищем элементы внутри текущего контейнера
@@ -78,17 +78,12 @@ export function filter() {
     let isDragging = false;
     let currentHandle = null;
 
-    function startDrag(e) {
-      const handle = e.target.closest('.slider-handle');
-      if (!handle) return;
-
-      isDragging = true;
-      currentHandle = handle.dataset.handle;
-      handle.classList.add('active');
-
-      const rect = sliderContainer.getBoundingClientRect();
-      const percent = ((e.clientX - rect.left) / rect.width) * 100;
-      updateHandlePosition(percent);
+    // Универсальная функция получения координат X
+    function getClientX(e) {
+      if (e.type.startsWith('touch')) {
+        return e.touches && e.touches.length > 0 ? e.touches[0].clientX : 0;
+      }
+      return e.clientX;
     }
 
     function updateHandlePosition(percent) {
@@ -127,72 +122,57 @@ export function filter() {
       }
     }
 
-    function moveHandler(e) {
-      if (isDragging) {
-        const rect = sliderContainer.getBoundingClientRect();
-        const percent = ((e.clientX - rect.left) / rect.width) * 100;
-        updateHandlePosition(percent);
-      }
+    // Универсальный обработчик начала перетаскивания
+    function handleStart(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const handle = e.target.closest('.slider-handle');
+      if (!handle) return;
+
+      isDragging = true;
+      currentHandle = handle.dataset.handle;
+      handle.classList.add('active');
+
+      const rect = sliderContainer.getBoundingClientRect();
+      const clientX = getClientX(e);
+      const percent = ((clientX - rect.left) / rect.width) * 100;
+      updateHandlePosition(percent);
     }
 
-// Универсальная функция получения координат X
-function getClientX(e) {
-  if (e.type.startsWith('touch')) {
-    return e.touches && e.touches.length > 0 ? e.touches[0].clientX : 0;
-  }
-  return e.clientX;
-}
+    // Универсальный обработчик движения
+    function handleMove(e) {
+      if (!isDragging) return;
 
-// Универсальный обработчик начала перетаскивания
-function handleStart(e) {
-  e.preventDefault();
-  e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
 
-  const handle = e.target.closest('.slider-handle');
-  if (!handle) return;
+      const rect = sliderContainer.getBoundingClientRect();
+      const clientX = getClientX(e);
+      const percent = ((clientX - rect.left) / rect.width) * 100;
+      updateHandlePosition(percent);
+    }
 
-  isDragging = true;
-  currentHandle = handle.dataset.handle;
-  handle.classList.add('active');
+    // Обработчик окончания
+    function handleEnd(e) {
+      stopDrag();
+    }
 
-  const rect = sliderContainer.getBoundingClientRect();
-  const clientX = getClientX(e);
-  const percent = ((clientX - rect.left) / rect.width) * 100;
-  updateHandlePosition(percent);
-}
+    // 🖱️ Поддержка мыши
+    sliderContainer.addEventListener('mousedown', handleStart);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleEnd);
 
-// Универсальный обработчик движения
-function handleMove(e) {
-  if (!isDragging) return;
-
-  e.preventDefault();
-  e.stopPropagation();
-
-  const rect = sliderContainer.getBoundingClientRect();
-  const clientX = getClientX(e);
-  const percent = ((clientX - rect.left) / rect.width) * 100;
-  updateHandlePosition(percent);
-}
-
-// Обработчик окончания
-function handleEnd(e) {
-  stopDrag();
-}
-
-// 🖱️ Поддержка мыши
-sliderContainer.addEventListener('mousedown', handleStart);
-document.addEventListener('mousemove', handleMove);
-document.addEventListener('mouseup', handleEnd);
-
-// 👆 Поддержка тач-устройств
-sliderContainer.addEventListener('touchstart', handleStart, { passive: false });
-sliderContainer.addEventListener('touchmove', handleMove, { passive: false });
-sliderContainer.addEventListener('touchend', handleEnd);
+    // 👆 Поддержка тач-устройств - ИСПРАВЛЕНО
+    sliderContainer.addEventListener('touchstart', handleStart, { passive: false });
+    document.addEventListener('touchmove', handleMove, { passive: false });
+    document.addEventListener('touchend', handleEnd);
+    document.addEventListener('touchcancel', handleEnd);
 
     // Также можно кликнуть по слайдеру
     sliderContainer.addEventListener('click', function (e) {
       const rect = this.getBoundingClientRect();
-      let percent = ((e.clientX - rect.left) / rect.width) * 100;
+      let percent = ((getClientX(e) - rect.left) / rect.width) * 100;
       let val = rangeMin + (percent / 100) * (rangeMax - rangeMin);
       val = parseFloat(val.toFixed(2));
       val = Math.max(rangeMin, Math.min(rangeMax, val)); // 🚦 Ограничение
