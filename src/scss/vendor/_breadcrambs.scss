@@ -11,6 +11,7 @@
 .breadcrambs {
     margin-top: clamp-px(20, 30);
     margin-bottom: clamp-px(20, 30);
+    padding: 0 clamp(1rem, 0.911971831rem + 0.3755868545vw, 1.25rem);
 }
 
 .breadcrambs__list-item {
@@ -37,5 +38,26 @@
         font-size: clamp-px(12, 14);
         line-height: 120%;
         color: #000;
+    }
+
+    &:not(:last-child) {
+        &::after {
+            font-family: "owen";
+            font-style: normal;
+            font-weight: normal;
+            speak: never;
+            display: inline-block;
+            text-decoration: inherit;
+            width: 1em;
+            text-align: center;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            content: '\e801';
+            font-size: 12px;
+            margin-left: 10px;
+        }
     }
 }

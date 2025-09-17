@@ -96,6 +96,9 @@ import { replacIcon } from "./components/replacIcon.js";
 //------------Фильтр---------------
 import { filter } from "./components/filter.js";
 
+//------------Кнопка мобильного фильтра---------------
+import { btnFilter } from "./components/btnFilter.js";
+
 
 
 

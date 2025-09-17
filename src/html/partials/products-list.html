@@ -1,7 +1,7 @@
-<section class='products-list-section'>
+<div class='products-list-section'>
     <div class='container products-list__container'>
         <div class="two-col-left">
-            <aside class="asside">
+            <aside class="asside asside-filter">
                 <div class="filter">
 
                     <div class="filter-top">
@@ -21,10 +21,10 @@
 
                                 <div class="filter-container">
                                     <div class="range-inputs">
-                                        <input type="number" id="minValue" placeholder="От 3" value="" min="3"
+                                        <input type="number" data-id="minValue" placeholder="От 3" value="" min="3"
                                             max="170">
                                         <span>—</span>
-                                        <input type="number" id="maxValue" placeholder="До 170" value="" min="3"
+                                        <input type="number" data-id="maxValue" placeholder="До 170" value="" min="3"
                                             max="170">
                                     </div>
                                     <div class="slider-container">
@@ -43,16 +43,16 @@
 
                                 <div class="filter-container-checkbox">
                                     <div class="filter__checkbox-box">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="naprakenie_220">
                                         <span>
                                             220
                                         </span>
                                     </div>
 
                                     <div class="filter__checkbox-box">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="naprakenie_230">
                                         <span>
-                                            220
+                                            230
                                         </span>
                                     </div>
                                 </div>
@@ -67,10 +67,10 @@
                                 <div class="filter-container">
                                     <h3>Ток Ном, А</h3>
                                     <div class="range-inputs">
-                                        <input type="number" id="minValue" placeholder="От 3" value="3" min="3"
+                                        <input type="number" data-id="minValue" placeholder="От 3" value="3" min="3"
                                             max="170">
                                         <span>—</span>
-                                        <input type="number" id="maxValue" placeholder="До 170" value="170" min="3"
+                                        <input type="number" data-id="maxValue" placeholder="До 170" value="170" min="3"
                                             max="170">
                                     </div>
                                     <div class="slider-container">
@@ -89,7 +89,7 @@
 
                                 <div class="filter-container-checkbox">
                                     <div class="filter__checkbox-box">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="ip_IP20">
                                         <span>
                                             IP20
                                         </span>
@@ -107,14 +107,14 @@
 
                                 <div class="filter-container-checkbox">
                                     <div class="filter__checkbox-box">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="vx_faza_1">
                                         <span>
                                             1
                                         </span>
                                     </div>
 
                                     <div class="filter__checkbox-box">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="vx_faza_2">
                                         <span>
                                             2
                                         </span>
@@ -130,14 +130,14 @@
 
                                 <div class="filter-container-checkbox">
                                     <div class="filter__checkbox-box">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="vix_faza_1">
                                         <span>
                                             1
                                         </span>
                                     </div>
 
                                     <div class="filter__checkbox-box">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="vix_faza_3">
                                         <span>
                                             3
                                         </span>
@@ -548,4 +548,16 @@
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<button class="asside-filter-btn">
+    <!-- icon666.com - MILLIONS OF FREE VECTOR ICONS --><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+        data-name="Layer 1">
+        <path
+            d="m2 9h2.142a3.981 3.981 0 0 0 7.716 0h18.142a1 1 0 0 0 0-2h-18.142a3.981 3.981 0 0 0 -7.716 0h-2.142a1 1 0 0 0 0 2z" />
+        <path
+            d="m30 23h-13.142a3.981 3.981 0 0 0 -7.716 0h-7.142a1 1 0 0 0 0 2h7.142a3.981 3.981 0 0 0 7.716 0h13.142a1 1 0 0 0 0-2z" />
+        <path
+            d="m30 15h-1.142a3.981 3.981 0 0 0 -7.716 0h-19.142a1 1 0 0 0 0 2h19.142a3.981 3.981 0 0 0 7.716 0h1.142a1 1 0 0 0 0-2z" />
+    </svg>
+</button>

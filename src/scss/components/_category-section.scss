@@ -2,6 +2,7 @@
 
 .category-section {
     margin-bottom: clamp-px(30, 60);
+    padding: 0 clamp(1rem, 0.911971831rem + 0.3755868545vw, 1.25rem);
 }
 
 .category-section__container {}
