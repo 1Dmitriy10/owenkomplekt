@@ -46,6 +46,8 @@
 }
 
 .nav-sticky {
+    width: 1133px;
+
     @include respond-to("tab") {
         display: none;
     }

@@ -15,7 +15,13 @@ export class Spoilers {
             return;
         }
 
-        // Аналог slideUp() и удаление атрибута open
+        // Если allOpen: true, открываем все спойлеры
+        if (this.spoiler.allOpen) {
+            this.openAllSpoilers();
+            return; // Прекращаем выполнение, так как все спойлеры должны быть открыты
+        }
+
+        // Аналог slideUp() и удаление атрибута open (только если не allOpen)
         document.querySelectorAll(`.${this.spoiler.item}`).forEach(item => {
             const content = item.nextElementSibling;
             if (content && content.classList.contains('spoiler-content')) {
@@ -37,6 +43,33 @@ export class Spoilers {
                     this.getSpoiler(event);
                 }
             });
+        }
+    }
+
+    // Метод для открытия всех спойлеров
+    openAllSpoilers() {
+        this.class.forEach(item => {
+            const parent = item.parentElement;
+            const content = item.nextElementSibling;
+            
+            if (content && content.classList.contains('spoiler-content')) {
+                parent.setAttribute("open", '');
+                item.classList.add('active');
+                content.style.display = 'block';
+                content.style.height = 'auto';
+                content.style.overflow = '';
+                content.style.transition = '';
+            }
+        });
+
+        // Удаляем обработчики кликов, так как все спойлеры должны оставаться открытыми
+        for (const el of this.class) {
+            el.removeEventListener("click", this.getSpoiler);
+            el.removeEventListener("click", this.getAccordionSpoiler);
+            
+            // Делаем спойлеры неактивными (некликабельными)
+            el.style.cursor = 'default';
+            el.style.pointerEvents = 'none';
         }
     }
 
@@ -137,13 +170,3 @@ export class Spoilers {
         }, duration + 10);
     }
 }
-
-
-
-
-
-
-
-
-
-

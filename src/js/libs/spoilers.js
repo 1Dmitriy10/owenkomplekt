@@ -13,14 +13,16 @@ export const spoilers = new Spoilers({
     item: '_spoiler-js', /*класс споилера*/
     timeAnimation: 300, /*время анимации*/
     accordion: true,    /*Режим аккордиона*/
-    firstOpen: true    /*Первый элемент всегда открыт*/
+    firstOpen: true,    /*Первый элемент всегда открыт*/
+    allOpen: false    /*Все элементы открыты*/
 })
 
 export const filterSpoilers = new Spoilers({
     item: 'filter__spoiler-js', /*класс споилера*/
     timeAnimation: 300, /*время анимации*/
     accordion: false,    /*Режим аккордиона*/
-    firstOpen: false    /*Первый элемент всегда открыт*/
+    firstOpen: false,    /*Первый элемент всегда открыт*/
+    allOpen: true    /*Все элементы открыты*/
 })
 
 
