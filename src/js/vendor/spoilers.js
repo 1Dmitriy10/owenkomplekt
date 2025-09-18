@@ -15,23 +15,15 @@ export class Spoilers {
             return;
         }
 
-        // Если allOpen: true, открываем все спойлеры
+        // Если allOpen: true, открываем все спойлеры изначально
         if (this.spoiler.allOpen) {
             this.openAllSpoilers();
-            return; // Прекращаем выполнение, так как все спойлеры должны быть открыты
+        } else {
+            // Закрываем все спойлеры (обычное поведение)
+            this.closeAllSpoilers();
         }
 
-        // Аналог slideUp() и удаление атрибута open (только если не allOpen)
-        document.querySelectorAll(`.${this.spoiler.item}`).forEach(item => {
-            const content = item.nextElementSibling;
-            if (content && content.classList.contains('spoiler-content')) {
-                content.style.display = 'none';
-            }
-            item.parentElement.removeAttribute('open');
-            item.classList.remove('active');
-        });
-
-        if (this.spoiler.firstOpen) {
+        if (this.spoiler.firstOpen && !this.spoiler.allOpen) {
             this.getOpenFirstSpoiler();
         }
 
@@ -46,7 +38,7 @@ export class Spoilers {
         }
     }
 
-    // Метод для открытия всех спойлеров
+    // Метод для открытия всех спойлеров при инициализации
     openAllSpoilers() {
         this.class.forEach(item => {
             const parent = item.parentElement;
@@ -56,21 +48,20 @@ export class Spoilers {
                 parent.setAttribute("open", '');
                 item.classList.add('active');
                 content.style.display = 'block';
-                content.style.height = 'auto';
-                content.style.overflow = '';
-                content.style.transition = '';
             }
         });
+    }
 
-        // Удаляем обработчики кликов, так как все спойлеры должны оставаться открытыми
-        for (const el of this.class) {
-            el.removeEventListener("click", this.getSpoiler);
-            el.removeEventListener("click", this.getAccordionSpoiler);
-            
-            // Делаем спойлеры неактивными (некликабельными)
-            el.style.cursor = 'default';
-            el.style.pointerEvents = 'none';
-        }
+    // Метод для закрытия всех спойлеров при инициализации
+    closeAllSpoilers() {
+        this.class.forEach(item => {
+            const content = item.nextElementSibling;
+            if (content && content.classList.contains('spoiler-content')) {
+                content.style.display = 'none';
+            }
+            item.parentElement.removeAttribute('open');
+            item.classList.remove('active');
+        });
     }
 
     getOpenFirstSpoiler() {
