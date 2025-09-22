@@ -52,7 +52,7 @@
     align-items: center;
     gap: clamp-px(4, 20);
 
-    &>.img-bg {
+    & .img-bg {
         width: 70px;
         position: static;
         object-fit: contain;
