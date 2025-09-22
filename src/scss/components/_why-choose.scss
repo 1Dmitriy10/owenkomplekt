@@ -30,7 +30,7 @@
 
 .why-choose__card-box {
     display: grid;
-    gap: 20px;
+    gap: clamp-px(10, 20);
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, auto);
 
@@ -118,15 +118,20 @@
         height: 110px;
     }
 
-    @include respond-to("nout") {
-        display: none;
-    }
+    // @include respond-to("nout") {
+    //     display: none;
+    // }
 }
 
 .why-choose__card-cols {
     display: flex;
     gap: 20px;
     justify-content: space-between;
+
+    @include respond-to("tab") {
+        flex-direction: column;
+        gap: 0;
+    }
 }
 
 .why-choose__card-col-left {
@@ -142,8 +147,9 @@
     position: relative;
 
     @include respond-to("tab") {
-        display: none;
+        flex: 0 1 234px;
     }
+
 }
 
 .choice__card-item-text-bold {
@@ -152,4 +158,8 @@
     font-size: clamp-px(10, 12);
     line-height: 120%;
     color: var(--grey05);
+
+    @include respond-to("tel") {
+        margin-top: 10px;
+    }
 }

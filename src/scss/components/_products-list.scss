@@ -26,7 +26,12 @@
 
 .asside {}
 
-.products-list {}
+.products-list {
+    @include respond-to("tel") {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        min-width: 0;
+    }
+}
 
 .filter {
     position: sticky;
@@ -161,16 +166,17 @@
 
 .filter__checkbox-box {
     display: flex;
-    gap: 8px;
+    gap: 12px;
 
     & input[type="checkbox"] {
         position: relative;
+        height: fit-content;
 
         &::before {
             position: absolute;
-            top: 25%;
+            top: 50%;
             left: 25%;
-            transform: translate(-50%);
+            transform: translate(-25%);
             z-index: 2;
             content: "\e808";
             font-family: "owen";
@@ -261,7 +267,7 @@
 .products__card {
     border: 1px solid var(--grey02);
     border-radius: clamp-px(16, 20);
-    padding: clamp-px(20, 30);
+    padding: clamp-px(10, 30);
     background: var(--white01);
     position: relative;
     transition: 0.3s;
@@ -269,6 +275,10 @@
     &:hover {
         filter: drop-shadow(2px 4px 6px rgba(65, 64, 64, 0.541));
     }
+
+    // @include respond-to("tel") {
+    //     width: 167px;
+    // }
 }
 
 .products__card-like {
@@ -277,6 +287,15 @@
     right: 31.5px;
     z-index: 2;
     cursor: pointer;
+
+    @include respond-to("tel") {
+        top: 8px;
+        right: 8px;
+
+        &>svg {
+            width: 22px;
+        }
+    }
 
 }
 
@@ -352,7 +371,36 @@
                 color: var(--white);
             }
         }
+
+        @include respond-to("tel") {
+            min-width: 89px;
+            padding: 9px 8px;
+        }
     }
+}
+
+.products__card-btn-card {
+    &>svg {
+        display: none;
+    }
+
+    @include respond-to("tel") {
+        padding: 0 !important;
+        min-width: auto !important;
+        width: 40px;
+        max-width: 40px;
+        min-width: 40px !important;
+        height: 40px;
+
+        &>span {
+            display: none;
+        }
+
+        &>svg {
+            display: block;
+        }
+    }
+
 }
 
 .products__card-btn {
@@ -404,6 +452,7 @@
         border-radius: 10px;
         background-color: var(--white);
         position: fixed;
+        z-index: 10;
         top: 150px;
         left: 0;
         filter: drop-shadow(2px 4px 6px rgba(109, 109, 109, 0.425));
@@ -413,4 +462,12 @@
             height: 20px;
         }
     }
+}
+
+.filter__checkbox-counter {
+    font-weight: 400;
+    font-size: clamp-px(12, 14);
+    line-height: 120%;
+    color: var(--grey05);
+    margin-top: 10px;
 }

@@ -168,8 +168,8 @@
     &::before {
         position: absolute;
         top: 50%;
-        left: 25%;
-        transform: translate(-25%);
+        left: 15%;
+        // transform: translate(-25%);
         z-index: 2;
         content: "\e808";
         font-family: "owen";
@@ -179,12 +179,10 @@
         display: inline-block;
         text-decoration: inherit;
         width: 1em;
-        margin-right: .2em;
         text-align: center;
         font-variant: normal;
         text-transform: none;
         line-height: 1em;
-        margin-left: .2em;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: var(--white);
