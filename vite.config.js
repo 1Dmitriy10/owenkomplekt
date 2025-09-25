@@ -4,7 +4,6 @@ import path from 'path';
 import fs from 'fs';
 import sharp from 'sharp';
 import tailwindcss from '@tailwindcss/vite';
-// import chokidar from 'chokidar';
 
 // Хелпер для определения веса шрифта
 function getFontWeight(style) {
@@ -36,11 +35,190 @@ function getFormat(ext) {
   return formats[ext] || ext;
 }
 
+// Улучшенный плагин для копирования dist в docs с исправлением HTML
+const copyDistToDocs = () => {
+  return {
+    name: 'copy-dist-to-docs',
+    apply: 'build',
+
+    async writeBundle() {
+      console.log('📁 Copying dist to docs...');
+
+      const distDir = path.resolve(__dirname, 'dist');
+      const docsDir = path.resolve(__dirname, 'docs');
+
+      if (!fs.existsSync(distDir)) {
+        console.log('❌ dist directory not found');
+        return;
+      }
+
+      // Ждем завершения всех других плагинов
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      if (fs.existsSync(docsDir)) {
+        console.log('🗑️ Cleaning docs directory...');
+        fs.rmSync(docsDir, { recursive: true });
+      }
+      fs.mkdirSync(docsDir, { recursive: true });
+
+      // Простая рекурсивная функция копирования
+      const copyRecursiveSync = (src, dest) => {
+        if (!fs.existsSync(src)) return;
+        
+        const stats = fs.statSync(src);
+        
+        if (stats.isDirectory()) {
+          if (!fs.existsSync(dest)) {
+            fs.mkdirSync(dest, { recursive: true });
+          }
+          
+          const items = fs.readdirSync(src);
+          for (const item of items) {
+            if (item === 'html') continue;
+            copyRecursiveSync(path.join(src, item), path.join(dest, item));
+          }
+        } else {
+          fs.copyFileSync(src, dest);
+        }
+      };
+
+      // Копируем всё из dist в docs, кроме html папки
+      copyRecursiveSync(distDir, docsDir);
+      console.log('✅ Basic structure copied');
+
+      // Обрабатываем HTML файлы отдельно
+      const htmlDir = path.join(distDir, 'html');
+      if (fs.existsSync(htmlDir)) {
+        const htmlFiles = fs.readdirSync(htmlDir).filter(f => f.endsWith('.html'));
+        for (const htmlFile of htmlFiles) {
+          const srcPath = path.join(htmlDir, htmlFile);
+          const destPath = path.join(docsDir, htmlFile);
+          
+          if (fs.existsSync(srcPath)) {
+            fs.copyFileSync(srcPath, destPath);
+
+            console.log(`🔧 Fixing HTML quotes in: ${htmlFile}`);
+            
+            // Читаем содержимое HTML файла
+            let content = fs.readFileSync(destPath, 'utf8');
+            
+            // 1. Исправляем пути в HTML файлах
+            content = content
+              .replace(/(src|href|data-src|srcset)=["']\/(assets|images|files)\//g, '$1="./$2/')
+              .replace(/(src|href|data-src|srcset)=["']\.\.\/(assets|images|files)\//g, '$1="./$2/')
+              .replace(/(src|href|data-src|srcset)=["']\.(?!\.)\//g, '$1="./');
+
+            // 2. Исправляем проблему с кавычками в picture тегах
+            // Первый проход: исправляем смешанные кавычки в source тегах
+            content = content.replace(
+              /<picture>\s*<source\s+srcset=("|')([^"']+)("|')\s+type=("|')image\/webp("|')\s*>/gi,
+              (match, quote1, srcset, quote2, quote3, quote4) => {
+                // Унифицируем кавычки - используем двойные везде
+                return `<picture><source srcset="${srcset}" type="image/webp">`;
+              }
+            );
+
+            // Второй проход: исправляем случай, когда кавычки вообще отсутствуют
+            content = content.replace(
+              /<picture>\s*<source\s+srcset=([^\s>]+)\s+type=([^\s>]+)\s*>/gi,
+              (match, srcset, type) => {
+                // Добавляем кавычки, если их нет
+                const fixedSrcset = srcset.includes('"') ? srcset : `"${srcset}"`;
+                const fixedType = type.includes('"') ? type : `"${type}"`;
+                return `<picture><source srcset=${fixedSrcset} type=${fixedType}>`;
+              }
+            );
+
+            // 3. Исправляем проблему с mixed quotes в img тегах
+            content = content.replace(
+              /<img([^>]*?)src=("|')([^"']+)("|')([^>]*?)>/gi,
+              (match, before, quote1, src, quote2, after) => {
+                // Унифицируем кавычки - всегда используем двойные
+                // Также проверяем другие атрибуты на смешанные кавычки
+                let fixedAfter = after.replace(/(\w+)=("|')([^"']+)("|')/g, '$1="$3"');
+                return `<img${before}src="${src}"${fixedAfter}>`;
+              }
+            );
+
+            // 4. Дополнительное исправление для атрибутов alt, loading и class
+            content = content.replace(
+              /<img([^>]*?)alt=("|')([^"']*)("|')([^>]*?)>/gi,
+              (match, before, quote1, alt, quote2, after) => {
+                return `<img${before}alt="${alt}"${after}>`;
+              }
+            );
+
+            content = content.replace(
+              /<img([^>]*?)loading=("|')([^"']*)("|')([^>]*?)>/gi,
+              (match, before, quote1, loading, quote2, after) => {
+                return `<img${before}loading="${loading}"${after}>`;
+              }
+            );
+
+            content = content.replace(
+              /<img([^>]*?)class=("|')([^"']*)("|')([^>]*?)>/gi,
+              (match, before, quote1, className, quote2, after) => {
+                return `<img${before}class="${className}"${after}>`;
+              }
+            );
+
+            // 5. Исправляем конкретную проблему из примера
+            content = content.replace(
+              /<picture><source srcset=("|')([^"']+)("|') type=("|')image\/webp("|')><img([^>]*?)src=("|')([^"']+)("|')([^>]*?)><\/picture>/gi,
+              (match, quote1, webpSrc, quote2, quote3, quote4, imgAttrs, quote5, imgSrc, quote6, imgAfter) => {
+                // Унифицируем все кавычки в picture блоке
+                return `<picture><source srcset="${webpSrc}" type="image/webp"><img${imgAttrs}src="${imgSrc}"${imgAfter}></picture>`;
+              }
+            );
+
+            // 6. Общее исправление для всех тегов с атрибутами
+            content = content.replace(
+              /<(\w+)([^>]*?)>/gi,
+              (match, tagName, attributes) => {
+                if (tagName.toLowerCase() === 'script' || tagName.toLowerCase() === 'style') {
+                  return match; // Не трогаем script и style теги
+                }
+                
+                // Исправляем все атрибуты в теге
+                const fixedAttributes = attributes.replace(
+                  /(\w+)=("|')([^"']*)("|')/g,
+                  '$1="$3"'
+                );
+                
+                return `<${tagName}${fixedAttributes}>`;
+              }
+            );
+
+            // Записываем исправленное содержимое
+            fs.writeFileSync(destPath, content, 'utf8');
+            console.log(`✅ Fixed HTML quotes in: ${htmlFile}`);
+          }
+        }
+        console.log(`✅ Copied and fixed ${htmlFiles.length} HTML files to docs root`);
+      }
+
+      console.log('✅ dist successfully copied to docs with HTML fixes');
+      
+      // Детальная проверка содержимого
+      console.log('📁 Final docs structure:');
+      if (fs.existsSync(docsDir)) {
+        const items = fs.readdirSync(docsDir);
+        console.log('📋 Docs contents:', items);
+        
+        const imagesDir = path.join(docsDir, 'images');
+        if (fs.existsSync(imagesDir)) {
+          const images = fs.readdirSync(imagesDir);
+          console.log('🖼️ Images in docs:', images.length, 'files');
+        }
+      }
+    }
+  };
+};
+
 // Плагин для автоматического подключения шрифтов
 const fontAutoPlugin = () => {
   let lastFontHash = null;
 
-  // Простая функция для хеширования списка файлов
   const getFontDirHash = (fontsDir) => {
     try {
       const files = fs.readdirSync(fontsDir)
@@ -71,10 +249,8 @@ const fontAutoPlugin = () => {
         fs.mkdirSync(cssOutputDir, { recursive: true });
       }
 
-      // Получаем хеш текущего состояния папки шрифтов
       const currentHash = getFontDirHash(fontsDir);
 
-      // Если хеш не изменился — пропускаем генерацию
       if (lastFontHash === currentHash && fs.existsSync(cssFilePath)) {
         console.log('✅ fonts.scss is up to date, skipping regeneration');
         return;
@@ -129,7 +305,7 @@ const fontAutoPlugin = () => {
           const cssContent = `/* Auto-generated font styles */\n${fontFaceRules.join('\n\n')}`;
           fs.writeFileSync(cssFilePath, cssContent);
           console.log(`✅ Generated fonts.scss with ${fontFaceRules.length} @font-face rules`);
-          lastFontHash = currentHash; // обновляем кэш
+          lastFontHash = currentHash;
         } else {
           console.log('❌ No font face rules were generated');
         }
@@ -164,146 +340,92 @@ const aliasHtmlPlugin = () => {
   };
 };
 
-// Кастомный плагин для генерации WebP — ТОЛЬКО при сборке (build)
-const webpGenerator = () => {
+// ИСПРАВЛЕННЫЙ плагин для работы с изображениями
+const imagesPlugin = () => {
   let isBuild = false;
 
   return {
-    name: 'webp-generator',
+    name: 'images-plugin',
 
     config(config, { command }) {
       isBuild = command === 'build';
     },
 
-    // ❌ Убираем генерацию при dev-старте — больше не нужно
-    // buildStart() { ... },
-
-    // ❌ Убираем отслеживание файлов в dev — не нужно
-    // configureServer() { ... },
-
-    async closeBundle() {
-      // Генерируем WebP ТОЛЬКО при сборке
+    // Используем generateBundle вместо buildStart
+    async generateBundle() {
       if (!isBuild) return;
 
-      const imagesDir = path.resolve(__dirname, 'src/images');
-      const outputDir = path.resolve(__dirname, 'dist/images/webp');
+      console.log('🖼️ Processing images...');
+      
+      const imagesSrcDir = path.resolve(__dirname, 'src/images');
+      const imagesDistDir = path.resolve(__dirname, 'dist/images');
+      const webpDistDir = path.join(imagesDistDir, 'webp');
 
-      if (!fs.existsSync(imagesDir)) {
-        console.log('📁 Images directory not found, skipping WebP generation');
+      if (!fs.existsSync(imagesSrcDir)) {
+        console.log('📁 Images directory not found, skipping image processing');
         return;
       }
 
-      if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
-        console.log('📁 Created WebP output directory:', outputDir);
+      // Создаем папки назначения
+      if (!fs.existsSync(imagesDistDir)) {
+        fs.mkdirSync(imagesDistDir, { recursive: true });
+      }
+      if (!fs.existsSync(webpDistDir)) {
+        fs.mkdirSync(webpDistDir, { recursive: true });
       }
 
       try {
-        const files = fs.readdirSync(imagesDir);
-        let generatedCount = 0;
+        const files = fs.readdirSync(imagesSrcDir);
+        let copiedCount = 0;
+        let webpCount = 0;
 
         for (const file of files) {
+          const srcPath = path.join(imagesSrcDir, file);
+          const distPath = path.join(imagesDistDir, file);
+
+          // Копируем оригинальные изображения
+          if (/\.(jpg|jpeg|png|gif|svg|ico)$/i.test(file)) {
+            fs.copyFileSync(srcPath, distPath);
+            copiedCount++;
+            console.log(`📄 Copied: ${file}`);
+          }
+
+          // Генерируем WebP для подходящих форматов
           if (/\.(jpg|jpeg|png)$/i.test(file)) {
-            const inputPath = path.join(imagesDir, file);
-            const outputPath = path.join(outputDir, `${path.parse(file).name}.webp`);
-
-            await sharp(inputPath)
-              .webp({ quality: 80, effort: 4 })
-              .toFile(outputPath);
-
-            console.log(`✅ Prod WebP: ${file}`);
-            generatedCount++;
+            const webpPath = path.join(webpDistDir, `${path.parse(file).name}.webp`);
+            try {
+              await sharp(srcPath)
+                .webp({ quality: 80, effort: 4 })
+                .toFile(webpPath);
+              webpCount++;
+              console.log(`🎨 Created WebP: ${path.parse(file).name}.webp`);
+            } catch (error) {
+              console.warn(`⚠️ Could not convert ${file} to WebP:`, error.message);
+            }
           }
         }
 
-        console.log(`🎉 Generated ${generatedCount} WebP images for production`);
+        console.log(`✅ Copied ${copiedCount} original images`);
+        console.log(`✅ Generated ${webpCount} WebP images`);
+        
+        // Проверяем результат
+        if (fs.existsSync(imagesDistDir)) {
+          const distImages = fs.readdirSync(imagesDistDir);
+          console.log('📋 Images in dist:', distImages);
+        }
+        if (fs.existsSync(webpDistDir)) {
+          const webpImages = fs.readdirSync(webpDistDir);
+          console.log('🎨 WebP images generated:', webpImages.length);
+        }
+        
       } catch (error) {
-        console.error('❌ Error generating production WebP:', error);
-      }
-    },
-  };
-};
-
-// Плагин для копирования дополнительных assets
-const copyAssetsPlugin = () => {
-  return {
-    name: 'copy-assets',
-    
-    // Копируем при завершении сборки
-    async closeBundle() {
-      console.log('📋 Copying additional assets...');
-      
-      // Копируем ВСЕ оригинальные изображения из src/images в dist/images
-      const imagesSrcDir = path.resolve(__dirname, 'src/images');
-      const imagesDestDir = path.resolve(__dirname, 'dist/images');
-      
-      if (fs.existsSync(imagesSrcDir)) {
-        if (!fs.existsSync(imagesDestDir)) {
-          fs.mkdirSync(imagesDestDir, { recursive: true });
-        }
-        
-        const imageFiles = fs.readdirSync(imagesSrcDir);
-        for (const file of imageFiles) {
-          // Копируем все изображения, кроме тех, что уже в webp папке
-          if (!file.endsWith('.webp') && /\.(jpg|jpeg|png|gif|svg|ico)$/i.test(file)) {
-            fs.copyFileSync(path.join(imagesSrcDir, file), path.join(imagesDestDir, file));
-          }
-        }
-        console.log('✅ Original images copied to dist/images');
-      }
-      
-      // Копируем только дополнительные файлы, которые не обрабатываются Vite
-      const additionalAssets = [
-        { 
-          src: path.resolve(__dirname, 'src/files/icons'), 
-          dest: path.resolve(__dirname, 'dist/files/icons') 
-        },
-        { 
-          src: path.resolve(__dirname, 'src/files/docs'), 
-          dest: path.resolve(__dirname, 'dist/files/docs') 
-        },
-        // Добавляем другие папки, которые нужно скопировать как есть
-      ];
-      
-      for (const asset of additionalAssets) {
-        if (fs.existsSync(asset.src)) {
-          if (!fs.existsSync(asset.dest)) {
-            fs.mkdirSync(asset.dest, { recursive: true });
-          }
-          
-          const files = fs.readdirSync(asset.src);
-          for (const file of files) {
-            fs.copyFileSync(
-              path.join(asset.src, file), 
-              path.join(asset.dest, file)
-            );
-          }
-          console.log(`✅ Copied: ${path.basename(asset.src)}`);
-        }
-      }
-      
-      // Копируем WebP изображения (если они были сгенерированы в src)
-      const webpSrcDir = path.resolve(__dirname, 'src/images/webp');
-      const webpDestDir = path.resolve(__dirname, 'dist/images/webp');
-      
-      if (fs.existsSync(webpSrcDir)) {
-        if (!fs.existsSync(webpDestDir)) {
-          fs.mkdirSync(webpDestDir, { recursive: true });
-        }
-        
-        const webpFiles = fs.readdirSync(webpSrcDir);
-        for (const file of webpFiles) {
-          if (/\.webp$/i.test(file)) {
-            fs.copyFileSync(path.join(webpSrcDir, file), path.join(webpDestDir, file));
-          }
-        }
-        console.log('✅ WebP images copied');
+        console.error('❌ Error processing images:', error);
       }
     }
   };
 };
 
-// Плагин для автоматического оборачивания <img> в <picture> с WebP при сборке
+// Более надежный плагин для обработки изображений
 const pictureWebpPlugin = () => {
   let isBuild = false;
 
@@ -311,54 +433,62 @@ const pictureWebpPlugin = () => {
     name: 'picture-webp-plugin',
 
     config(config, { command }) {
-      // Определяем режим: build или serve
       isBuild = command === 'build';
     },
     
     transformIndexHtml(html) {
-      // Работаем только в режиме сборки
       if (!isBuild) {
         return html;
       }
 
       console.log('🖼️ Wrapping images in <picture> tags for production...');
       
-      return html.replace(
-        /<img\b([^>]*?\bsrc\s*=\s*(['"])([^"']+?\.(png|jpe?g|jpg))\2[^>]*?)>/gi,
-        (match, attributes, quote, src) => {
-          if (match.includes('data-skip-webp') || match.includes('<picture')) {
-            return match;
-          }
-          
-          let webpSrc;
-          
-          // Обрабатываем разные форматы путей
-          if (src.startsWith('/images/')) {
-            // Путь: /images/filename.jpg → /images/webp/filename.webp
-            webpSrc = src.replace('/images/', '/images/webp/').replace(/\.(png|jpe?g|jpg)$/i, '.webp');
-          } else if (src.startsWith('images/')) {
-            // Путь: images/filename.jpg → images/webp/filename.webp
-            webpSrc = src.replace('images/', 'images/webp/').replace(/\.(png|jpe?g|jpg)$/i, '.webp');
-          } else if (src.startsWith('./images/')) {
-            // Путь: ./images/filename.jpg → ./images/webp/filename.webp
-            webpSrc = src.replace('./images/', './images/webp/').replace(/\.(png|jpe?g|jpg)$/i, '.webp');
-          } else {
-            // Для других путей просто добавляем /webp/
-            const lastSlashIndex = src.lastIndexOf('/');
-            if (lastSlashIndex !== -1) {
-              const path = src.substring(0, lastSlashIndex);
-              const fileName = src.substring(lastSlashIndex + 1);
-              const webpFileName = fileName.replace(/\.(png|jpe?g|jpg)$/i, '.webp');
-              webpSrc = `${path}/webp/${webpFileName}`;
-            } else {
-              // Если нет пути, просто меняем расширение
-              webpSrc = src.replace(/\.(png|jpe?g|jpg)$/i, '.webp');
-            }
-          }
-          
-          return `<picture><source srcset="${webpSrc}" type="image/webp">${match}</picture>`;
+      // Универсальное регулярное выражение для поиска img тегов
+      const imgRegex = /<img\b([^>]*?\bsrc\s*=\s*(["'])([^"']+?\.(png|jpe?g|jpg))\2[^>]*?)>/gi;
+      
+      let result = html;
+      let match;
+      
+      // Обрабатываем каждое совпадение отдельно для лучшего контроля
+      while ((match = imgRegex.exec(html)) !== null) {
+        const fullMatch = match[0];
+        const attributes = match[1];
+        const quote = match[2];
+        const src = match[3];
+        
+        // Пропускаем изображения, которые уже в picture или имеют data-skip-webp
+        if (fullMatch.includes('data-skip-webp') || 
+            fullMatch.includes('<picture') || 
+            html.substring(match.index - 50, match.index).includes('<picture')) {
+          continue;
         }
-      );
+        
+        let webpSrc;
+        
+        if (src.startsWith('/images/')) {
+          webpSrc = src.replace('/images/', '/images/webp/').replace(/\.(png|jpe?g|jpg)$/i, '.webp');
+        } else if (src.startsWith('images/')) {
+          webpSrc = src.replace('images/', 'images/webp/').replace(/\.(png|jpe?g|jpg)$/i, '.webp');
+        } else if (src.startsWith('./images/')) {
+          webpSrc = src.replace('./images/', './images/webp/').replace(/\.(png|jpe?g|jpg)$/i, '.webp');
+        } else {
+          const lastSlashIndex = src.lastIndexOf('/');
+          if (lastSlashIndex !== -1) {
+            const path = src.substring(0, lastSlashIndex);
+            const fileName = src.substring(lastSlashIndex + 1);
+            const webpFileName = fileName.replace(/\.(png|jpe?g|jpg)$/i, '.webp');
+            webpSrc = `${path}/webp/${webpFileName}`;
+          } else {
+            webpSrc = src.replace(/\.(png|jpe?g|jpg)$/i, '.webp');
+          }
+        }
+        
+        // Используем тот же тип кавычек, что и в оригинальном теге
+        const replacement = `<picture><source srcset=${quote}${webpSrc}${quote} type="image/webp">${fullMatch}</picture>`;
+        result = result.replace(fullMatch, replacement);
+      }
+      
+      return result;
     }
   };
 };
@@ -379,7 +509,6 @@ export default defineConfig({
 
  plugins: [
   fontAutoPlugin(),
-  webpGenerator(),
   handlebars({
     partialDirectory: path.resolve(__dirname, 'src/html/partials'),
     context: {
@@ -387,13 +516,12 @@ export default defineConfig({
         index: 'Главная',
       },
     },
-    // reloadOnPartialChange: true,
   }),
-    aliasHtmlPlugin(),
-  pictureWebpPlugin(),
-
-  copyAssetsPlugin(),
+  aliasHtmlPlugin(),
+  imagesPlugin(),
+  pictureWebpPlugin(), // После imagesPlugin, но до tailwindcss
   tailwindcss(),
+  copyDistToDocs(),
 ],
 
   build: {
@@ -401,11 +529,9 @@ export default defineConfig({
     sourcemap: 'inline',
     outDir: path.resolve(__dirname, 'dist'),
     
-    // ⚡ ВАЖНО: настройка обработки assets для сохранения оригинальных имен
-    assetsInlineLimit: 0, // Отключаем инлайнинг файлов
+    assetsInlineLimit: 0,
     rollupOptions: {
       output: {
-        // Сохраняем оригинальные имена для шрифтов и изображений
         assetFileNames: (assetInfo) => {
           if (assetInfo.name && /\.(woff|woff2|eot|ttf|otf)$/i.test(assetInfo.name)) {
             return `files/fonts/[name][extname]`;
@@ -413,10 +539,8 @@ export default defineConfig({
           if (assetInfo.name && /\.(jpg|jpeg|png|gif|svg|ico)$/i.test(assetInfo.name)) {
             return `images/[name][extname]`;
           }
-          // Для остальных assets (CSS) оставляем хешированные имена в папке assets
           return `assets/[name]-[hash][extname]`;
         },
-        // JS файлы попадают в assets
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
       },
@@ -435,15 +559,13 @@ export default defineConfig({
   server: {
     open: '/html/index.html',
     watch: {
-      // usePolling: true,
-      // interval: 1000,
       ignored: [
         '**/node_modules/**',
-      '**/.git/**',
-      '**/dist/**',
-      
-      '**/src/files/**',         // ← игнорируем статику: иконки, PDF и т.д.
-      '**/src/images/webp/**',   // ← особенно если там много файлов
+        '**/.git/**',
+        '**/dist/**',
+        '**/docs/**',
+        '**/src/files/**',
+        '**/src/images/webp/**',
       ],
     },
   },
