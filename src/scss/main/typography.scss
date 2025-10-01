@@ -29,13 +29,13 @@ h4 {}
 
 p {
     font-family: var(--font-family);
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 160%;
-    color: #fff;
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey06);
 
     &:not(:last-child) {
-        margin-bottom: clamp-px(18, 25);
+        margin-bottom: clamp-px(15, 20);
     }
 
     &.strong {
@@ -44,34 +44,74 @@ p {
     }
 }
 
-ul.ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.content {
+    & ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-    & li {
-        font-weight: 400;
-        font-size: clamp-px(14, 16);
-        line-height: 140%;
-        color: var(--white);
-        position: relative;
-        padding-left: clamp-px(15, 25);
+        &:not(:last-child) {
+            margin-bottom: clamp-px(15, 20);
+        }
 
-        &::before {
-            position: absolute;
-            left: 0;
-            top: 10px;
-            content: "";
-            display: flex;
-            width: clamp-px(3, 5);
-            height: clamp-px(3, 5);
-            border-radius: 100%;
-            background-color: var(--white);
+        & li {
+            font-weight: 400;
+            font-size: clamp-px(14, 16);
+            line-height: 150%;
+            color: var(--grey06);
+            position: relative;
+            padding-left: 14px;
+
+            &::before {
+                position: absolute;
+                left: 0;
+                top: 10px;
+                content: "";
+                display: flex;
+                width: clamp-px(3, 4);
+                height: clamp-px(3, 4);
+                border-radius: 100%;
+                background-color: var(--red);
+            }
+        }
+    }
+
+    ol {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 10px;
+
+        &:not(:last-child) {
+            margin-bottom: clamp-px(15, 20);
+        }
+
+        & li {
+            font-family: var(--font-family);
+            font-weight: 400;
+            font-size: clamp-px(14, 16);
+            line-height: 150%;
+            color: var(--grey06);
+            list-style: decimal;
+
+            &::marker {
+                padding-right: 2px;
+            }
+        }
+    }
+
+    h2 {
+        font-weight: 700;
+        font-size: clamp-px(18, 20);
+        line-height: 120%;
+        color: var(--grey06);
+
+        &:not(:last-child) {
+            margin-bottom: clamp-px(15, 20);
         }
     }
 }
 
-ol {}
 
 ::-webkit-input-placeholder {
     font-family: var(--ff);

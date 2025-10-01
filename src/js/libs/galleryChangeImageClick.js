@@ -1,6 +1,6 @@
 export function galleryChangeImageClick() {
-    let mainImg = document.querySelector(".project-detail__gallery-main-img");
-    let arrImg = document.querySelectorAll(".project-detail__gallery-prev-item")
+    let mainImg = document.querySelector(".detail-product-gallery__main-img");
+    let arrImg = document.querySelectorAll(".detail-product-gallery__slide")
 
     arrImg.forEach(el=>{
         el.addEventListener("click", changSrc)

@@ -68,5 +68,28 @@ export const slider = new Swiper('.swiper', {
 
 });
 
+export const detailProductGallerySlider = new Swiper('.detail-product-gallery__slider', {
+    // Стрелки
+    navigation: {
+        nextEl: '.slider-btn-next',
+        prevEl: '.slider-btn-prev',
+    },
+    grabCursor: true,
+    speed: 700,
+    /*Отступ у карточек*/
+    spaceBetween: 10,
+    /*Показывать по n карточек*/
+    slidesPerView: 2,
+    /*Брек-поинты*/
+    breakpoints: {
+        1000: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+        },
+    },
+});
+
+
+
 
 

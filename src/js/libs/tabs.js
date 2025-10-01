@@ -19,4 +19,4 @@ cтруктура
 
 import { Tabs } from "../vendor/tabs.js"
 
-export const tabs = new Tabs({ class: "_tabs-js" })
+export const productTabs = new Tabs({ class: "product_tabs-js" })

@@ -6,7 +6,7 @@ import '../scss/style.scss';
 import '../files/fontello-c8082328/css/owen.css';
 
 //------------------------Спойлеры-----------------------
-import { spoilers, filterSpoilers } from "./libs/spoilers.js";
+import { spoilers, filterSpoilers,propertyDetailSpoilers, propertyDetailSpoilers_2, catalogDetailTabsSpoilers, catalogDetailItemSpoilers } from "./libs/spoilers.js";
 
 // // ------------- Мобильное меню -------------------------
 import { mobMenu } from "./libs/burgerMenu.js";
@@ -20,14 +20,14 @@ import { stickyHeader } from "./libs/stickyHeader.js";
 
 
 // // -------------------------Табы--------------------
-import { tabs } from "./libs/tabs.js";
+import { productTabs } from "./libs/tabs.js";
 
 // // -------------------------Заголовок для универсальной формы--------------------
 // import { setTitlePopupForm } from "./libs/setTitlePopupForm.js";
 
 
 // ---------------------Слайдер swiper-----------------
-import { casesPrevSlider } from "./libs/slider.js";
+import { casesPrevSlider,detailProductGallerySlider } from "./libs/slider.js";
 
 
 //---------------------Модальные окна------------------
@@ -79,7 +79,7 @@ import { gitNav } from "./libs/gitNav.js";
 import { mobMenuSlider } from "./libs/mobMenuSlider.js";
 
 //------------Галлерея изменение главного изображения при клике---------------
-// import { galleryChangeImageClick } from "./libs/galleryChangeImageClick.js";
+import { galleryChangeImageClick } from "./libs/galleryChangeImageClick.js";
 
 //------------Скрытие липкого блока при достижении определенного блока---------------
 // import { hiddenStickyBlock } from "./libs/hiddenStickyBlock.js";

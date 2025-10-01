@@ -13,12 +13,12 @@
     -webkit-box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.5490196078);
     box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.5490196078);
     position: fixed;
-    right: 0;
+    right: -15px;
     top: 150px;
     z-index: 150;
-    -webkit-transform: translateX(108%);
-    -ms-transform: translateX(108%);
-    transform: translateX(108%);
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
     -webkit-transition: 0.5s;
     transition: 0.5s;
 }
