@@ -301,9 +301,13 @@
     width: 100%;
     aspect-ratio: 1/0.41;
     position: relative;
+    border-radius: clamp-px(10, 20);
+    overflow: hidden;
 
     & .img-bg {
-        object-fit: cover;
+        object-fit: fill;
+        border-radius: clamp-px(10, 20);
+        padding: 4px;
     }
 }
 
