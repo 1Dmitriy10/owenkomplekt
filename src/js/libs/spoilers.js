@@ -41,34 +41,40 @@ export const catalogDetailItemSpoilers = new Spoilers({
     allOpen: false    /*Все элементы открыты*/
 })
 
-let count = 1;
+export const propertyDetailSpoilers = new Spoilers({
+    item: 'param-item__property-spoilers_1', /*класс споилера*/
+    timeAnimation: 300, /*время анимации*/
+    accordion: false,    /*Режим аккордиона*/
+    firstOpen: false,    /*Первый элемент всегда открыт*/
+    allOpen: false    /*Все элементы открыты*/
+})
+
 // Функция для создания экземпляра Spoilers в зависимости от ширины экрана
 const createPropertyDetailSpoilers = () => {
   const mediaQuery = window.matchMedia('(max-width: 767px)');
   
   const config = mediaQuery.matches 
     ? {
-        item: `param-item__property-spoilers_${count}`,
+        item: `param-item__property-spoilers_2`,
         timeAnimation: 300,
         accordion: false,
         firstOpen: false,
         allOpen: false
       }
     : {
-        item: `param-item__property-spoilers_${count}`,
+        item: `param-item__property-spoilers_2`,
         timeAnimation: 300,
         accordion: false,
         firstOpen: true,
         allOpen: true
       };
 
-      count++
 
   return new Spoilers(config);
 };
 
 // Создаем экземпляр
-export const propertyDetailSpoilers = createPropertyDetailSpoilers();
+// export const propertyDetailSpoilers = createPropertyDetailSpoilers();
 export const propertyDetailSpoilers_2 = createPropertyDetailSpoilers();
 
 

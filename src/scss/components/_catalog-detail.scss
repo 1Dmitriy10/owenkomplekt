@@ -1,6 +1,10 @@
 @use "../main/mixins-vars.scss"as *;
 
-.catalog-detail {}
+.catalog-detail {
+    @include respond-to("tel") {
+        margin-bottom: 10px;
+    }
+}
 
 .catalog-detail__container {
     display: grid;
@@ -15,6 +19,8 @@
 }
 
 .detail-product-gallery {
+    position: sticky;
+    top: 100px;
     display: flex;
     flex-direction: column;
     gap: 10px;
