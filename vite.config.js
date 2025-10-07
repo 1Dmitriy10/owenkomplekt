@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 // Определяем объект input для Rollup
 const rollupInputs = {
   Главная: path.resolve(__dirname, 'src/html/index.html'),
-  // ui_kit: path.resolve(__dirname, 'src/html/ui-kit.html'),
+  ui_kit: path.resolve(__dirname, 'src/html/ui-kit.html'),
   // error: path.resolve(__dirname, 'src/html/404.html'),
   Каталог: path.resolve(__dirname, 'src/html/OKATEC-Inverters.html'),
   Каталог_подкатегория: path.resolve(__dirname, 'src/html/catalog-subcategory.html'),
