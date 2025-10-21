@@ -17,6 +17,8 @@ const rollupInputs = {
   Каталог: path.resolve(__dirname, 'src/html/OKATEC-Inverters.html'),
   Каталог_подкатегория: path.resolve(__dirname, 'src/html/catalog-subcategory.html'),
   Каталог_детальная_страница: path.resolve(__dirname, 'src/html/catalog-detail.html'),
+  Путая_корзина: path.resolve(__dirname, 'src/html/basket-empty.html'),
+  Корзина: path.resolve(__dirname, 'src/html/basket.html'),
 
 };
 

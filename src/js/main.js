@@ -99,6 +99,9 @@ import { filter } from "./components/filter.js";
 //------------Кнопка мобильного фильтра---------------
 import { btnFilter } from "./components/btnFilter.js";
 
+//------------Счетчик в корзине---------------
+import { basketCount } from "./components/basketCount.js";
+
 
 
 
