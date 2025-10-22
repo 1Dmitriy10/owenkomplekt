@@ -324,3 +324,16 @@
         height: 48px;
     }
 }
+
+.btn__payment-invoice-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @include respond-to('tab') {
+        & .btn {
+            width: 100%;
+        }
+
+    }
+}

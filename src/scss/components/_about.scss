@@ -1,0 +1,236 @@
+@use "../main/mixins-vars.scss"as *;
+
+.about {}
+
+.about__container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp-px(40, 80);
+
+
+}
+
+.about__top {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    border-radius: clamp-px(20, 40);
+    background: var(--grey01);
+    padding: clamp-px(20, 80) clamp-px(20, 110);
+
+    @include respond-to('nout') {
+        flex-direction: column;
+    }
+}
+
+.about__text-box {
+    flex: 1 1 auto;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+
+    & p {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: clamp-px(16, 20);
+        line-height: 150%;
+        color: var(--grey06);
+
+        &:not(:last-child) {
+            margin-bottom: clamp-px(10, 20);
+        }
+    }
+}
+
+.about__text-box-title {
+    font-weight: 700;
+    font-size: clamp-px(20, 40);
+    line-height: 120%;
+    color: var(--grey07);
+    margin-bottom: clamp-px(10, 40);
+}
+
+.about__img-box {
+    flex: 1 1 auto;
+    max-width: 340px;
+    min-width: 307px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include respond-to('nout') {
+        align-self: center;
+    }
+}
+
+.about__img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    position: relative;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    & .img-bg {
+        border-radius: 20px;
+    }
+
+    @include respond-to('tel') {
+        aspect-ratio: 1/1.08;
+    }
+}
+
+
+
+.about__img-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--grey06);
+    margin-bottom: 4px;
+}
+
+.about__img-subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    text-align: center;
+    color: var(--grey06);
+}
+
+.partner__card-box_second {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-bottom: clamp-px(40, 80);
+
+    & .partner__card {
+        background: var(--white01);
+
+        &:first-child {
+            align-items: center;
+            grid-row: span 2;
+
+            & .partner__card-text {
+                color: var(--grey07);
+            }
+
+            & .partner__card-icon {
+                background: var(--grey04);
+                border-radius: 100%;
+            }
+
+            @include respond-to('tab') {
+                grid-row: span 1;
+                grid-column: span 2;
+            }
+        }
+
+        &:not(:first-child) {
+            & .partner__card-icon {
+                &>svg {
+                    & rect {
+                        fill: #E33624;
+                    }
+
+                    & path {
+                        fill: #E33624;
+                    }
+                }
+            }
+        }
+    }
+
+    @include respond-to('tab') {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+
+}
+
+.about__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: clamp-px(20, 40);
+}
+
+.about__bottom-title {
+    text-align: center;
+    font-size: clamp-px(20, 36);
+    max-width: 1000px;
+    margin-bottom: 0;
+}
+
+.about__bottom-card-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    border-top: 2px solid var(--grey02);
+    max-width: 966px;
+    align-self: center;
+
+    @include respond-to('nout') {
+        grid-template-columns: 1fr;
+        border-top: none;
+    }
+
+}
+
+.about__bottom-card {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: clamp-px(20, 40) clamp-px(20, 30) 5px clamp-px(20, 30);
+    align-items: center;
+
+    &:first-child {
+        border-right: 2px solid var(--grey02);
+    }
+
+    &:last-child {
+        border-left: 2px solid var(--grey02);
+    }
+
+    @include respond-to('nout') {
+        &:first-child {
+            border-right: none;
+        }
+
+        &:last-child {
+            border-left: none;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 2px solid var(--grey02);
+        }
+    }
+
+    @include respond-to('tel') {
+        padding: 20px;
+    }
+}
+
+.about__bottom-card-title {
+    font-weight: 800;
+    font-size: clamp-px(36, 48);
+    line-height: 120%;
+    text-align: center;
+    color: var(--grey07);
+
+    &>span {
+        font-size: clamp-px(16, 32);
+    }
+}
+
+.about__bottom-card-text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--grey06);
+}
+
+.partner-about__container {
+    & .partner-ul li::before {
+        background-color: var(--red01);
+    }
+}
