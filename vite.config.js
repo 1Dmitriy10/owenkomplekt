@@ -20,6 +20,7 @@ const rollupInputs = {
   Путая_корзина: path.resolve(__dirname, 'src/html/basket-empty.html'),
   Корзина: path.resolve(__dirname, 'src/html/basket.html'),
   О_нас: path.resolve(__dirname, 'src/html/about.html'),
+  Дилерам: path.resolve(__dirname, 'src/html/dealer.html'),
 
 };
 

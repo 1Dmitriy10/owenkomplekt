@@ -313,3 +313,16 @@
 .btn {}
 
 .notification-form__btn {}
+
+.main-form__text-box {
+    border-bottom: 1px solid var(--grey03);
+    padding-bottom: clamp-px(20, 30);
+    margin-bottom: clamp-px(20, 30);
+
+    &>p {
+        font-weight: 400;
+        font-size: clamp-px(14, 20);
+        line-height: 150%;
+        color: var(--white01);
+    }
+}

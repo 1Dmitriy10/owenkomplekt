@@ -141,3 +141,8 @@
     line-height: 150%;
     color: var(--grey04);
 }
+
+.choice__card-bg-mask_second {
+    max-height: clamp-px(200, 281);
+    width: 365px;
+}

@@ -1,0 +1,92 @@
+@use "../main/mixins-vars.scss"as *;
+
+.second-form {
+    border-radius: 30px;
+    padding: clamp-px(20, 40);
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+
+    & input {
+        border: 1px solid var(--grey03);
+        border-radius: 10px;
+        background-color: transparent;
+        color: var(--grey02);
+
+        &::-webkit-input-placeholder {
+            color: var(--grey02);
+        }
+
+        &:-ms-input-placeholder {
+            color: var(--grey02);
+        }
+
+        &:-moz-placeholder {
+            color: var(--grey02);
+        }
+
+        &::-moz-placeholder {
+            color: var(--grey02);
+        }
+
+    }
+
+    & .agree-box {
+        color: var(--grey02);
+    }
+
+    & .agree-check {
+        &:checked::before {
+            color: #1D222F;
+        }
+
+        &:checked:after {
+            background: var(--grey02);
+            border: 1px solid var(--grey02);
+        }
+
+        &::before {
+            color: var(--grey04);
+        }
+
+        &::after {
+            background: var(--grey04);
+            border: 1px solid var(--grey02);
+        }
+    }
+}
+
+.form__row-3 {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    &>.form__row {
+        flex: 0 1 calc((100% - 20px * 2) / 3);
+    }
+
+    @include respond-to('nout') {
+        flex-wrap: wrap;
+
+        &>.form__row {
+            flex: 0 1 calc((100% - 20px * 1) / 2);
+        }
+    }
+
+    @include respond-to('tel') {
+        &>.form__row {
+            flex: 1 1 100%;
+        }
+    }
+
+
+}
+
+.second-form__btn {
+    flex: 0 1 calc((100% - 20px * 2) / 3);
+    padding: 15px;
+
+    @include respond-to('nout') {
+        flex: 1 1 100%;
+    }
+}
