@@ -11,23 +11,28 @@
 }
 
 .about__top {
+    position: relative;
     display: flex;
     gap: 20px;
     justify-content: space-between;
     border-radius: clamp-px(20, 40);
     background: var(--grey01);
     padding: clamp-px(20, 80) clamp-px(20, 110);
+    overflow: hidden;
 
     @include respond-to('nout') {
         flex-direction: column;
+        padding: clamp-px(20, 80) clamp-px(20, 110) 0 clamp-px(20, 110);
     }
 }
 
 .about__text-box {
     flex: 1 1 auto;
-    max-width: 640px;
+    max-width: clamp-px(450, 640);
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 2;
 
     & p {
         font-family: var(--font-family);
@@ -51,24 +56,54 @@
 }
 
 .about__img-box {
-    flex: 1 1 auto;
-    max-width: 340px;
-    min-width: 307px;
+    position: absolute;
+    top: clamp-px(20, 45);
+    right: 0;
+    width: clamp-px(303, 530);
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 
     @include respond-to('nout') {
         align-self: center;
+        position: relative;
+        top: auto;
+        right: auto;
+        aspect-ratio: 1/1;
+    }
+}
+
+.about__img-text-box {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+    background: var(--white01);
+    border-radius: clamp-px(16, 20);
+    padding: clamp-px(12, 20);
+    max-width: 220px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: clamp-px(20, 80);
+    margin-left: auto;
+    margin-right: clamp-px(20, 110);
+
+    @include respond-to('tel') {
+        max-width: 177px;
+        margin-top: auto;
+        margin-bottom: clamp-px(20, 80);
+        margin-left: auto;
+        margin-right: 0;
     }
 }
 
 .about__img {
+    position: absolute !important;
     width: 100%;
     aspect-ratio: 1/1;
     position: relative;
     border-radius: 20px;
-    margin-bottom: 20px;
     overflow: hidden;
 
     & .img-bg {
@@ -76,7 +111,7 @@
     }
 
     @include respond-to('tel') {
-        aspect-ratio: 1/1.08;
+        aspect-ratio: 1/1;
     }
 }
 
@@ -84,7 +119,7 @@
 
 .about__img-title {
     font-weight: 700;
-    font-size: 16px;
+    font-size: clamp-px(12, 16);
     line-height: 150%;
     color: var(--grey06);
     margin-bottom: 4px;
@@ -92,7 +127,7 @@
 
 .about__img-subtitle {
     font-weight: 400;
-    font-size: 14px;
+    font-size: clamp-px(12, 14);
     line-height: 120%;
     text-align: center;
     color: var(--grey06);
