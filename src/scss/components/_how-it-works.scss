@@ -1,0 +1,48 @@
+@use "../main/mixins-vars.scss"as *;
+
+.how-it-works {}
+
+.how-it-works__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.how-it-works__title {
+    text-align: center;
+}
+
+.how-it-works__card-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    @include respond-to('tab') {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.how-it-works__card {
+    border-radius: 30px;
+    padding: clamp-px(20, 30);
+    background: var(--grey01);
+    position: relative;
+    min-height: clamp-px(171, 236);
+    overflow: hidden;
+
+    &>.choice__card-item {
+        background-color: transparent;
+        max-width: 70%;
+        padding: 0;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.how-it-works__card-img {
+    position: absolute;
+    top: clamp-px(20, 30);
+    right: clamp-px(20, 30);
+    width: clamp-px(117, 227);
+    aspect-ratio: 1/0.8;
+}
