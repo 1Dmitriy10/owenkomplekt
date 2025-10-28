@@ -1,0 +1,66 @@
+@use "../main/mixins-vars.scss"as *;
+
+.services {
+    padding: 0 clamp(1rem, 0.911971831rem + 0.3755868545vw, 1.25rem);
+}
+
+.services__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.services__card-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp-px(10, 20);
+    margin-bottom: clamp-px(40, 80);
+
+    @include respond-to('nout') {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include respond-to('tel') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.services__card {
+    position: relative;
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(20, 30) clamp-px(10, 30);
+    min-height: clamp-px(260, 421);
+    background: var(--grey01);
+    overflow: hidden;
+}
+
+.services__card-top {
+    display: flex;
+    flex-direction: column;
+    gap: clamp-px(10, 20);
+    position: relative;
+    z-index: 2;
+}
+
+.services__card-title {
+    font-weight: 700;
+    font-size: clamp-px(14, 20);
+    line-height: 120%;
+    color: var(--grey07);
+}
+
+.services__card-link {
+    align-self: flex-start;
+}
+
+.services__card-img {
+    // position: absolute;
+    // width: 238px;
+    // height: 298px;
+    // bottom: 0;
+
+    & .img-bg {
+        // object-fit: contain;
+        // bottom: 0;
+        // height: clamp-px(260, 421);
+    }
+}
