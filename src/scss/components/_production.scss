@@ -1,0 +1,37 @@
+@use "../main/mixins-vars.scss"as *;
+
+.production {
+    margin-bottom: clamp-px(40, 80);
+    padding: 0 clamp(1rem, .911971831rem + .3755868545vw, 1.25rem);
+}
+
+.production__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.production__card-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: clamp-px(20, 40);
+    margin-bottom: clamp-px(20, 40);
+
+    &>.product_tabs-item__video-card {
+        border-bottom: 2px solid var(--grey02);
+        padding-bottom: 20px;
+
+        & .vk-video-wrapper {
+            aspect-ratio: 1 / 0.6;
+        }
+
+        & .product_tabs-item__video-card-text {
+            font-size: clamp-px(16, 20);
+            margin-left: clamp-px(0, 30);
+        }
+    }
+
+    @include respond-to('tel') {
+        grid-template-columns: 1fr;
+    }
+}

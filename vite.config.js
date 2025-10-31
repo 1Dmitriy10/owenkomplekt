@@ -23,6 +23,7 @@ const rollupInputs = {
   Дилерам: path.resolve(__dirname, 'src/html/dealer.html'),
   Партнерская_программа: path.resolve(__dirname, 'src/html/partner-program.html'),
   Услуги: path.resolve(__dirname, 'src/html/services.html'),
+  Производство: path.resolve(__dirname, 'src/html/production.html'),
 
 };
 
