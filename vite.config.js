@@ -24,6 +24,8 @@ const rollupInputs = {
   Партнерская_программа: path.resolve(__dirname, 'src/html/partner-program.html'),
   Услуги: path.resolve(__dirname, 'src/html/services.html'),
   Производство: path.resolve(__dirname, 'src/html/production.html'),
+  Наши_проекты: path.resolve(__dirname, 'src/html/projects.html'),
+  
 
 };
 

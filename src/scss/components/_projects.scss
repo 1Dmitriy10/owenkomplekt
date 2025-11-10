@@ -1,0 +1,55 @@
+@use "../main/mixins-vars"as *;
+
+.projects__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.projects__card-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp-px(10, 20);
+    margin-bottom: clamp-px(20, 40);
+
+    & .cases__card {
+        min-height: clamp-px(240, 540);
+        display: flex;
+        flex-direction: column;
+        padding: clamp-px(16, 45) clamp-px(16, 40);
+
+        & .cases__name {
+            text-align: start;
+
+            @include respond-to('tel') {
+                text-align: center;
+
+            }
+        }
+
+        &:first-child {
+            @media (max-width: 1199.98px) {
+                grid-column: span 1;
+            }
+        }
+
+        &:not(:first-child) {
+            aspect-ratio: auto;
+        }
+
+
+        &:hover {
+            &:first-child {
+                & img {
+                    transform: scale(102%);
+                }
+
+
+            }
+
+        }
+    }
+
+    @include respond-to('tab') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

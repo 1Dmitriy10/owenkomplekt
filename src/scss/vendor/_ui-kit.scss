@@ -136,3 +136,33 @@ main.ui-kit {
 .footer-form__btn {
     margin-top: 10px;
 }
+
+.second-filter__box {
+    gap: 10px;
+    margin-bottom: clamp-px(24, 30);
+}
+
+.second-filter__item {
+    border-radius: 16px;
+    padding: clamp-px(8, 10) 20px;
+    width: fit-content;
+    background: var(--grey02);
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--grey07);
+    border: 1px solid transparent;
+    transition: 0.3s;
+
+
+    &.active {
+        border: 1px solid var(--grey07);
+        background-color: transparent;
+    }
+
+    &:hover {
+        border: 1px solid var(--grey07);
+        background-color: transparent;
+    }
+}
