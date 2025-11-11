@@ -25,6 +25,7 @@ const rollupInputs = {
   Услуги: path.resolve(__dirname, 'src/html/services.html'),
   Производство: path.resolve(__dirname, 'src/html/production.html'),
   Наши_проекты: path.resolve(__dirname, 'src/html/projects.html'),
+  Новости_и_полезные_материалы: path.resolve(__dirname, 'src/html/news.html'),
   
 
 };

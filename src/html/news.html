@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{{> head title='Главная' description='Описание главная'}}
+
+<body>
+    {{> header}}
+    <div class="breadcrambs">
+        <div class="container breadcrambs__container">
+            <ul class="breadcrambs__list">
+                <li class="breadcrambs__list-item">
+                    <a href="#" class="breadcrambs__item-link">
+                        Главная
+                    </a>
+                </li>
+
+                <li class="breadcrambs__list-item">
+                    <a href="#" class="breadcrambs__item-link">
+                        О компании
+                    </a>
+                </li>
+
+
+                <li class="breadcrambs__list-item">
+                    <span>Новости и полезные материалы</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <main>
+
+        <section class='title news__title'>
+            <div class='container title__container'>
+                <h1>Новости и полезные материалы</h1>
+            </div>
+        </section>
+
+        {{>news}}
+
+    </main>
+    {{> footer}}
+
+</body>
+
+</html>
