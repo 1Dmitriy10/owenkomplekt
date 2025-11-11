@@ -6,6 +6,11 @@
     flex-direction: column;
 }
 
+.news {
+    padding: 0 clamp-px(16, 20);
+    margin-bottom: clamp(1.875rem, 1.2147887324rem + 2.8169014085vw, 3.75rem);
+}
+
 .news__card-box {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
