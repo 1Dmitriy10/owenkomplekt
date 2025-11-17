@@ -1,0 +1,130 @@
+@use "../main/mixins-vars.scss"as *;
+
+.project-inner {}
+
+.project-inner__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-inner__top-block {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: clamp-px(40, 60);
+
+    @include respond-to('nout') {
+        flex-direction: column;
+    }
+}
+
+.project-inner__top-block-left {
+    flex: 1 1 auto;
+    max-width: 530px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: clamp-px(16, 40);
+    background: var(--grey02);
+
+    @include respond-to('nout') {
+        max-width: 100%;
+    }
+}
+
+.project-inner__top-title {
+    font-weight: 700;
+    font-size: clamp-px(20, 36);
+    line-height: 120%;
+    color: var(--grey07);
+    margin-bottom: 20px;
+}
+
+.project-inner__top-text {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #6e6e6e;
+    margin-bottom: clamp-px(40, 60);
+}
+
+.project-inner__top-info-card-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.project-inner__top-info-card {
+    flex: 0 1 auto;
+    border-radius: 10px;
+    padding: 10px clamp-px(16, 20);
+    background: var(--white01);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+
+}
+
+.project-inner__top-info-card-name {
+    font-weight: 400;
+    font-size: clamp-px(12, 14);
+    line-height: 120%;
+    color: var(--grey07);
+}
+
+.project-inner__top-info-card-val {
+    font-weight: 400;
+    font-size: clamp-px(16, 20);
+    line-height: 120%;
+    color: var(--grey07);
+    min-width: fit-content;
+}
+
+.project-inner__top-block-right {
+    flex: 1 1 auto;
+    max-width: 750px;
+    min-width: 600px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    max-height: 420px;
+    overflow-y: auto;
+
+    @include respond-to('pc-old') {
+        grid-template-columns: repeat(2, 1fr);
+        min-width: 400px;
+        max-height: 487px;
+    }
+
+    @include respond-to('nout') {
+        display: flex;
+        gap: 6px;
+        min-width: auto;
+        max-height: 100%;
+        flex-wrap: nowrap;
+        scroll-snap-type: x mandatory;
+        overflow-x: auto;
+        // -----цвет скрола
+        scrollbar-color: var(--grey02) transparent;
+        scrollbar-width: thin;
+        padding-bottom: 10px;
+    }
+}
+
+.project-inner__top-img {
+    position: relative;
+    height: clamp-px(161, 205);
+
+    @include respond-to('nout') {
+        flex: 0 0 160px;
+        height: 155px;
+        scroll-snap-align: start;
+    }
+}
+
+.project-inner-content {
+    display: flex;
+    flex-direction: column;
+}

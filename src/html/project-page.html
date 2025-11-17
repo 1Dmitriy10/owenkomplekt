@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{{> head title='Страница проекта' description='Описание'}}
+
+<body>
+    {{> header}}
+    <div class="breadcrambs">
+        <div class="container breadcrambs__container">
+            <ul class="breadcrambs__list">
+                <li class="breadcrambs__list-item">
+                    <a href="#" class="breadcrambs__item-link">
+                        Главная
+                    </a>
+                </li>
+
+                <li class="breadcrambs__list-item">
+                    <a href="#" class="breadcrambs__item-link">
+                        О компании
+                    </a>
+                </li>
+
+                <li class="breadcrambs__list-item">
+                    <a href="#" class="breadcrambs__item-link">
+                        Новости
+                    </a>
+                </li>
+
+
+                <li class="breadcrambs__list-item">
+                    <span>Страница проекта</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <main>
+
+        <section class='title'>
+            <div class='container title__container'>
+                <h1>Страница проекта заголовок H1</h1>
+            </div>
+        </section>
+
+        {{>project-inner}}
+
+    </main>
+    {{> footer}}
+
+</body>
+
+</html>

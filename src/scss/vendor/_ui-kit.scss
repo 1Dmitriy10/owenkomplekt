@@ -166,3 +166,130 @@ main.ui-kit {
         background-color: transparent;
     }
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+
+    & p {
+        font-weight: 400;
+        font-size: clamp-px(16, 20);
+        line-height: 150%;
+        color: var(--grey06);
+
+        &:not(:last-child) {
+            margin-bottom: clamp-px(15, 20);
+        }
+    }
+
+    & a {
+        font-weight: 400;
+        font-size: clamp-px(16, 20);
+        line-height: 150%;
+        color: var(--grey06);
+        text-decoration: underline;
+        color: var(--red01);
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: clamp-px(16, 20);
+        line-height: 120%;
+        color: var(--grey07);
+        margin-bottom: clamp-px(15, 20);
+    }
+
+    & ul {
+        margin-left: 10px;
+        margin-bottom: clamp-px(40, 60) !important;
+
+        & li {
+            font-weight: 400;
+            font-size: clamp-px(16, 20);
+            line-height: 150%;
+
+        }
+    }
+
+    & ul.black {
+        & li {
+            font-weight: 400;
+            font-size: clamp-px(16, 20);
+            line-height: 150%;
+
+            &::before {
+
+                background-color: var(--grey06);
+            }
+        }
+    }
+
+    & ol {
+        margin-left: 30px;
+        margin-bottom: clamp-px(40, 60) !important;
+
+        & li {
+            font-weight: 400;
+            font-size: clamp-px(16, 20);
+            line-height: 150%;
+
+        }
+    }
+
+    & .border-gray {
+        border-radius: clamp-px(20, 30);
+        padding: clamp-px(20, 40);
+        background: var(--grey02);
+        margin-bottom: clamp-px(40, 60);
+
+        & p {
+            color: var(--grey07);
+        }
+    }
+
+    & .double-block-img {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+
+        &>div {
+            &:first-child {
+                flex: 1 1 auto;
+                max-width: 730px;
+            }
+
+            &:last-child {
+                flex: 1 1 auto;
+                max-width: 530px;
+                min-width: 400px;
+            }
+
+
+        }
+
+        @include respond-to('nout') {
+            flex-direction: column;
+
+            &>div {
+                &:first-child {
+                    flex: 1 1 auto;
+                    max-width: 100%;
+                }
+
+                &:last-child {
+                    flex: 1 1 auto;
+                    max-width: 100%;
+                    min-width: auto;
+                    align-self: center;
+                }
+
+
+            }
+        }
+
+    }
+
+    & img {
+        max-width: 100%;
+    }
+}
