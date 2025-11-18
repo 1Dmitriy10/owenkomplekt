@@ -20,7 +20,7 @@ import { stickyHeader } from "./libs/stickyHeader.js";
 
 
 // // -------------------------Табы--------------------
-import { productTabs } from "./libs/tabs.js";
+import { productTabs, orderTabs } from "./libs/tabs.js";
 
 // // -------------------------Заголовок для универсальной формы--------------------
 // import { setTitlePopupForm } from "./libs/setTitlePopupForm.js";
@@ -101,6 +101,9 @@ import { btnFilter } from "./components/btnFilter.js";
 
 //------------Счетчик в корзине---------------
 import { basketCount } from "./components/basketCount.js";
+
+//------------Радиокнопки в корзине---------------
+import { addRadioButtonOrder } from "./components/addRadioButtonOrder.js";
 
 
 

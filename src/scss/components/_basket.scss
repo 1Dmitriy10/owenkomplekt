@@ -337,3 +337,212 @@
 
     }
 }
+
+.main-order-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-order-info-box {
+    border-radius: 20px;
+    padding: 30px;
+    background: var(--grey07);
+}
+
+.card-order-info-box__top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid var(--grey05);
+    padding-bottom: 20px;
+
+    @include respond-to("nout") {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+.card-order-info-box__top-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+    & span {
+        font-size: 16px;
+        line-height: 150%;
+        color: var(--white01);
+
+        &:first-child {
+            font-weight: 400;
+        }
+
+        &:last-child {
+            font-weight: 700;
+        }
+    }
+}
+
+.card-order-info-box__bottom {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+
+    @include respond-to("nout") {
+        display: none;
+    }
+}
+
+ul.partner-ul.red {
+    gap: 10px;
+
+    & li {
+        color: var(--white01);
+        margin-left: 0;
+        padding-left: 12px;
+
+        &::before {
+            background-color: var(--red);
+        }
+    }
+}
+
+.order__basket-section {
+    margin-bottom: clamp-px(10, 30);
+}
+
+.order-tabs {
+    & .tabs__title-box {
+        gap: clamp-px(10, 60);
+        margin-bottom: 30px;
+    }
+
+    & .tabs__title {
+        border: none;
+        background-color: transparent;
+
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            background-color: transparent;
+            /* Важно: прозрачный фон */
+            transition: all 0.2s ease;
+        }
+
+        &.active {
+            border: none;
+            background-color: transparent;
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translate(50%, -50%);
+                width: 10px;
+                height: 10px;
+                background-color: #333;
+                border-radius: 50%;
+                transition: all 0.2s ease;
+            }
+        }
+    }
+}
+
+.order-form {
+    width: 100%;
+    padding: 0;
+
+    .form__row {
+        display: flex;
+        flex-direction: column;
+
+        & label {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            color: var(--grey05);
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        & textarea {
+            border: 1px solid #d6d6d6;
+            border-radius: 10px;
+            padding: clamp(1rem, 0.823943662rem + 0.7511737089vw, 1.5rem);
+            font-weight: 400;
+            font-size: clamp(0.875rem, 0.8309859155rem + 0.1877934272vw, 1rem);
+            line-height: 120%;
+            color: var(--grey06);
+            background-color: var(--white);
+            transition: 0.3s;
+        }
+    }
+
+    & .form__row-two {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        & .form__row {
+            flex: 0 1 calc((100% - 20px * 1) / 2);
+
+            & label {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 120%;
+                color: var(--grey05);
+                margin-bottom: 6px;
+                display: inline-block;
+            }
+
+
+        }
+
+        @include respond-to('tab') {
+            flex-direction: column;
+        }
+    }
+}
+
+.order-form__btn-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    & .btn {
+        flex: 0 1 calc((100% - 20px * 1) / 2);
+    }
+
+    @include respond-to('tab') {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    @include respond-to('tel') {
+        & .btn {
+            width: 100%;
+        }
+
+        & .agree-box {
+            margin-left: 5px;
+        }
+    }
+}
+
+.order-title {
+    margin-bottom: clamp-px(20, 40) !important;
+}

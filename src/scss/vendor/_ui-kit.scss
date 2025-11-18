@@ -293,3 +293,20 @@ main.ui-kit {
         max-width: 100%;
     }
 }
+
+.aside-right__block {
+    padding: 0 clamp-px(16, 20);
+    margin-bottom: clamp-px(40, 80);
+}
+
+.aside-right__container {
+    display: grid;
+    gap: 20px;
+    justify-content: space-between;
+    grid-template-columns: minmax(500px, 970px) minmax(25px, 310px);
+
+    @include respond-to('nout') {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
