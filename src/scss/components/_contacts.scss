@@ -1,0 +1,187 @@
+@use "../main/mixins-vars"as *;
+
+.contacts {
+    padding: 0 clamp(1rem, 0.911971831rem + 0.3755868545vw, 1.25rem);
+    margin-bottom: clamp(2.5rem, 2.242rem + 1.1vw, 3.563rem);
+}
+
+.contacts__container {}
+
+.contacts__box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp-px(10, 20);
+
+    @include respond-to('pc-old') {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include respond-to('tab') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to('tel') {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contacts__card {
+    display: flex;
+    flex-direction: column;
+    border-radius: clamp-px(20, 30);
+    padding: clamp-px(20, 38);
+    background: var(--grey02);
+    min-height: clamp-px(205, 333);
+
+    & .choice__card-item-top {
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.contacts__card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contacts__card__phone {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: #171717;
+}
+
+
+.contacts__card__worck-time {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 140%;
+    color: #171717;
+}
+
+.contacts__card-director {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: #171717;
+    margin-bottom: clamp-px(10, 20);
+}
+
+.contacts__card-btn {
+    padding: 12px clamp-px(15, 32);
+    margin-top: auto;
+
+    @include respond-to('tab') {
+        max-width: 203px;
+    }
+}
+
+.contacts-info-section {
+    background: var(--grey05);
+    position: relative;
+    min-height: 546px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+
+    @include respond-to('nout') {
+        flex-direction: column-reverse;
+    }
+}
+
+.contacts-info-section__img-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55.3%;
+    height: 100%;
+
+    @include respond-to('nout') {
+        position: relative;
+        height: 546px;
+        margin-left: -20px;
+        width: calc(100% + 40px);
+    }
+}
+
+.contacts-info-section__container {
+    padding: clamp-px(40, 80) 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.contacts-info-section__title {
+    font-weight: 700;
+    font-size: clamp-px(20, 40);
+    line-height: 120%;
+    color: var(--white01);
+    padding-bottom: clamp-px(20, 40);
+}
+
+.contacts-info-section__btn-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.contacts-info-btn {
+    gap: 10px;
+    padding: 6px clamp-px(15, 24);
+    font-weight: 700;
+    font-size: clamp-px(16, 20);
+}
+
+.btn-gray {
+    background: var(--grey04);
+    border: 1px solid var(--grey04);
+}
+
+.contacts-info-section__text-box {
+    margin-top: auto;
+
+    & span {
+        font-weight: 700;
+        font-size: clamp-px(16, 20);
+        line-height: 150%;
+        color: var(--white01);
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    & p {
+        font-weight: 400;
+        font-size: clamp-px(16, 20);
+        line-height: 150%;
+        color: var(--white01);
+        margin-bottom: 20px;
+        display: block;
+    }
+}
+
+.contacts-info-section__phone {
+    font-weight: 700;
+    font-size: clamp-px(16, 20);
+    line-height: 120%;
+    color: var(--white01);
+    margin-bottom: 23px;
+}
+
+.contacts-info-section__mail {
+    font-weight: 700;
+    font-size: clamp-px(16, 20);
+    line-height: 120%;
+
+    text-decoration-skip-ink: none;
+    color: var(--white01);
+}
+
+.order-title {
+    margin-bottom: clamp(2.5rem, 2.121rem + 1.62vw, 4.063rem) !important;
+}

@@ -28,6 +28,7 @@ const rollupInputs = {
   Наши_проекты: path.resolve(__dirname, 'src/html/projects.html'),
   Новости_и_полезные_материалы: path.resolve(__dirname, 'src/html/news.html'),
   Страница_проекта: path.resolve(__dirname, 'src/html/project-page.html'),
+  Контакты: path.resolve(__dirname, 'src/html/contacts.html'),
 
 };
 
