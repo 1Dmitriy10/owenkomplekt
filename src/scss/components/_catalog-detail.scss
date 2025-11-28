@@ -136,11 +136,11 @@
 
 }
 
-.catalog-detail-params__right-col {
-    @include respond-to("tab") {
-        display: none !important;
-    }
-}
+// .catalog-detail-params__right-col {
+//     @include respond-to("tab") {
+//         display: none !important;
+//     }
+// }
 
 .price-box {
     display: flex;
@@ -354,6 +354,10 @@
         }
     }
 
+    &.spec {
+        padding: 20px;
+    }
+
 }
 
 .param-item__property-spoilers {
@@ -410,7 +414,7 @@
     gap: 10px;
 
     &:not(:last-child) {
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
     }
 }
 
@@ -427,11 +431,13 @@
         display: flex;
         flex-direction: column;
         gap: 4px;
+        margin-bottom: 0 !important;
 
 
         & li {
             position: relative;
             padding-left: 12px;
+            font-size: clamp-px(12, 18);
 
             &::before {
                 position: absolute;
@@ -448,7 +454,7 @@
 }
 
 .param-item__btn {
-    margin-top: 20px;
+    // margin-top: 20px;
     align-self: flex-start;
 
 }
