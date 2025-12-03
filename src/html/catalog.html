@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{{> head title='Каталог' description='Описание каталога'}}
+
+<body>
+    {{> header}}
+    {{> breadcrambs name='Каталог'}}
+
+    <section class='title'>
+        <div class='container title__container'>
+            <h1>Каталог</h1>
+        </div>
+    </section>
+
+    <main>
+        {{> catalog-main}}
+
+
+        <section class="main-form-section">
+            <div class="container main-form__container">
+
+                <div class="main-form__text-col !max-w-[720px]">
+
+
+                    <div class="main-form__title">
+                        <h2>Автоматизация без компромиссов:&nbsp;</h2>
+                        <ul>
+                            <li>
+                                эффективность,
+                            </li>
+                            <li>
+                                энергосбережение,
+                            </li>
+                            <li>
+                                гарантия.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="main-form__info-text">
+                        <div>
+                            Вы&nbsp;можете задать интересующий вопрос, мы&nbsp;с&nbsp;радостью на&nbsp;него ответим:
+                        </div>
+                        <div>
+                            Почта: <a class="!underline underline-offset-[4px]"
+                                href="mailto:info@okatec.ru">info@okatec.ru</a>
+                        </div>
+                        <div>
+                            Телефон: <a href="tel:+74951351355">8 495 135 135 5</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-form__form-col">
+                    <form class="form main-form !max-w-[380px]">
+
+                        <div class="form-text-box">
+
+                            <div class="form-text-box-text text-center">
+                                Мы свяжимся с&nbsp;вами в&nbsp;течение 30 минут и&nbsp;озвучим предстоящую выгоду
+                                от&nbsp;сотрудничества
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+
+                            <input type="text" name="name" placeholder="Ваше имя">
+                        </div>
+
+                        <div class="form__row">
+
+                            <input type="text" name="tel" placeholder="Ваш телефон" inputmode="text">
+                        </div>
+
+                        <button class="btn main-form__btn" type="submit">Оставить заявку</button>
+
+
+                        <div class="agree-box">
+                            <input class="agree-check" type="checkbox" checked="">
+                            <span>
+                                Я даю разрешение на обработку персональных данных
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+    {{> footer}}
+
+</body>
+
+</html>

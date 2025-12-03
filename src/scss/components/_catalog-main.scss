@@ -1,0 +1,115 @@
+@use "../main/mixins-vars.scss"as *;
+
+.catalog-main {
+    padding: 0 clamp(1rem, .911971831rem + .3755868545vw, 1.25rem);
+    margin-bottom: clamp(2.5rem, 1.6197183099rem + 3.7558685446vw, 5rem);
+}
+
+.catalog-main__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-main__card-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp-px(10, 20);
+
+    @include respond-to('tel') {
+        grid-template-columns: 1fr;
+    }
+}
+
+.catalog-main__card {
+    border: 2px solid var(--grey02);
+    border-radius: clamp-px(16, 20);
+    padding: clamp-px(20, 40);
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+    @include respond-to('nout') {
+        flex-direction: column;
+    }
+
+
+}
+
+.catalog-main__card-img {
+    flex: 0 1 clamp-px(150, 240);
+    max-width: clamp-px(150, 240);
+    min-width: clamp-px(150, 240);
+    aspect-ratio: 1/1;
+    position: relative;
+    height: fit-content;
+    border-radius: clamp-px(16, 20);
+    overflow: hidden;
+
+    & .img-bg {
+        border-radius: clamp-px(16, 20);
+    }
+
+    @include respond-to('nout') {
+        max-width: 100%;
+        min-width: auto;
+        flex: none;
+    }
+}
+
+.catalog-main__card-text-box {
+    flex: 0 1 50%;
+    // max-width: ;
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-main__card-title {
+    font-weight: 700;
+    font-size: clamp-px(18, 20);
+    line-height: 120%;
+    color: var(--grey07);
+    margin-bottom: 20px;
+}
+
+.catalog-main__card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    & li {
+        font-weight: 400;
+        font-size: clamp(.875rem, .8309859155rem + .1877934272vw, 1rem);
+        line-height: 150%;
+        color: var(--grey06);
+        position: relative;
+        padding-left: 14px;
+
+        &::before {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            content: "";
+            display: flex;
+            width: 4px;
+            height: 4px;
+            border-radius: 100%;
+            background-color: var(--red);
+        }
+
+
+    }
+
+    & a {
+        font-weight: 400;
+        font-size: clamp(.875rem, .8309859155rem + .1877934272vw, 1rem);
+        line-height: 150%;
+        color: var(--grey06);
+        position: relative;
+        transition: 0.3s;
+
+        &:hover {
+            transition: 0.3s;
+            color: var(--red);
+        }
+    }
+}
