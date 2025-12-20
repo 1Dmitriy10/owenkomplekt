@@ -77,6 +77,14 @@ const createPropertyDetailSpoilers = () => {
 // export const propertyDetailSpoilers = createPropertyDetailSpoilers();
 export const propertyDetailSpoilers_2 = createPropertyDetailSpoilers();
 
+export const lcNavMobSpoilers = new Spoilers({
+    item: 'lc__nav-mob-spoilers', /*класс споилера*/
+    timeAnimation: 300, /*время анимации*/
+    accordion: false,    /*Режим аккордиона*/
+    firstOpen: false,    /*Первый элемент всегда открыт*/
+    allOpen: false    /*Все элементы открыты*/
+})
+
 
 
 

@@ -30,6 +30,17 @@ const rollupInputs = {
   Новости_и_полезные_материалы: path.resolve(__dirname, 'src/html/news.html'),
   Страница_проекта: path.resolve(__dirname, 'src/html/project-page.html'),
   Контакты: path.resolve(__dirname, 'src/html/contacts.html'),
+  ЛК_регистрация: path.resolve(__dirname, 'src/html/lc-registration.html'),
+  ЛК_авторизация: path.resolve(__dirname, 'src/html/lc-authorization.html'),
+  ЛК_профиль: path.resolve(__dirname, 'src/html/lc-profile.html'),
+  ЛК_скидки: path.resolve(__dirname, 'src/html/lc-discounts.html'),
+  ЛК_исторя_пусто: path.resolve(__dirname, 'src/html/lc-history-empty.html'),
+  ЛК_исторя: path.resolve(__dirname, 'src/html/lc-history.html'),
+  ЛК_избранное: path.resolve(__dirname, 'src/html/lc-favourites.html'),
+  ЛК_корзина_нет_заказов: path.resolve(__dirname, 'src/html/lc-basket-empty.html'),
+  ЛК_корзина: path.resolve(__dirname, 'src/html/lc-basket.html'),
+  ЛК_корзина_результат: path.resolve(__dirname, 'src/html/lc-basket-result.html'),
+  Модальные_окна: path.resolve(__dirname, 'src/html/modal.html'),
 
 };
 

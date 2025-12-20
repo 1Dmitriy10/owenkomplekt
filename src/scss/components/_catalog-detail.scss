@@ -75,6 +75,8 @@
 
 .detail-product-gallery__slider {
     margin: 2px 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .detail-product-gallery__slide {
@@ -463,6 +465,18 @@ ul.no-ul {
     & li {
         &::before {
             content: none;
+        }
+    }
+}
+
+.product_tabs-js {
+    & .tabs__item {
+        & p {
+            font-size: clamp-px(14, 16);
+        }
+
+        & li {
+            font-size: clamp-px(14, 16);
         }
     }
 }

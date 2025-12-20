@@ -1,0 +1,229 @@
+@use "../main/mixins-vars.scss"as *;
+
+.lc {
+    margin-top: clamp-px(0, 13);
+}
+
+.lc__container {
+    display: grid;
+    gap: 20px;
+    justify-content: space-between;
+    grid-template-columns: minmax(200px, 270px) minmax(400px, 970px);
+
+    @include respond-to('nout') {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.lc__nav-desc {
+    display: flex;
+    flex-direction: column;
+
+    @include respond-to('nout') {
+        display: none;
+    }
+}
+
+.lc__nav-mob {
+
+    display: none;
+
+    @include respond-to('nout') {
+
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.lc__nav-mob-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 16px 20px;
+    background: rgba(227, 54, 36, 0.1);
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    & span {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 120%;
+        color: var(--red01);
+    }
+
+    &::after {
+        content: none;
+    }
+
+    & .close {
+        display: none;
+    }
+
+    & .open {
+        display: block;
+    }
+
+    &.active {
+        & .open {
+            display: none;
+        }
+
+        & .close {
+            display: block;
+        }
+    }
+}
+
+.lc__nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.lc__nav-list {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.lc__nav-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 0;
+    border-bottom: 2px solid var(--grey01);
+    transition: 0.3s;
+
+    & span {
+        font-weight: 400;
+        font-size: clamp-px(14, 16);
+        line-height: 150%;
+        color: var(--grey07);
+    }
+
+    & svg {
+        & path {
+            transition: 0.3s;
+            width: clamp-px(24, 30);
+            height: clamp-px(24, 30);
+
+        }
+    }
+
+    &.active {
+        transition: 0.3s;
+        background: var(--grey01);
+        border-radius: 10px;
+
+        & svg {
+            & path {
+                transition: 0.3s;
+                fill: var(--red)
+            }
+        }
+    }
+
+    &:hover {
+        transition: 0.3s;
+        background: var(--grey01);
+        border-radius: 10px;
+
+        & svg {
+            & path {
+                transition: 0.3s;
+                fill: var(--red)
+            }
+        }
+    }
+}
+
+.lc__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.lc__title {
+    margin-bottom: clamp-px(20, 28)
+}
+
+.btn__change-password {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-align: left;
+    color: var(--red01);
+    margin-top: 10px;
+}
+
+.textarea-h-101 {
+    min-height: 101px;
+}
+
+.order-tabs {
+    & .tabs__title {
+        font-weight: 400;
+        font-size: clamp-px(14, 16);
+        line-height: 150%;
+        text-align: right;
+        color: var(--grey06);
+    }
+}
+
+.lc__discounts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp-px(10, 20);
+
+    @include respond-to("pc-old") {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.lc__discounts-item {
+    display: flex;
+    gap: clamp-px(20, 30);
+    border-radius: 20px;
+    padding: 20px 40px;
+    background: var(--grey04);
+
+    @include respond-to("pc-old") {
+        justify-content: space-between;
+        padding: 11px 0 11px 20px;
+    }
+}
+
+.lc__discounts-item-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: clamp-px(10, 20) 0;
+}
+
+.lc__discounts-item-title {
+    font-weight: 700;
+    font-size: clamp-px(16, 20);
+    line-height: 120%;
+    color: var(--white01);
+}
+
+.lc__discounts-item-text {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    color: var(--white01);
+}
+
+.lc__discounts-item-img {
+    position: relative;
+    width: clamp-px(90, 152);
+    min-width: clamp-px(90, 152);
+    height: clamp-px(90, 152);
+}
+
+.img-bg {}

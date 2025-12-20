@@ -46,7 +46,12 @@
 @use "./components/project-inner";
 @use "./components/contacts";
 @use "./components/catalog-main";
+@use "./components/lc";
+@use "./components/lc-registration";
+@use "./components/lc-history";
+@use "./components/lc-favourites";
 
+@use "./components/modal";
 @use "./components/footer.scss";
 
 //================Атомарные стили=====================

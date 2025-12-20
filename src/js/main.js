@@ -6,7 +6,7 @@ import '../scss/style.scss';
 import '../files/fontello-c8082328/css/owen.css';
 
 //------------------------Спойлеры-----------------------
-import { spoilers, filterSpoilers,propertyDetailSpoilers, propertyDetailSpoilers_2, catalogDetailTabsSpoilers, catalogDetailItemSpoilers } from "./libs/spoilers.js";
+import { spoilers, filterSpoilers,propertyDetailSpoilers, propertyDetailSpoilers_2, catalogDetailTabsSpoilers, catalogDetailItemSpoilers, lcNavMobSpoilers } from "./libs/spoilers.js";
 
 // // ------------- Мобильное меню -------------------------
 import { mobMenu } from "./libs/burgerMenu.js";
@@ -20,7 +20,7 @@ import { stickyHeader } from "./libs/stickyHeader.js";
 
 
 // // -------------------------Табы--------------------
-import { productTabs, orderTabs } from "./libs/tabs.js";
+import { productTabs, orderTabs, orderHistoryTabs } from "./libs/tabs.js";
 
 // // -------------------------Заголовок для универсальной формы--------------------
 // import { setTitlePopupForm } from "./libs/setTitlePopupForm.js";

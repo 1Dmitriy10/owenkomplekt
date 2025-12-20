@@ -21,4 +21,5 @@ import { Tabs } from "../vendor/tabs.js"
 
 export const productTabs = new Tabs({ class: "product_tabs-js" })
 export const orderTabs = new Tabs({ class: "order-tabs" })
+export const orderHistoryTabs = new Tabs({ class: "order-history-tabs" })
 

@@ -46,6 +46,13 @@
     font-size: clamp-px(14, 20);
     line-height: 120%;
     color: var(--grey07);
+    min-height: 48px;
+
+    display: -webkit-box;
+    // кол-во колонок
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .services__card-link {

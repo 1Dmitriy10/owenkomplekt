@@ -282,7 +282,7 @@ header {
 }
 
 .basket {
-    margin-right: clamp-px(15, 20);
+    // margin-right: clamp-px(15, 20);
     position: relative;
 
     &>.counter {
@@ -316,6 +316,7 @@ header {
 .account-content {
     display: flex;
     align-items: center;
+    gap: clamp-px(10, 20);
 }
 
 .sub-menu {

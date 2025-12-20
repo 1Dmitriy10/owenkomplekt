@@ -1,0 +1,54 @@
+@use "../main/mixins-vars.scss"as *;
+
+.products-list.favourites {
+    & .products__card-like {
+        & svg {
+            & path {
+                fill: var(--red);
+            }
+        }
+    }
+}
+
+.basket-empty-block__info-icon {
+    & svg {
+        width: clamp-px(40, 50);
+        min-width: clamp-px(40, 50);
+        height: clamp-px(40, 50);
+    }
+}
+
+.lc-basket__btn {
+    margin-top: clamp-px(20, 30);
+}
+
+.lc-basket-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: clamp-px(20, 60) clamp-px(20, 40);
+    max-width: 420px;
+    background: var(--grey01);
+    gap: clamp-px(10, 20);
+
+    @include respond-to('tel') {
+        max-width: 100%;
+    }
+}
+
+.lc-basket-result__title {
+    font-weight: 700;
+    font-size: clamp-px(16, 20);
+    line-height: 120%;
+    text-align: center;
+    color: var(--grey07);
+}
+
+.lc-basket-result__subtitle {
+    font-weight: 400;
+    font-size: clamp-px(14, 16);
+    line-height: 150%;
+    text-align: center;
+    color: var(--grey07);
+}

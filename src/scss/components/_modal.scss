@@ -1,0 +1,71 @@
+@use "../main/mixins-vars.scss"as *;
+
+.popup-window {
+    display: none;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 60px 40px;
+    box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+    background: var(--grey01);
+    position: relative;
+
+    & button.f-button {
+        display: none !important;
+    }
+
+    & .form {
+        padding: 0;
+    }
+}
+
+.btn-exit-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.popup__title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    text-align: center;
+    color: var(--grey07);
+    margin-bottom: 20px;
+}
+
+.popup__subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--grey07);
+    margin-bottom: 20px;
+}
+
+.popup__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#popup-restoring-access {
+    max-width: 420px;
+}
+
+#popup-new-password {
+    & .form__row {
+        & label {
+            margin-bottom: 6px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            text-align: center;
+            color: var(--grey05);
+        }
+    }
+}
+
+#popup-mail-director,
+#popup-feedback {
+    max-width: 420px;
+}
