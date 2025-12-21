@@ -27,13 +27,17 @@ main.ui-kit {
     border: 1px solid var(--red);
     transition: 0.3s;
     cursor: pointer;
-    width: fit-content;
+
 
     &:hover {
         transition: 0.3s;
         background-color: transparent;
         color: var(--red);
     }
+}
+
+a.btn {
+    width: fit-content;
 }
 
 
