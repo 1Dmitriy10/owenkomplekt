@@ -1,0 +1,76 @@
+@use "../main/mixins-vars.scss"as *;
+
+.logo-box__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @include respond-to('nout') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to('tel') {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.logo__item {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.logo__item-img {
+    position: relative;
+    aspect-ratio: 1 / 0.475;
+    margin-bottom: 20px;
+}
+
+.logo__item-link {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+
+    &>span {
+        font-weight: 400;
+        font-size: clamp-px(14, 16);
+        line-height: 150%;
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        text-decoration-skip-ink: none;
+        color: var(--red01);
+        transition: 0.3s;
+    }
+
+    &>svg {
+        transition: 0.3s;
+
+        & path {
+            transition: 0.3s;
+        }
+
+    }
+
+    &:hover {
+
+        &>span {
+            transition: 0.3s;
+            color: #000;
+        }
+
+        &>svg {
+            transition: 0.3s;
+
+            & path {
+                transition: 0.3s;
+                fill: #000;
+            }
+
+        }
+
+    }
+
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{{> head title='Логотип' description='Описание логотип'}}
+
+<body>
+    {{> header}}
+
+    <div class="breadcrambs">
+        <div class="container breadcrambs__container">
+            <ul class="breadcrambs__list">
+                <li class="breadcrambs__list-item">
+                    <a href="#" class="breadcrambs__item-link">
+                        Главная
+                    </a>
+                </li>
+
+                <li class="breadcrambs__list-item">
+                    <a href="#" class="breadcrambs__item-link">
+                        Поддержка
+                    </a>
+                </li>
+
+                <li class="breadcrambs__list-item">
+                    <span>Логотип</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <main>
+        <section class="title order-title">
+            <div class="container title__container">
+                <h1>Логотип</h1>
+            </div>
+        </section>
+
+        {{> logo-box}}
+
+    </main>
+    {{> footer}}
+
+</body>
+
+</html>
