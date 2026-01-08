@@ -145,6 +145,13 @@
 
 .cases-prev-slider {
     position: relative;
+
+    & .img-bg {
+        position: fixed;
+        object-fit: cover;
+        width: auto;
+        height: auto;
+    }
 }
 
 .cases__card-info-box {
@@ -246,7 +253,7 @@
     }
 
     @include respond-to("tel") {
-        aspect-ratio: auto;
+        // aspect-ratio: auto;
     }
 }
 

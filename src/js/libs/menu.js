@@ -11,7 +11,7 @@ export const menu = new Menu({
     Разместить в нужном месте <div class="sub-menu-wrap"></div>*/
     solutionForSubmenu: true,
     /*Когда скрыть меню*/
-    mediaHidden: "768px",
+    mediaHidden: "0",
     /*Стрелка для выпадающего меню (svg/i)*/
     arrowSubmenu: `
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@ export const menuSticky = new Menu({
     Разместить в нужном месте <div class="sub-menu-wrap-sticky"></div>*/
     solutionForSubmenu: true,
     /*Когда скрыть меню*/
-    mediaHidden: "768",
+    mediaHidden: "0",
     /*Стрелка для выпадающего меню (svg/i)*/
     arrowSubmenu: `
             <svg width="10" height="10" viewBox="0 0 52 27"         fill="none" xmlns="http://www.w3.org/2000/svg">
