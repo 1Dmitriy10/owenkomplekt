@@ -40,6 +40,7 @@ const rollupInputs = {
   ЛК_корзина_нет_заказов: path.resolve(__dirname, 'src/html/lc-basket-empty.html'),
   ЛК_корзина: path.resolve(__dirname, 'src/html/lc-basket.html'),
   ЛК_корзина_результат: path.resolve(__dirname, 'src/html/lc-basket-result.html'),
+  Логотип: path.resolve(__dirname, 'src/html/logo.html'),
   Модальные_окна: path.resolve(__dirname, 'src/html/modal.html'),
 
 };
