@@ -158,6 +158,15 @@
     gap: 20px;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.price-box__top-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
 }
 
 .price {
@@ -165,6 +174,20 @@
     font-size: clamp-px(20, 36);
     line-height: 120%;
     color: var(--grey07);
+
+}
+
+.price-old {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    text-decoration: line-through;
+    color: var(--grey04);
+
+    @include respond-to('tel') {
+        display: none;
+    }
 }
 
 .availability {
@@ -193,7 +216,7 @@
 
     & .btn {
         flex: 0 1 calc((100% - 10px * 1) / 2);
-        padding: 12px 15px;
+        padding: 12px clamp-px(10, 15);
     }
 }
 

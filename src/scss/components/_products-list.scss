@@ -369,6 +369,46 @@
     line-height: 150%;
     color: var(--grey07);
     margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @include respond-to('tel') {
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+}
+
+.products__card-price-box {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+
+    @include respond-to('tel') {
+        flex-direction: column-reverse;
+        gap: 0;
+    }
+
+}
+
+.products__card-price-old {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 120%;
+    text-decoration: line-through;
+    color: var(--grey04);
+}
+
+.products__card-price-sale {
+    border: 1px solid #ca2339;
+    border-radius: 4px;
+    padding: 2px 4px;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: #ca2339;
 }
 
 .products__card-btn-box {
@@ -394,6 +434,7 @@
         @include respond-to("tel") {
             min-width: 89px;
             padding: 9px 8px;
+            flex: 1 1 calc((100% - 10px * 1) / 2);
         }
     }
 }
