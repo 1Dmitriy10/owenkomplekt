@@ -185,3 +185,59 @@
 .order-title {
     margin-bottom: clamp(2.5rem, 2.121rem + 1.62vw, 4.063rem) !important;
 }
+
+.contacts-info__tabs {
+    width: 100%;
+    max-width: 453px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp-px(40, 80);
+
+    @include respond-to("pc-old") {
+        max-width: 383px;
+    }
+
+    @include respond-to("nout") {
+        max-width: 100%;
+    }
+
+    & .tabs__item.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .tabs__title {
+        flex: 1 1 50%;
+        border-radius: 10px;
+        padding: 6px 15px;
+        background: var(--grey04);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: none;
+
+        font-weight: 700;
+        font-size: clamp-px(16, 20);
+        line-height: 120%;
+        color: var(--white01);
+
+        transition: 0.3s;
+
+        &.active {
+            transition: 0.3s;
+            background: var(--red01);
+
+        }
+
+        &:hover {
+            transition: 0.3s;
+            background: var(--red01);
+        }
+    }
+
+    & .tabs__title-box {
+        margin-bottom: 0;
+        flex-wrap: nowrap;
+        gap: clamp-px(10, 20);
+    }
+}

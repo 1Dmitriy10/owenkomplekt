@@ -93,11 +93,11 @@
     height: 100dvh;
     transform: translateY(-100%);
     opacity: 0;
-    overflow: scroll;
+    overscroll-behavior: contain; // overflow: scroll;
     /* не автоматический! */
     //   для сафари
     // height: -webkit-fill-available;
-    -webkit-overflow-scrolling: touch;
+    // -webkit-overflow-scrolling: touch;
 
     &.horizontal {
         transform: translateX(100%);
@@ -143,11 +143,16 @@
 }
 
 .mob-nav-list {
-    overflow-y: scroll;
+    overflow: scroll;
+    /* не автоматический! */
+    //   для сафари
+    // height: -webkit-fill-available;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
     // min-height: 70%;
     margin-bottom: 16px;
+    max-height: calc(100% - 180px);
 
     &>.mob-nav-item {
         // padding-bottom: 21px;

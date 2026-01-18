@@ -20,7 +20,7 @@ import { stickyHeader } from "./libs/stickyHeader.js";
 
 
 // // -------------------------Табы--------------------
-import { productTabs, orderTabs, orderHistoryTabs } from "./libs/tabs.js";
+import { productTabs, orderTabs, orderHistoryTabs, contactsInfoTabs } from "./libs/tabs.js";
 
 // // -------------------------Заголовок для универсальной формы--------------------
 // import { setTitlePopupForm } from "./libs/setTitlePopupForm.js";

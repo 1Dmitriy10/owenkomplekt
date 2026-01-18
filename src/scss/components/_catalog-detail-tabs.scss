@@ -152,14 +152,14 @@
             font-weight: 700;
             font-size: clamp-px(14, 16);
             line-height: 150%;
-            color: var(--grey06);
+            color: #30333d;
         }
 
         &:last-child {
             font-weight: 400;
             font-size: clamp-px(14, 16);
             line-height: 150%;
-            color: var(--grey06);
+            color: #30333d;
         }
     }
 }
@@ -297,7 +297,7 @@
 .analogues__block {
     border-radius: 20px;
     padding: clamp-px(20, 60);
-    background: var(--grey06);
+    background: #30333d;
     margin-bottom: clamp-px(30, 60);
 }
 
